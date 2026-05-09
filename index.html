@@ -1,249 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Online Calculators – BMI, EMI, Mortgage, Scientific & More | Calcify</title>
-  <meta name="description" content="20+ free online calculators for finance, health, math, and everyday use. Scientific calculator, BMI, loan EMI, currency converter, age, and more. Instant, accurate, no signup.">
-  <meta name="keywords" content="online calculator, scientific calculator, BMI calculator, EMI calculator, mortgage calculator, percentage calculator, currency converter, financial calculators, health calculators">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://calcify.solutions/">
-  <meta property="og:title" content="Calcify – Free Online Calculators for Every Need">
-  <meta property="og:description" content="Fast, accurate calculators for finance, fitness, math, and daily life. 100% free.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://calcify.solutions/">
-  <meta name="twitter:card" content="summary_large_image">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg: #f5f7fb; --surface: white; --text: #1e293b; --text-light: #475569;
-      --border: #e2e8f0; --accent: #3b82f6; --btn-bg: #f1f5f9; --calc-btn: #eef2ff;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Free Online Calculators – BMI, EMI, Mortgage, Percentage & More | Calcify Solutions</title>
+    <meta name="description" content="25+ free online calculators for finance, health, math, and everyday use. BMI, EMI, mortgage, compound interest, currency converter, calorie, age, and more. Instant results, no signup.">
+    <meta name="keywords" content="online calculator, free calculator, BMI calculator, EMI calculator, loan calculator, mortgage calculator, percentage calculator, currency converter, compound interest, financial calculators, health calculators">
+    <meta name="author" content="Calcify Solutions">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://calcify.solutions/">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Calcify Solutions – Free Online Calculators for Every Need">
+    <meta property="og:description" content="Fast, accurate, 100% free online calculators for finance, health, math, and daily life. 25+ tools with dark mode.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calcify.solutions/">
+    <meta property="og:image" content="https://calcify.solutions/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Schema.org structured data (WebSite) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Calcify Solutions",
+      "url": "https://calcify.solutions/",
+      "description": "Free online calculators for finance, health, math, and everyday use. BMI, EMI, mortgage, percentage, currency converter and more.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://calcify.solutions/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
-    body.dark {
-      --bg: #0f172a; --surface: #1e293b; --text: #f1f5f9; --text-light: #cbd5e1;
-      --border: #334155; --btn-bg: #334155; --calc-btn: #1e293b;
-    }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); transition: all 0.2s; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    /* header */
-    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
-    .logo { font-size: 1.7rem; font-weight: 700; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .theme-toggle { background: var(--surface); border: 1px solid var(--border); border-radius: 2rem; padding: 0.4rem 1rem; cursor: pointer; font-size: 0.9rem; }
-    /* scientific calculator */
-    .sci-calc { background: var(--surface); border-radius: 1.5rem; padding: 1.5rem; margin: 2rem 0; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); }
-    .display { background: var(--bg); padding: 1rem; font-size: 2rem; text-align: right; font-family: monospace; border-radius: 1rem; margin-bottom: 1rem; border: 1px solid var(--border); min-height: 85px; word-break: break-all; }
-    .buttons { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; }
-    .btn-calc { background: var(--btn-bg); border: none; padding: 0.8rem; border-radius: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.1s; color: var(--text); }
-    .btn-calc:active { transform: scale(0.97); }
-    .btn-accent { background: var(--accent); color: white; }
-    .btn-wide { grid-column: span 2; }
-    /* categories */
-    .category { margin: 2.5rem 0 1rem; }
-    .category h2 { font-size: 1.6rem; font-weight: 600; border-left: 4px solid var(--accent); padding-left: 1rem; margin-bottom: 1.2rem; }
-    .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.6rem; }
-    .links-grid a { color: var(--accent); text-decoration: none; padding: 0.3rem 0; border-bottom: 1px dotted var(--border); display: inline-block; }
-    .description-box { background: var(--surface); padding: 2rem; border-radius: 1.5rem; margin: 2rem 0; border: 1px solid var(--border); line-height: 1.6; }
-    .ad-slot { background: rgba(0,0,0,0.03); border: 1px dashed var(--border); text-align: center; padding: 0.8rem; border-radius: 1rem; margin: 1.5rem 0; font-size: 0.8rem; color: var(--text-light); }
-    footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid var(--border); text-align: center; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; }
-    .footer-links a { color: var(--text-light); text-decoration: none; }
-    @media (max-width: 640px) { .buttons { grid-template-columns: repeat(4, 1fr); } }
-  </style>
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #554fd8;
+            --secondary: #ff6b9d;
+            --accent: #00d4aa;
+            --dark-bg: #0f172a;
+            --dark-surface: #1e293b;
+            --dark-card: #334155;
+            --text: #f1f5f9;
+            --text-light: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #475569;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --bright-blue: linear-gradient(135deg, #4361ee, #4cc9f0);
+            --bright-pink: linear-gradient(135deg, #ff6b9d, #ff8fab);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .logo i { color: var(--primary); }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--accent); }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--dark-card);
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--dark-surface);
+            border-top: 1px solid var(--border);
+            padding: 1rem 0;
+            z-index: 99;
+        }
+        .mobile-nav.active { display: block; }
+        .mobile-nav ul {
+            flex-direction: column;
+            gap: 0;
+        }
+        .mobile-nav li {
+            border-bottom: 1px solid var(--border);
+        }
+        .mobile-nav a, .mobile-nav button {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            background: linear-gradient(90deg, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            background: var(--dark-card);
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 14px 20px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+        }
+        .search-bar button {
+            background: var(--primary);
+            border: none;
+            padding: 0 24px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--bright-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        /* Categories */
+        .section {
+            padding: 60px 0 40px;
+        }
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+        .calc-card {
+            background: var(--dark-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border);
+        }
+        .calc-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+        }
+        .calc-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .calc-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .calc-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .calc-link:hover { text-decoration: underline; }
+
+        /* Features / Steps */
+        .steps-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .step-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            border: 1px solid var(--border);
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--bright-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        /* Trust / Why Choose */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+        }
+        .trust-item {
+            background: var(--dark-card);
+            padding: 1.8rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .trust-item i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Company Description (calculator.net style) */
+        .company-description {
+            background: var(--dark-surface);
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+            line-height: 1.7;
+        }
+        .company-description p {
+            margin-bottom: 1rem;
+        }
+
+        /* Ad Slots */
+        .ad-slot {
+            background: rgba(255,255,255,0.03);
+            border: 1px dashed var(--border);
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 2rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0f1f;
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.6rem; }
+            .company-description { padding: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <div class="logo"><i class="fas fa-calculator"></i> Calcify<span style="color:var(--accent);">.solutions</span></div>
-    <div><button class="theme-toggle" id="darkModeToggle"><i class="fas fa-moon"></i> Dark/Light</button></div>
-  </div>
-
-  <!-- Scientific Calculator -->
-  <div class="sci-calc">
-    <div class="display" id="calcDisplay">0</div>
-    <div class="buttons" id="calcButtons"></div>
-  </div>
-
-  <!-- Ad Placeholder -->
-  <div class="ad-slot"><i class="fas fa-ad"></i> Advertisement (AdSense ready)</div>
-
-  <!-- Financial Calculators -->
-  <div class="category">
-    <h2>📊 Financial Calculators</h2>
-    <div class="links-grid" id="financialLinks"></div>
-  </div>
-
-  <!-- Fitness & Health -->
-  <div class="category">
-    <h2>❤️ Fitness & Health Calculators</h2>
-    <div class="links-grid" id="healthLinks"></div>
-  </div>
-
-  <!-- Math Calculators -->
-  <div class="category">
-    <h2>📐 Math Calculators</h2>
-    <div class="links-grid" id="mathLinks"></div>
-  </div>
-
-  <!-- Other Calculators -->
-  <div class="category">
-    <h2>🛠️ Other Calculators</h2>
-    <div class="links-grid" id="otherLinks"></div>
-  </div>
-
-  <!-- About paragraph (similar to calculator.net) -->
-  <div class="description-box">
-    <p><strong>Calcify Solutions's sole focus</strong> is to provide fast, comprehensive, convenient, free online calculators in a plethora of areas. Currently, we have <strong>25 calculators</strong> to help you "do the math" quickly in areas such as finance, fitness, health, math, and others, and we are still developing more. Our goal is to make calculations effortless and accessible to everyone.</p>
-    <br>
-    <p>We coded and developed each calculator individually and put each one through strict, comprehensive testing. However, please inform us if you notice even the slightest error – your input is extremely valuable to us. While most calculators on Calcify are designed to be universally applicable for worldwide usage, some are for specific use cases. For example, the income tax calculator is for general guidance only.</p>
-    <br>
-    <p>All tools are 100% free, with no registration required. We believe in open access to accurate calculations.</p>
-  </div>
-
-  <!-- Second Ad Slot -->
-  <div class="ad-slot"><i class="fas fa-ad"></i> Advertisement (In-content)</div>
-
-  <footer>
-    <div class="footer-links">
-      <a href="/about.html">About</a> <a href="/privacy-policy.html">Privacy Policy</a> <a href="/terms.html">Terms of Use</a> <a href="/contact.html">Contact</a> <a href="/sitemap.xml">Sitemap</a>
+<header>
+    <div class="container header-content">
+        <a href="/" class="logo"><i class="fas fa-calculator"></i> Calcify<span>Solutions</span></a>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#calculators">Calculators</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
     </div>
-    <p>© 2026 Calcify Solutions — Free online calculators for everyone</p>
-  </footer>
-</div>
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#calculators">Calculators</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Free Online Calculators for Every Need</h1>
+            <p>BMI · EMI · Mortgage · Percentage · Currency · Compound Interest · Age · Calorie & 20+ more. Instant, accurate, no signup.</p>
+            <div class="search-bar" id="searchSection">
+                <input type="text" id="searchInput" placeholder="Search calculator... e.g., loan, BMI, tax">
+                <button id="searchBtn"><i class="fas fa-search"></i> Find</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slot Top (AdSense ready) -->
+    <div class="container"><div class="ad-slot"><i class="fas fa-ad"></i> Advertisement – Header (AdSense ready)</div></div>
+
+    <!-- Finance Calculators -->
+    <section class="container" id="calculators">
+        <div class="section">
+            <h2 class="section-title">💰 Finance Calculators</h2>
+            <div class="calc-grid" id="financeGrid"></div>
+        </div>
+    </section>
+
+    <!-- Health Calculators -->
+    <section class="container">
+        <div class="section">
+            <h2 class="section-title">❤️ Health Calculators</h2>
+            <div class="calc-grid" id="healthGrid"></div>
+        </div>
+    </section>
+
+    <!-- Education & Math -->
+    <section class="container">
+        <div class="section">
+            <h2 class="section-title">📐 Education & Math</h2>
+            <div class="calc-grid" id="educationGrid"></div>
+        </div>
+    </section>
+
+    <!-- Utility -->
+    <section class="container">
+        <div class="section">
+            <h2 class="section-title">🛠️ Utility & Everyday</h2>
+            <div class="calc-grid" id="utilityGrid"></div>
+        </div>
+    </section>
+
+    <!-- In-content Ad -->
+    <div class="container"><div class="ad-slot"><i class="fas fa-ad"></i> Advertisement – In-content (AdSense ready)</div></div>
+
+    <!-- How It Works -->
+    <section class="container">
+        <div class="section">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps to get accurate calculations</p>
+            <div class="steps-grid">
+                <div class="step-card"><div class="step-number">1</div><h3>Choose a Calculator</h3><p>Select from 25+ tools across finance, health, math, and utility.</p></div>
+                <div class="step-card"><div class="step-number">2</div><h3>Enter Values</h3><p>Input your numbers – loan amount, interest rate, weight, height, etc.</p></div>
+                <div class="step-card"><div class="step-number">3</div><h3>Get Instant Results</h3><p>See accurate results with formulas and examples.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us (Trust) -->
+    <section class="container">
+        <div class="section">
+            <h2 class="section-title">Why Choose Calcify?</h2>
+            <div class="trust-grid">
+                <div class="trust-item"><i class="fas fa-check-circle"></i><h3>100% Accurate</h3><p>Verified mathematical and financial formulas (BMI, EMI, compound interest).</p></div>
+                <div class="trust-item"><i class="fas fa-infinity"></i><h3>Completely Free</h3><p>No signup, no hidden fees, unlimited use.</p></div>
+                <div class="trust-item"><i class="fas fa-layer-group"></i><h3>25+ Calculators</h3><p>Constantly expanding library with new tools added monthly.</p></div>
+                <div class="trust-item"><i class="fas fa-mobile-alt"></i><h3>Mobile First</h3><p>Works flawlessly on any device – phone, tablet, desktop.</p></div>
+                <div class="trust-item"><i class="fas fa-chart-line"></i><h3>Trusted by Thousands</h3><p>Used daily for loan planning, fitness tracking, and studies.</p></div>
+                <div class="trust-item"><i class="fas fa-sync-alt"></i><h3>Regular Updates</h3><p>New calculators added every month based on user feedback.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (SEO rich) -->
+    <section class="container">
+        <div class="section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">How accurate are your calculators?</div>
+                <div>All calculators use standard formulas (BMI = kg/m², EMI = P×r×(1+r)ⁿ/((1+r)ⁿ-1), compound interest, etc.) and are tested for precision against manual calculations.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need to create an account to use these calculators?</div>
+                <div>No – everything is 100% free with no registration required. Just visit the page and start calculating.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I use these calculators on my mobile phone?</div>
+                <div>Yes, fully responsive design with touch-friendly inputs. Works on all modern browsers.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What is the EMI formula?</div>
+                <div>EMI = [P x R x (1+R)^N] / [(1+R)^N – 1], where P = principal, R = monthly interest rate, N = number of monthly installments.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I calculate my BMI?</div>
+                <div>BMI = weight (kg) / (height in meters)². Use our BMI calculator for instant results and health category.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Description (calculator.net style) - VERY IMPORTANT -->
+    <div class="container">
+        <div class="company-description">
+            <p><strong>Calcify Solutions's sole focus</strong> is to provide fast, comprehensive, convenient, free online calculators in a plethora of areas. Currently, we have <strong>25 calculators</strong> to help you "do the math" quickly in areas such as finance, fitness, health, math, and others, and we are still developing more. Our goal is to make calculations effortless and accessible to everyone.</p>
+            <p>We coded and developed each calculator individually and put each one through strict, comprehensive testing. However, please inform us if you notice even the slightest error – your input is extremely valuable to us. While most calculators on Calcify are designed to be universally applicable for worldwide usage, some are for specific use cases. For example, the income tax calculator is for general guidance only.</p>
+            <p>All tools are 100% free, with no registration required. We believe in open access to accurate calculations.</p>
+        </div>
+    </div>
+
+    <!-- Bottom Ad Slot -->
+    <div class="container"><div class="ad-slot"><i class="fas fa-ad"></i> Advertisement – Footer (AdSense ready)</div></div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Calcify<span style="color:var(--accent);">Solutions</span></div>
+                <p>Free online calculators for finance, health, education, and everyday life. Accurate, fast, and always free.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#calculators">All Calculators</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/terms.html">Terms of Use</a></li>
+                    <li><a href="/sitemap.xml">Sitemap</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Popular Calculators</h3>
+                <ul class="footer-links">
+                    <li><a href="/calculators/bmi-calculator/">BMI Calculator</a></li>
+                    <li><a href="/calculators/loan-emi-calculator/">EMI Calculator</a></li>
+                    <li><a href="/calculators/mortgage-calculator/">Mortgage Calculator</a></li>
+                    <li><a href="/calculators/percentage-calculator/">Percentage Calculator</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Calcify Solutions – All rights reserved. Helping you calculate smarter.</div>
+    </div>
+</footer>
 
 <script>
-  // Dark Mode
-  const toggle = document.getElementById('darkModeToggle');
-  if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-  toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-  });
-
-  // Scientific Calculator Logic
-  let calcExpression = '0';
-  const displayDiv = document.getElementById('calcDisplay');
-  function updateDisplay() { displayDiv.innerText = calcExpression.length > 30 ? calcExpression.slice(0,30)+'…' : calcExpression; }
-  
-  function evaluateExpression(expr) {
-    try {
-      // replace ^ with ** for exponent
-      let processed = expr.replace(/\^/g, '**');
-      // Handle functions: sin, cos, tan, ln, log, sqrt
-      processed = processed.replace(/sin\(/g, 'Math.sin(');
-      processed = processed.replace(/cos\(/g, 'Math.cos(');
-      processed = processed.replace(/tan\(/g, 'Math.tan(');
-      processed = processed.replace(/ln\(/g, 'Math.log(');
-      processed = processed.replace(/log\(/g, 'Math.log10(');
-      processed = processed.replace(/sqrt\(/g, 'Math.sqrt(');
-      // Note: we must ensure numbers are parsed correctly
-      let result = Function('"use strict";return (' + processed + ')')();
-      return isNaN(result) || !isFinite(result) ? 'Error' : result;
-    } catch(e) { return 'Error'; }
-  }
-  
-  function handleCalcButton(value) {
-    if(value === 'AC') { calcExpression = '0'; updateDisplay(); return; }
-    if(value === 'C') { calcExpression = calcExpression.slice(0, -1); if(calcExpression === '') calcExpression = '0'; updateDisplay(); return; }
-    if(value === '=') {
-      let result = evaluateExpression(calcExpression);
-      calcExpression = result.toString();
-      updateDisplay();
-      return;
-    }
-    // Replace initial 0
-    if(calcExpression === '0' && !isNaN(value) && value !== '.') calcExpression = '';
-    calcExpression += value;
-    updateDisplay();
-  }
-  
-  // Button layout
-  const buttonLabels = [
-    'sin(', 'cos(', 'tan(', 'ln(', 'log(', 'sqrt(',
-    '7', '8', '9', '÷', 'π', 'e',
-    '4', '5', '6', '×', '^', '!',
-    '1', '2', '3', '-', '(', ')',
-    '0', '.', 'AC', 'C', '=', '+'
-  ];
-  const buttonsContainer = document.getElementById('calcButtons');
-  buttonLabels.forEach(label => {
-    let btn = document.createElement('button');
-    btn.className = 'btn-calc';
-    if(label === '=') btn.classList.add('btn-accent');
-    if(label === 'AC' || label === 'C') btn.style.background = '#ef4444'; btn.style.color = 'white';
-    btn.innerText = label;
-    btn.onclick = () => {
-      let mapped = label;
-      if(label === '÷') mapped = '/';
-      if(label === '×') mapped = '*';
-      if(label === 'π') mapped = 'Math.PI';
-      if(label === 'e') mapped = 'Math.E';
-      if(label === '!') { // factorial
-        // Evaluate current expression as factorial on last number
-        let match = calcExpression.match(/(\d+(?:\.\d+)?)$/);
-        if(match) {
-          let num = parseFloat(match[0]);
-          let fact = (n) => n<=1?1:n*fact(n-1);
-          let result = fact(Math.floor(num));
-          calcExpression = calcExpression.replace(/(\d+(?:\.\d+)?)$/, result);
-          updateDisplay();
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        mobileBtn.innerHTML = mobileNav.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !mobileBtn.contains(e.target)) {
+            mobileNav.classList.remove('active');
+            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
         }
-        return;
-      }
-      handleCalcButton(mapped);
+    });
+
+    // Calculator data (25 tools with SEO-friendly names and descriptions)
+    const calculators = {
+        finance: [
+            { name: "Mortgage Calculator", slug: "mortgage-calculator", desc: "Estimate monthly home loan payments including taxes, insurance, and HOA." },
+            { name: "Loan EMI Calculator", slug: "loan-emi-calculator", desc: "Calculate monthly EMI, total interest, and total payment for any loan." },
+            { name: "Interest Calculator", slug: "interest-calculator", desc: "Compute simple and compound interest on savings or loans." },
+            { name: "Compound Interest Calculator", slug: "compound-interest-calculator", desc: "See how your investments grow with compound interest over time." },
+            { name: "Investment Calculator", slug: "investment-calculator", desc: "Project future returns on stocks, mutual funds, or other investments." },
+            { name: "Savings Calculator", slug: "savings-calculator", desc: "Track monthly savings goals and see how interest adds up." },
+            { name: "Retirement Calculator", slug: "retirement-calculator", desc: "Plan your retirement corpus and monthly withdrawals." },
+            { name: "Credit Card Payoff", slug: "credit-card-payoff", desc: "Calculate time and interest to pay off credit card debt." },
+            { name: "Currency Converter", slug: "currency-converter", desc: "Convert between USD, EUR, GBP, INR, JPY and more (demo rates)." },
+            { name: "VAT / Tax Calculator", slug: "vat-calculator", desc: "Calculate VAT, sales tax inclusive or exclusive." }
+        ],
+        health: [
+            { name: "BMI Calculator", slug: "bmi-calculator", desc: "Body Mass Index indicator – check if you're underweight, normal, overweight, or obese." },
+            { name: "Calorie Calculator", slug: "calorie-calculator", desc: "Estimate daily calorie needs based on activity level and goals." },
+            { name: "BMR Calculator", slug: "bmr-calculator", desc: "Basal Metabolic Rate – calories burned at rest." },
+            { name: "Body Fat Calculator", slug: "body-fat-calculator", desc: "Estimate body fat percentage using simple measurements." },
+            { name: "Pregnancy Due Date", slug: "pregnancy-due-date", desc: "Estimate delivery date based on last menstrual period." }
+        ],
+        education: [
+            { name: "Percentage Calculator", slug: "percentage-calculator", desc: "Find percentages, percentage increase/decrease, and percentage of a number." },
+            { name: "Fraction Calculator", slug: "fraction-calculator", desc: "Add, subtract, multiply, divide, and simplify fractions." },
+            { name: "Scientific Calculator", slug: "scientific-calculator", desc: "Trigonometric, logarithmic, and exponential functions." },
+            { name: "GPA Calculator", slug: "gpa-calculator", desc: "Calculate grade point average from letter grades or points." },
+            { name: "Age Calculator", slug: "age-calculator", desc: "Compute exact age from date of birth in years, months, and days." }
+        ],
+        utility: [
+            { name: "Date Calculator", slug: "date-calculator", desc: "Calculate days between dates, add or subtract days from a date." },
+            { name: "Time Zone Converter", slug: "timezone-converter", desc: "Convert time between major time zones." },
+            { name: "Unit Converter", slug: "unit-converter", desc: "Convert length, mass, volume, and temperature units." },
+            { name: "Tip Calculator", slug: "tip-calculator", desc: "Split bill and calculate tip percentage per person." },
+            { name: "Password Generator", slug: "password-generator", desc: "Generate secure random passwords of desired length." }
+        ]
     };
-    buttonsContainer.appendChild(btn);
-  });
-  updateDisplay();
 
-  // Calculator links data (25 calculators)
-  const calculators = {
-    financial: [
-      "Mortgage Calculator", "Loan EMI Calculator", "Interest Calculator", "Compound Interest Calculator",
-      "Investment Calculator", "Savings Calculator", "Retirement Calculator", "Credit Card Payoff",
-      "Currency Converter", "VAT / Tax Calculator"
-    ],
-    health: [
-      "BMI Calculator", "Calorie Calculator", "BMR Calculator", "Body Fat Calculator", "Pregnancy Due Date Calculator"
-    ],
-    math: [
-      "Percentage Calculator", "Fraction Calculator", "Scientific Calculator", "GPA Calculator", "Age Calculator"
-    ],
-    other: [
-      "Date Calculator", "Time Zone Converter", "Unit Converter", "Tip Calculator", "Password Generator"
-    ]
-  };
-  
-  function slugify(name) {
-    return name.toLowerCase().replace(/[\s\/]+/g, '-').replace(/[^\w\-]+/g, '');
-  }
-  
-  function renderLinks(containerId, category, items) {
-    const container = document.getElementById(containerId);
-    if(!container) return;
-    container.innerHTML = items.map(name => {
-      let slug = slugify(name);
-      return `<a href="/calculators/${slug}/">${name}</a>`;
-    }).join('');
-  }
-  renderLinks('financialLinks', 'financial', calculators.financial);
-  renderLinks('healthLinks', 'health', calculators.health);
-  renderLinks('mathLinks', 'math', calculators.math);
-  renderLinks('otherLinks', 'other', calculators.other);
+    function renderGrid(containerId, items) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = items.map(calc => `
+            <div class="calc-card" data-name="${calc.name.toLowerCase()}">
+                <h3><i class="fas fa-calculator"></i> ${calc.name}</h3>
+                <p>${calc.desc}</p>
+                <a href="/calculators/${calc.slug}/" class="calc-link">Use Calculator →</a>
+            </div>
+        `).join('');
+    }
+    renderGrid('financeGrid', calculators.finance);
+    renderGrid('healthGrid', calculators.health);
+    renderGrid('educationGrid', calculators.education);
+    renderGrid('utilityGrid', calculators.utility);
 
-  // Structured Data
-  const schema = document.createElement('script');
-  schema.type = 'application/ld+json';
-  schema.textContent = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Calcify Solutions",
-    "url": "https://calcify.solutions/",
-    "description": "Free online calculators for finance, health, math, and everyday use.",
-    "potentialAction": { "@type": "SearchAction", "target": "https://calcify.solutions/?q={search_term_string}", "query-input": "required name=search_term_string" }
-  });
-  document.head.appendChild(schema);
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    function filterCalcs() {
+        const term = searchInput.value.toLowerCase();
+        const allCards = document.querySelectorAll('.calc-card');
+        let visibleCount = 0;
+        allCards.forEach(card => {
+            const name = card.getAttribute('data-name') || '';
+            if (name.includes(term)) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        // Optional: show message if no results
+        if (visibleCount === 0 && term !== '') {
+            // can add a small notification
+        }
+    }
+    searchBtn.addEventListener('click', filterCalcs);
+    searchInput.addEventListener('keyup', (e) => e.key === 'Enter' && filterCalcs());
 </script>
 </body>
 </html>
