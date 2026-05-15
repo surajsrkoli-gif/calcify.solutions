@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>calcify.solutions | Smart Financial & Utility Calculators</title>
-    <meta name="description" content="50+ powerful calculators for finance, loans, investments, taxes, and daily math. Fast, accurate, and free. No signup required.">
-    <meta name="keywords" content="financial calculator, loan calculator, investment calculator, tax calculator, EMI calculator, SIP calculator, GST calculator, retirement planner">
+    <meta name="description" content="50+ powerful free calculators for finance, loans, investments, taxes, business, retirement, and everyday math. Fast, accurate, no signup required.">
+    <meta name="keywords" content="financial calculator, loan calculator, investment calculator, tax calculator, EMI calculator, SIP calculator, GST calculator, retirement planner, profit margin calculator, inflation calculator">
     <meta name="author" content="calcify.solutions">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="calcify.solutions - Smart Financial Calculators">
-    <meta property="og:description" content="Calculate loans, investments, taxes, and savings instantly — premium tools, free forever.">
+    <meta property="og:description" content="Calculate loans, investments, taxes, and savings instantly — premium tools, free forever. No registration needed.">
     <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Calcify+Solutions">
     <meta property="og:url" content="https://calcify.solutions">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="calcify.solutions - 50+ Free Calculators">
+    <meta name="twitter:description" content="Fast, accurate financial tools for everyone. No signup, completely free.">
     <link rel="canonical" href="https://calcify.solutions">
+    <!-- Schema.org markup for website -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "calcify.solutions",
+        "url": "https://calcify.solutions",
+        "description": "50+ free online financial and utility calculators for loans, investments, taxes, business, and personal finance.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://calcify.solutions/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -25,6 +42,53 @@
         body {
             font-family: 'Inter', 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.2s ease;
+        }
+        /* Dark mode overrides */
+        body.dark {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+        body.dark .bg-white {
+            background-color: #1e293b !important;
+        }
+        body.dark .bg-gray-50, body.dark .bg-[#F8FAFC] {
+            background-color: #0f172a !important;
+        }
+        body.dark .border-gray-100, body.dark .border-gray-200 {
+            border-color: #334155 !important;
+        }
+        body.dark .text-gray-600, body.dark .text-gray-500, body.dark .text-gray-700 {
+            color: #cbd5e1 !important;
+        }
+        body.dark .text-[#0F172A] {
+            color: #f1f5f9 !important;
+        }
+        body.dark .bg-[#F8FAFC] {
+            background-color: #1e293b !important;
+        }
+        body.dark .bg-white\/80, body.dark .bg-white\/60 {
+            background-color: rgba(30, 41, 59, 0.8) !important;
+        }
+        body.dark .shadow-md, body.dark .shadow-lg, body.dark .shadow-soft {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+        }
+        body.dark .ad-container {
+            background: #1e293b;
+            border-color: #475569;
+            color: #94a3b8;
+        }
+        body.dark .category-card {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+        }
+        body.dark input, body.dark .bg-white {
+            background-color: #0f172a !important;
+            color: #f1f5f9 !important;
+            border-color: #475569 !important;
+        }
+        body.dark footer {
+            background-color: #020617 !important;
         }
         h1, h2, h3, h4, .font-heading {
             font-family: 'Poppins', 'Inter', sans-serif;
@@ -33,6 +97,9 @@
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(2px);
             border: 1px solid rgba(255,255,255,0.3);
+        }
+        body.dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
         }
         .hover-scale {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -43,6 +110,9 @@
         }
         .gradient-hero {
             background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+        }
+        body.dark .gradient-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
         .shadow-soft {
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
@@ -60,6 +130,9 @@
         .sticky-header.scrolled {
             background: rgba(255,255,255,0.98);
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        body.dark .sticky-header.scrolled {
+            background: rgba(15, 23, 42, 0.98);
         }
         .category-card {
             transition: all 0.25s ease;
@@ -92,7 +165,6 @@
                 visibility: visible !important;
             }
         }
-        /* ad placeholders style */
         .ad-container {
             background: #f1f5f9;
             border-radius: 1rem;
@@ -107,14 +179,26 @@
             font-weight: 800;
             color: #2563EB;
         }
-        .calculator-link {
+        .dark-mode-toggle {
             cursor: pointer;
+            background: #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        body.dark .dark-mode-toggle {
+            background: #334155;
+            color: #f1f5f9;
         }
     </style>
 </head>
 <body class="bg-white text-[#0F172A] antialiased">
 
-    <!-- ========== HEADER (Sticky + Mobile) ========== -->
+    <!-- ========== HEADER (Sticky + Mobile + Dark Mode Toggle) ========== -->
     <header id="mainHeader" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky-header transition-smooth">
         <div class="container mx-auto px-5 lg:px-8 py-4 flex items-center justify-between">
             <!-- Logo -->
@@ -130,13 +214,20 @@
                 <a href="#" class="hover:text-[#2563EB] transition">Blog</a>
                 <a href="#" class="hover:text-[#2563EB] transition">Contact</a>
             </nav>
-            <div class="hidden md:block">
-                <a href="#" class="bg-[#2563EB] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#1D4ED8] transition-all hover:shadow-md">Explore Calculators</a>
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle -->
+                <button id="darkModeToggle" class="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span class="hidden sm:inline">Dark/Light</span>
+                </button>
+                <div class="hidden md:block">
+                    <a href="#" class="bg-[#2563EB] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#1D4ED8] transition-all hover:shadow-md">Explore Calculators</a>
+                </div>
+                <!-- Mobile menu button -->
+                <button id="menuToggle" class="md:hidden text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <!-- Mobile menu button -->
-            <button id="menuToggle" class="md:hidden text-2xl focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
         <!-- Mobile dropdown menu -->
         <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-100 px-5 pb-5 overflow-hidden transition-all duration-300 mobile-menu-closed">
@@ -193,7 +284,7 @@
             </div>
         </section>
 
-        <!-- ========== CATEGORIES PREVIEW SECTIONS (7 categories) ========== -->
+        <!-- ========== CATEGORIES PREVIEW SECTIONS ========== -->
         <section id="categories" class="container mx-auto px-5 lg:px-8 mt-16">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-[#0F172A]">Explore smart <span class="text-[#2563EB]">calculator categories</span></h2>
@@ -201,12 +292,11 @@
             </div>
         </section>
 
-        <!-- Dynamic category grid with working links to individual calculator HTML pages -->
         <div class="container mx-auto px-5 lg:px-8">
             <div id="categoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7"></div>
         </div>
 
-        <!-- In-content ad between categories -->
+        <!-- In-content ad -->
         <div class="container mx-auto px-5 lg:px-8 my-10">
             <div class="ad-container"><i class="fas fa-ad mr-2"></i> In-feed Advertisement - Google AdSense compatible</div>
         </div>
@@ -223,23 +313,19 @@
             </div>
         </section>
 
-        <!-- ========== SEO CONTENT SECTION ========== -->
+        <!-- ========== EXPANDED SEO CONTENT (Inspired by Calculator.net) ========== -->
         <section class="container mx-auto px-5 lg:px-8 py-16">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-6">Why Choose <span class="text-[#2563EB]">calcify.solutions</span>?</h2>
-                <div class="prose prose-lg text-gray-700 space-y-4">
-                    <p>Whether you're planning a home loan, evaluating <strong>investment returns (SIP, CAGR, ROI)</strong>, calculating income tax or GST, or managing business margins — <strong>calcify.solutions</strong> provides a comprehensive suite of 50+ premium calculators designed for speed, accuracy, and simplicity. All tools are mobile-optimized, completely free, and require zero signup.</p>
-                    <p>Our platform uses real-time formulas, clear explanations, and intuitive interfaces. From <strong>retirement planning (FIRE, pension)</strong> to everyday discount and inflation tools, we empower you to make smarter financial decisions. Trusted by thousands, our tools are regularly updated with latest tax slabs and market metrics.</p>
-                    <h3 class="text-2xl font-semibold mt-6">Fast, Accurate & SEO-Optimized for Instant Answers</h3>
-                    <p>Each calculator is built to deliver core web vitals excellence, with schema-rich structure that helps you find answers on Google. No clutter, no hidden fees — just reliable financial utilities at your fingertips.</p>
+            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-md p-8 md:p-10 border border-gray-100">
+                <h2 class="text-3xl font-bold text-[#0F172A] mb-4">Our Mission: Free, Fast, and Reliable Calculations for Everyone</h2>
+                <div class="space-y-5 text-gray-700 leading-relaxed">
+                    <p><strong>calcify.solutions</strong> is solely focused on providing fast, comprehensive, convenient, and free online calculators across a wide range of financial and utility domains. Currently, we offer <strong>50+ powerful calculators</strong> covering areas such as loans, investments, taxes, business metrics, retirement planning, deposits, and everyday personal finance — and we are continuously developing more tools. Our goal is to become the one-stop, go-to platform for individuals and professionals who need to make quick, accurate calculations without any hassle.</p>
+                    <p>We strongly believe that the internet should be a source of free and accessible information. That's why all of our tools and services are <strong>completely free, with no registration or sign-up required</strong>. You don't need to share personal details — just click, calculate, and get instant results.</p>
+                    <p>Each calculator on calcify.solutions is carefully coded, designed, and tested to ensure accuracy and reliability. We put every tool through rigorous testing across different devices and scenarios. However, if you notice even the slightest error or have a suggestion, please inform us — your feedback is extremely valuable and helps us improve the platform for everyone.</p>
+                    <p>Our calculators are designed to be universally applicable, but some tools (like Income Tax Calculator based on specific tax slabs) may be tailored for Indian financial regulations initially. We are working on expanding to global versions soon. Whether you're a student, professional, investor, or retiree, calcify.solutions empowers you to make smarter financial decisions with confidence.</p>
+                    <p class="font-semibold text-[#2563EB]">Start exploring now — no signup, no limits, just accurate calculations.</p>
                 </div>
             </div>
         </section>
-
-        <!-- Right sidebar ad placeholder (desktop) -->
-        <div class="container mx-auto px-5 lg:px-8 hidden md:block mb-8">
-            <div class="ad-container w-full max-w-3xl mx-auto">📊 Sidebar Advertisement - 300x250 (responsive mock)</div>
-        </div>
 
         <!-- ========== BLOG PREVIEW SECTION ========== -->
         <section class="bg-white py-16 border-t border-gray-100">
@@ -256,87 +342,46 @@
             </div>
         </section>
 
-        <!-- ========== FOOTER ========== -->
+        <!-- ========== FOOTER with Sitemap link ========== -->
         <footer class="bg-[#0F172A] text-gray-300 pt-16 pb-8">
             <div class="container mx-auto px-5 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     <div><div class="flex items-center gap-2 text-white"><i class="fas fa-calculator text-2xl text-[#60A5FA]"></i><span class="text-xl font-bold">calcify<span class="text-[#60A5FA]">.solutions</span></span></div><p class="mt-4 text-sm">Making calculations smarter, faster, and easier.</p><div class="flex gap-4 mt-5"><i class="fab fa-twitter hover:text-white text-xl cursor-pointer"></i><i class="fab fa-linkedin hover:text-white text-xl cursor-pointer"></i><i class="fab fa-github hover:text-white text-xl cursor-pointer"></i></div></div>
-                    <div><h4 class="font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="/" class="hover:text-white">Home</a></li><li><a href="#" class="hover:text-white">All Calculators</a></li><li><a href="#" class="hover:text-white">Categories</a></li><li><a href="#" class="hover:text-white">Blog</a></li></ul></div>
+                    <div><h4 class="font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="/" class="hover:text-white">Home</a></li><li><a href="#" class="hover:text-white">All Calculators</a></li><li><a href="#" class="hover:text-white">Categories</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Sitemap</a></li></ul></div>
                     <div><h4 class="font-semibold text-white mb-4">Categories</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Loan & EMI</a></li><li><a href="#" class="hover:text-white">Investment & SIP</a></li><li><a href="#" class="hover:text-white">Tax & GST</a></li><li><a href="#" class="hover:text-white">Retirement Planning</a></li></ul></div>
-                    <div><h4 class="font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Privacy Policy</a></li><li><a href="#" class="hover:text-white">Terms of Use</a></li><li><a href="#" class="hover:text-white">Disclaimer</a></li><li><a href="#" class="hover:text-white">AdChoices</a></li></ul><div class="mt-4"><p class="text-sm">📧 support@calcify.solutions</p><div class="mt-3 flex"><input type="email" placeholder="Email for newsletter" class="bg-gray-800 rounded-l-lg px-3 py-2 text-sm w-full"><button class="bg-[#2563EB] px-3 rounded-r-lg text-sm">Subscribe</button></div></div></div>
+                    <div><h4 class="font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Privacy Policy</a></li><li><a href="#" class="hover:text-white">Terms of Use</a></li><li><a href="#" class="hover:text-white">Disclaimer</a></li><li><a href="#" class="hover:text-white">AdChoices</a></li><li><a href="#" class="hover:text-white">Sitemap</a></li></ul><div class="mt-4"><p class="text-sm">📧 support@calcify.solutions</p><div class="mt-3 flex"><input type="email" placeholder="Email for newsletter" class="bg-gray-800 rounded-l-lg px-3 py-2 text-sm w-full"><button class="bg-[#2563EB] px-3 rounded-r-lg text-sm">Subscribe</button></div></div></div>
                 </div>
-                <div class="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-400">© 2025 calcify.solutions — Smart financial tools for everyone.</div>
+                <div class="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-400">© 2025 calcify.solutions — Smart financial tools for everyone. | <a href="#" class="hover:text-white">Sitemap</a></div>
             </div>
         </footer>
     </main>
 
     <script>
-        // ==================== CATEGORY DATA WITH INDIVIDUAL CALCULATOR PAGE LINKS ====================
-        // Each tool has a corresponding .html file (e.g., "emi-calculator.html")
-        const categoriesData = [
-            { 
-                name: "💰 Loan Calculators", icon: "fas fa-hand-holding-usd", desc: "EMI, home, car, personal loan tools", 
-                tools: [
-                    { name: "EMI Calculator", link: "emi-calculator.html" },
-                    { name: "Home Loan Calculator", link: "home-loan-calculator.html" },
-                    { name: "Car Loan Calculator", link: "car-loan-calculator.html" }
-                ], 
-                viewAll: "loan-calculators.html" 
-            },
-            { 
-                name: "📈 Investment Calculators", icon: "fas fa-chart-line", desc: "SIP, CAGR, ROI & mutual funds", 
-                tools: [
-                    { name: "SIP Calculator", link: "sip-calculator.html" },
-                    { name: "CAGR Calculator", link: "cagr-calculator.html" },
-                    { name: "ROI Calculator", link: "roi-calculator.html" }
-                ], 
-                viewAll: "investment-calculators.html" 
-            },
-            { 
-                name: "🧾 Tax Calculators", icon: "fas fa-file-invoice-dollar", desc: "Income tax, GST, VAT simplified", 
-                tools: [
-                    { name: "Income Tax Calculator", link: "income-tax-calculator.html" },
-                    { name: "GST Calculator", link: "gst-calculator.html" },
-                    { name: "VAT Calculator", link: "vat-calculator.html" }
-                ], 
-                viewAll: "tax-calculators.html" 
-            },
-            { 
-                name: "🏦 Deposit Calculators", icon: "fas fa-piggy-bank", desc: "FD, RD, PPF & savings interest", 
-                tools: [
-                    { name: "FD Calculator", link: "fd-calculator.html" },
-                    { name: "RD Calculator", link: "rd-calculator.html" },
-                    { name: "PPF Calculator", link: "ppf-calculator.html" }
-                ], 
-                viewAll: "deposit-calculators.html" 
-            },
-            { 
-                name: "📊 Business Calculators", icon: "fas fa-chart-simple", desc: "Profit margin, break-even, cash flow", 
-                tools: [
-                    { name: "Profit Margin Calculator", link: "profit-margin-calculator.html" },
-                    { name: "Break-even Calculator", link: "break-even-calculator.html" },
-                    { name: "Cash Flow Calculator", link: "cash-flow-calculator.html" }
-                ], 
-                viewAll: "business-calculators.html" 
-            },
-            { 
-                name: "👴 Retirement Calculators", icon: "fas fa-umbrella-beach", desc: "Pension, FIRE, retirement corpus", 
-                tools: [
-                    { name: "Pension Calculator", link: "pension-calculator.html" },
-                    { name: "FIRE Calculator", link: "fire-calculator.html" },
-                    { name: "Retirement Planner", link: "retirement-planner.html" }
-                ], 
-                viewAll: "retirement-calculators.html" 
-            },
-            { 
-                name: "🛠️ Utility Calculators", icon: "fas fa-toolbox", desc: "Inflation, discount, savings goal", 
-                tools: [
-                    { name: "Inflation Calculator", link: "inflation-calculator.html" },
-                    { name: "Discount Calculator", link: "discount-calculator.html" },
-                    { name: "Savings Goal Calculator", link: "savings-goal-calculator.html" }
-                ], 
-                viewAll: "utility-calculators.html" 
+        // ==================== DARK MODE TOGGLE ====================
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        // Check localStorage
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark');
+        }
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
             }
+        });
+
+        // ==================== CATEGORY DATA WITH INDIVIDUAL CALCULATOR PAGE LINKS ====================
+        const categoriesData = [
+            { name: "💰 Loan Calculators", icon: "fas fa-hand-holding-usd", desc: "EMI, home, car, personal loan tools", tools: [{ name: "EMI Calculator", link: "emi-calculator.html" },{ name: "Home Loan Calculator", link: "home-loan-calculator.html" },{ name: "Car Loan Calculator", link: "car-loan-calculator.html" }], viewAll: "loan-calculators.html" },
+            { name: "📈 Investment Calculators", icon: "fas fa-chart-line", desc: "SIP, CAGR, ROI & mutual funds", tools: [{ name: "SIP Calculator", link: "sip-calculator.html" },{ name: "CAGR Calculator", link: "cagr-calculator.html" },{ name: "ROI Calculator", link: "roi-calculator.html" }], viewAll: "investment-calculators.html" },
+            { name: "🧾 Tax Calculators", icon: "fas fa-file-invoice-dollar", desc: "Income tax, GST, VAT simplified", tools: [{ name: "Income Tax Calculator", link: "income-tax-calculator.html" },{ name: "GST Calculator", link: "gst-calculator.html" },{ name: "VAT Calculator", link: "vat-calculator.html" }], viewAll: "tax-calculators.html" },
+            { name: "🏦 Deposit Calculators", icon: "fas fa-piggy-bank", desc: "FD, RD, PPF & savings interest", tools: [{ name: "FD Calculator", link: "fd-calculator.html" },{ name: "RD Calculator", link: "rd-calculator.html" },{ name: "PPF Calculator", link: "ppf-calculator.html" }], viewAll: "deposit-calculators.html" },
+            { name: "📊 Business Calculators", icon: "fas fa-chart-simple", desc: "Profit margin, break-even, cash flow", tools: [{ name: "Profit Margin Calculator", link: "profit-margin-calculator.html" },{ name: "Break-even Calculator", link: "break-even-calculator.html" },{ name: "Cash Flow Calculator", link: "cash-flow-calculator.html" }], viewAll: "business-calculators.html" },
+            { name: "👴 Retirement Calculators", icon: "fas fa-umbrella-beach", desc: "Pension, FIRE, retirement corpus", tools: [{ name: "Pension Calculator", link: "pension-calculator.html" },{ name: "FIRE Calculator", link: "fire-calculator.html" },{ name: "Retirement Planner", link: "retirement-planner.html" }], viewAll: "retirement-calculators.html" },
+            { name: "🛠️ Utility Calculators", icon: "fas fa-toolbox", desc: "Inflation, discount, savings goal", tools: [{ name: "Inflation Calculator", link: "inflation-calculator.html" },{ name: "Discount Calculator", link: "discount-calculator.html" },{ name: "Savings Goal Calculator", link: "savings-goal-calculator.html" }], viewAll: "utility-calculators.html" }
         ];
 
         function renderCategories() {
@@ -355,7 +400,7 @@
         }
         renderCategories();
 
-        // ========== LIVE SEARCH (returns clickable links to calculator pages) ==========
+        // ========== LIVE SEARCH ==========
         const allCalculators = [];
         categoriesData.forEach(cat => {
             cat.tools.forEach(tool => {
@@ -366,10 +411,7 @@
         const resultsDiv = document.getElementById('searchResults');
         function performSearch() {
             const query = searchInput.value.trim().toLowerCase();
-            if(query.length === 0) {
-                resultsDiv.classList.add('hidden');
-                return;
-            }
+            if(query.length === 0) { resultsDiv.classList.add('hidden'); return; }
             const filtered = allCalculators.filter(calc => calc.name.toLowerCase().includes(query) || calc.category.toLowerCase().includes(query));
             if(filtered.length === 0) {
                 resultsDiv.innerHTML = `<div class="p-4 text-gray-500 text-center"><i class="fas fa-search"></i> No calculators found. Try "EMI" or "tax"</div>`;
@@ -386,24 +428,18 @@
         }
         searchInput.addEventListener('input', performSearch);
         document.addEventListener('click', function(e) {
-            if(!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
-                resultsDiv.classList.add('hidden');
-            }
+            if(!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) resultsDiv.classList.add('hidden');
         });
 
-        // ========== STATS COUNTER ANIMATION ==========
+        // ========== STATS COUNTER ==========
         const statNumbers = document.querySelectorAll('.stat-number');
         function animateNumber(el, target) {
             let current = 0;
             const increment = Math.ceil(target / 40);
             const timer = setInterval(() => {
                 current += increment;
-                if(current >= target) {
-                    el.innerText = target;
-                    clearInterval(timer);
-                } else {
-                    el.innerText = current;
-                }
+                if(current >= target) { el.innerText = target; clearInterval(timer); }
+                else el.innerText = current;
             }, 20);
         }
         const observer = new IntersectionObserver((entries) => {
@@ -416,8 +452,6 @@
                         else if(targetVal === 100) animateNumber(el, targetVal);
                         else if(targetVal === 52) animateNumber(el, 52);
                         else animateNumber(el, targetVal);
-                    } else if (targetVal === 0 && el.innerText === '0') {
-                        el.innerText = "100%";
                     }
                     observer.unobserve(el);
                 }
@@ -431,7 +465,7 @@
             }
         });
 
-        // ========== MOBILE MENU TOGGLE & STICKY HEADER ==========
+        // ========== MOBILE MENU ==========
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         menuToggle?.addEventListener('click', () => {
@@ -448,7 +482,6 @@
             if(window.scrollY > 10) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
-        // Close mobile menu on link click
         document.querySelectorAll('#mobileMenu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('mobile-menu-open');
