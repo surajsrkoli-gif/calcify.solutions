@@ -1,5 +1,3 @@
-Here is a complete, modern homepage for **calcify.solutions**—a premium calculator and finance tools website built with HTML5, Tailwind CSS, and vanilla JavaScript. It's fully responsive, SEO-optimized, and ready for AdSense.
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +14,11 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
     <meta property="og:url" content="https://calcify.solutions">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="calcify.solutions | 50+ Calculators">
-    <meta name="twitter:description" content="Fast, accurate financial tools for everyone.">
     <link rel="canonical" href="https://calcify.solutions">
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Tailwind CSS v3 + custom layer -->
+    <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* custom overrides & premium touches */
@@ -111,6 +107,9 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
             font-weight: 800;
             color: #2563EB;
         }
+        .calculator-link {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-white text-[#0F172A] antialiased">
@@ -119,13 +118,13 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
     <header id="mainHeader" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky-header transition-smooth">
         <div class="container mx-auto px-5 lg:px-8 py-4 flex items-center justify-between">
             <!-- Logo -->
-            <div class="flex items-center gap-2">
+            <a href="/" class="flex items-center gap-2">
                 <i class="fas fa-calculator text-2xl text-[#2563EB]"></i>
                 <span class="text-xl font-bold tracking-tight text-[#0F172A]">calcify<span class="text-[#2563EB]">.solutions</span></span>
-            </div>
+            </a>
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center space-x-8 text-[#1E293B] font-medium">
-                <a href="#" class="hover:text-[#2563EB] transition">Home</a>
+                <a href="/" class="hover:text-[#2563EB] transition">Home</a>
                 <a href="#" class="hover:text-[#2563EB] transition">Calculators</a>
                 <a href="#" class="hover:text-[#2563EB] transition">Categories</a>
                 <a href="#" class="hover:text-[#2563EB] transition">Blog</a>
@@ -142,7 +141,7 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
         <!-- Mobile dropdown menu -->
         <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-100 px-5 pb-5 overflow-hidden transition-all duration-300 mobile-menu-closed">
             <div class="flex flex-col space-y-4 pt-3">
-                <a href="#" class="py-2 hover:text-[#2563EB] font-medium">Home</a>
+                <a href="/" class="py-2 hover:text-[#2563EB] font-medium">Home</a>
                 <a href="#" class="py-2 hover:text-[#2563EB] font-medium">Calculators</a>
                 <a href="#" class="py-2 hover:text-[#2563EB] font-medium">Categories</a>
                 <a href="#" class="py-2 hover:text-[#2563EB] font-medium">Blog</a>
@@ -161,7 +160,7 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F172A] leading-tight">50+ Powerful Calculators in <span class="text-[#2563EB]">One Smart Platform</span></h1>
                         <p class="text-lg md:text-xl text-[#334155] mt-6 max-w-2xl lg:mx-0 mx-auto">Calculate investments, loans, taxes, savings, profits, and everyday finances instantly — fast, accurate, and free.</p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8">
-                            <a href="#" class="bg-[#2563EB] text-white px-7 py-3.5 rounded-xl font-semibold text-center hover:bg-[#1D4ED8] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"><i class="fas fa-calculator"></i> Start Calculating</a>
+                            <a href="emi-calculator.html" class="bg-[#2563EB] text-white px-7 py-3.5 rounded-xl font-semibold text-center hover:bg-[#1D4ED8] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"><i class="fas fa-calculator"></i> Start Calculating</a>
                             <a href="#categories" class="border-2 border-[#2563EB] text-[#2563EB] px-7 py-3.5 rounded-xl font-semibold text-center hover:bg-[#EFF6FF] transition-all flex items-center justify-center gap-2"><i class="fas fa-th-large"></i> Browse Categories</a>
                         </div>
                     </div>
@@ -200,12 +199,9 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
                 <h2 class="text-3xl md:text-4xl font-bold text-[#0F172A]">Explore smart <span class="text-[#2563EB]">calculator categories</span></h2>
                 <p class="text-gray-600 mt-3">Powerful financial tools tailored for loans, investments, taxes, business and retirement planning.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
-                <!-- Category cards data will be populated via JS? To keep code solid, we manually generate categories as per spec -->
-            </div>
         </section>
 
-        <!-- manually create categories with dynamic card layout using JS to reduce duplication but still seo friendly: we render from array -->
+        <!-- Dynamic category grid with working links to individual calculator HTML pages -->
         <div class="container mx-auto px-5 lg:px-8">
             <div id="categoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7"></div>
         </div>
@@ -240,7 +236,7 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
             </div>
         </section>
 
-        <!-- Right sidebar ad placeholder (desktop, as inline flex) hidden on mobile but show ad between sections -->
+        <!-- Right sidebar ad placeholder (desktop) -->
         <div class="container mx-auto px-5 lg:px-8 hidden md:block mb-8">
             <div class="ad-container w-full max-w-3xl mx-auto">📊 Sidebar Advertisement - 300x250 (responsive mock)</div>
         </div>
@@ -265,7 +261,7 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
             <div class="container mx-auto px-5 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     <div><div class="flex items-center gap-2 text-white"><i class="fas fa-calculator text-2xl text-[#60A5FA]"></i><span class="text-xl font-bold">calcify<span class="text-[#60A5FA]">.solutions</span></span></div><p class="mt-4 text-sm">Making calculations smarter, faster, and easier.</p><div class="flex gap-4 mt-5"><i class="fab fa-twitter hover:text-white text-xl cursor-pointer"></i><i class="fab fa-linkedin hover:text-white text-xl cursor-pointer"></i><i class="fab fa-github hover:text-white text-xl cursor-pointer"></i></div></div>
-                    <div><h4 class="font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">All Calculators</a></li><li><a href="#" class="hover:text-white">Categories</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Contact</a></li></ul></div>
+                    <div><h4 class="font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="/" class="hover:text-white">Home</a></li><li><a href="#" class="hover:text-white">All Calculators</a></li><li><a href="#" class="hover:text-white">Categories</a></li><li><a href="#" class="hover:text-white">Blog</a></li></ul></div>
                     <div><h4 class="font-semibold text-white mb-4">Categories</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Loan & EMI</a></li><li><a href="#" class="hover:text-white">Investment & SIP</a></li><li><a href="#" class="hover:text-white">Tax & GST</a></li><li><a href="#" class="hover:text-white">Retirement Planning</a></li></ul></div>
                     <div><h4 class="font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Privacy Policy</a></li><li><a href="#" class="hover:text-white">Terms of Use</a></li><li><a href="#" class="hover:text-white">Disclaimer</a></li><li><a href="#" class="hover:text-white">AdChoices</a></li></ul><div class="mt-4"><p class="text-sm">📧 support@calcify.solutions</p><div class="mt-3 flex"><input type="email" placeholder="Email for newsletter" class="bg-gray-800 rounded-l-lg px-3 py-2 text-sm w-full"><button class="bg-[#2563EB] px-3 rounded-r-lg text-sm">Subscribe</button></div></div></div>
                 </div>
@@ -275,15 +271,72 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
     </main>
 
     <script>
-        // ==================== 1) CATEGORY DATA + RENDER ====================
+        // ==================== CATEGORY DATA WITH INDIVIDUAL CALCULATOR PAGE LINKS ====================
+        // Each tool has a corresponding .html file (e.g., "emi-calculator.html")
         const categoriesData = [
-            { name: "💰 Loan Calculators", icon: "fas fa-hand-holding-usd", desc: "EMI, home, car, personal loan tools", tools: ["EMI Calculator", "Home Loan Calculator", "Car Loan Calculator"], viewAll: "#" },
-            { name: "📈 Investment Calculators", icon: "fas fa-chart-line", desc: "SIP, CAGR, ROI & mutual funds", tools: ["SIP Calculator", "CAGR Calculator", "ROI Calculator"], viewAll: "#" },
-            { name: "🧾 Tax Calculators", icon: "fas fa-file-invoice-dollar", desc: "Income tax, GST, VAT simplified", tools: ["Income Tax Calculator", "GST Calculator", "VAT Calculator"], viewAll: "#" },
-            { name: "🏦 Deposit Calculators", icon: "fas fa-piggy-bank", desc: "FD, RD, PPF & savings interest", tools: ["FD Calculator", "RD Calculator", "PPF Calculator"], viewAll: "#" },
-            { name: "📊 Business Calculators", icon: "fas fa-chart-simple", desc: "Profit margin, break-even, cash flow", tools: ["Profit Margin Calculator", "Break-even Calculator", "Cash Flow Calculator"], viewAll: "#" },
-            { name: "👴 Retirement Calculators", icon: "fas fa-umbrella-beach", desc: "Pension, FIRE, retirement corpus", tools: ["Pension Calculator", "FIRE Calculator", "Retirement Planner"], viewAll: "#" },
-            { name: "🛠️ Utility Calculators", icon: "fas fa-toolbox", desc: "Inflation, discount, savings goal", tools: ["Inflation Calculator", "Discount Calculator", "Savings Goal Calculator"], viewAll: "#" }
+            { 
+                name: "💰 Loan Calculators", icon: "fas fa-hand-holding-usd", desc: "EMI, home, car, personal loan tools", 
+                tools: [
+                    { name: "EMI Calculator", link: "emi-calculator.html" },
+                    { name: "Home Loan Calculator", link: "home-loan-calculator.html" },
+                    { name: "Car Loan Calculator", link: "car-loan-calculator.html" }
+                ], 
+                viewAll: "loan-calculators.html" 
+            },
+            { 
+                name: "📈 Investment Calculators", icon: "fas fa-chart-line", desc: "SIP, CAGR, ROI & mutual funds", 
+                tools: [
+                    { name: "SIP Calculator", link: "sip-calculator.html" },
+                    { name: "CAGR Calculator", link: "cagr-calculator.html" },
+                    { name: "ROI Calculator", link: "roi-calculator.html" }
+                ], 
+                viewAll: "investment-calculators.html" 
+            },
+            { 
+                name: "🧾 Tax Calculators", icon: "fas fa-file-invoice-dollar", desc: "Income tax, GST, VAT simplified", 
+                tools: [
+                    { name: "Income Tax Calculator", link: "income-tax-calculator.html" },
+                    { name: "GST Calculator", link: "gst-calculator.html" },
+                    { name: "VAT Calculator", link: "vat-calculator.html" }
+                ], 
+                viewAll: "tax-calculators.html" 
+            },
+            { 
+                name: "🏦 Deposit Calculators", icon: "fas fa-piggy-bank", desc: "FD, RD, PPF & savings interest", 
+                tools: [
+                    { name: "FD Calculator", link: "fd-calculator.html" },
+                    { name: "RD Calculator", link: "rd-calculator.html" },
+                    { name: "PPF Calculator", link: "ppf-calculator.html" }
+                ], 
+                viewAll: "deposit-calculators.html" 
+            },
+            { 
+                name: "📊 Business Calculators", icon: "fas fa-chart-simple", desc: "Profit margin, break-even, cash flow", 
+                tools: [
+                    { name: "Profit Margin Calculator", link: "profit-margin-calculator.html" },
+                    { name: "Break-even Calculator", link: "break-even-calculator.html" },
+                    { name: "Cash Flow Calculator", link: "cash-flow-calculator.html" }
+                ], 
+                viewAll: "business-calculators.html" 
+            },
+            { 
+                name: "👴 Retirement Calculators", icon: "fas fa-umbrella-beach", desc: "Pension, FIRE, retirement corpus", 
+                tools: [
+                    { name: "Pension Calculator", link: "pension-calculator.html" },
+                    { name: "FIRE Calculator", link: "fire-calculator.html" },
+                    { name: "Retirement Planner", link: "retirement-planner.html" }
+                ], 
+                viewAll: "retirement-calculators.html" 
+            },
+            { 
+                name: "🛠️ Utility Calculators", icon: "fas fa-toolbox", desc: "Inflation, discount, savings goal", 
+                tools: [
+                    { name: "Inflation Calculator", link: "inflation-calculator.html" },
+                    { name: "Discount Calculator", link: "discount-calculator.html" },
+                    { name: "Savings Goal Calculator", link: "savings-goal-calculator.html" }
+                ], 
+                viewAll: "utility-calculators.html" 
+            }
         ];
 
         function renderCategories() {
@@ -294,7 +347,7 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
                     <div class="flex items-center gap-3 mb-3"><i class="${cat.icon} text-2xl text-[#2563EB]"></i><h3 class="text-xl font-bold text-[#0F172A]">${cat.name}</h3></div>
                     <p class="text-gray-500 text-sm mb-4">${cat.desc}</p>
                     <ul class="space-y-2 mb-5">
-                        ${cat.tools.map(tool => `<li class="text-gray-700 tool-link cursor-pointer hover:text-[#2563EB] transition flex items-center gap-2"><i class="fas fa-calculator text-xs text-[#60A5FA]"></i><span>${tool}</span></li>`).join('')}
+                        ${cat.tools.map(tool => `<li class="text-gray-700 tool-link transition flex items-center gap-2"><i class="fas fa-calculator text-xs text-[#60A5FA]"></i><a href="${tool.link}" class="hover:text-[#2563EB] block w-full">${tool.name}</a></li>`).join('')}
                     </ul>
                     <a href="${cat.viewAll}" class="text-[#2563EB] font-medium text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">View all calculators <i class="fas fa-arrow-right text-xs"></i></a>
                 </div>
@@ -302,15 +355,13 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
         }
         renderCategories();
 
-        // ========== 2) LIVE SEARCH (Instant filtering over all calculator tools from categories) ==========
-        // Build master list of calculators from categoriesData (tool + category)
+        // ========== LIVE SEARCH (returns clickable links to calculator pages) ==========
         const allCalculators = [];
         categoriesData.forEach(cat => {
             cat.tools.forEach(tool => {
-                allCalculators.push({ name: tool, category: cat.name.replace(/[💰📈🧾🏦📊👴🛠️]/g, '').trim() });
+                allCalculators.push({ name: tool.name, link: tool.link, category: cat.name.replace(/[💰📈🧾🏦📊👴🛠️]/g, '').trim() });
             });
         });
-        // additional common entries for completeness: add some extra? already fine
         const searchInput = document.getElementById('liveSearchInput');
         const resultsDiv = document.getElementById('searchResults');
         function performSearch() {
@@ -326,10 +377,10 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
                 return;
             }
             resultsDiv.innerHTML = `<div class="divide-y divide-gray-100">${filtered.slice(0,12).map(calc => `
-                <div class="p-3 hover:bg-gray-50 cursor-pointer flex justify-between items-center transition" onclick="alert('🔧 ${calc.name} will open soon. Full calculator coming.')">
+                <a href="${calc.link}" class="block p-3 hover:bg-gray-50 cursor-pointer flex justify-between items-center transition">
                     <div><i class="fas fa-calculator text-[#2563EB] mr-3"></i><span class="font-medium">${calc.name}</span><span class="text-xs text-gray-500 ml-2">${calc.category}</span></div>
                     <i class="fas fa-chevron-right text-gray-400"></i>
-                </div>
+                </a>
             `).join('')}</div>`;
             resultsDiv.classList.remove('hidden');
         }
@@ -340,7 +391,7 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
             }
         });
 
-        // ========== 3) STATS COUNTER ANIMATION (Intersection Observer) ==========
+        // ========== STATS COUNTER ANIMATION ==========
         const statNumbers = document.querySelectorAll('.stat-number');
         function animateNumber(el, target) {
             let current = 0;
@@ -364,7 +415,6 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
                         if(targetVal === 0) el.innerText = "100%";
                         else if(targetVal === 100) animateNumber(el, targetVal);
                         else if(targetVal === 52) animateNumber(el, 52);
-                        else if(targetVal === 0 && el.closest('.stat-card')?.innerText.includes('Free')) el.innerText = "100%";
                         else animateNumber(el, targetVal);
                     } else if (targetVal === 0 && el.innerText === '0') {
                         el.innerText = "100%";
@@ -374,22 +424,14 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
             });
         }, { threshold: 0.5 });
         statNumbers.forEach(stat => observer.observe(stat));
-        // override for free: manually
         document.querySelectorAll('.stat-number').forEach(stat => {
             if(stat.getAttribute('data-count') === '0' && stat.closest('.stat-card')?.innerText.includes('Free')) {
                 stat.setAttribute('data-count', '100');
                 stat.innerText = '0';
             }
         });
-        // trigger if already visible
-        setTimeout(() => {
-            statNumbers.forEach(stat => {
-                const rect = stat.getBoundingClientRect();
-                if(rect.top < window.innerHeight-100) observer.observe(stat);
-            });
-        }, 300);
 
-        // ========== 4) Mobile Menu Toggle & Sticky Header Shadow ==========
+        // ========== MOBILE MENU TOGGLE & STICKY HEADER ==========
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         menuToggle?.addEventListener('click', () => {
@@ -406,25 +448,14 @@ Here is a complete, modern homepage for **calcify.solutions**—a premium calcul
             if(window.scrollY > 10) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
-        // ensure tool links also show friendly message
-        document.addEventListener('click', (e) => {
-            if(e.target.closest('.tool-link')) {
-                e.preventDefault();
-                const toolName = e.target.closest('.tool-link')?.innerText?.trim();
-                alert(`✨ ${toolName || 'Calculator'} will be available soon. Stay tuned!`);
-            }
-        });
-        // view all placeholder
-        document.querySelectorAll('.category-card a[href="#"]').forEach(link => {
-            link.addEventListener('click', (e) => { e.preventDefault(); alert("Full category page coming soon with all calculators."); });
-        });
-        // hero buttons demo
-        document.querySelectorAll('.btn-primary, .bg-\\[\\#2563EB\\], a.bg-\\[\\#2563EB\\]').forEach(btn => {
-            if(btn.innerText.includes('Start') || btn.innerText.includes('Explore')) {
-                btn.addEventListener('click', (e) => { e.preventDefault(); alert("🚀 Explore all 50+ calculators. Launching full toolset!"); });
-            }
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('mobile-menu-open');
+                mobileMenu.classList.add('mobile-menu-closed');
+                if(menuToggle) menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
         });
     </script>
 </body>
 </html>
-```
