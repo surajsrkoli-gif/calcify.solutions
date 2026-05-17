@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Time Calculator | Duration, Add/Subtract, Convert | calcify.solutions</title>
+  <meta name="description" content="Free Time Calculator: Calculate time difference between two times, add/subtract hours/minutes/seconds, and convert between hours, minutes, seconds. Perfect for work hours, event planning, and time management.">
+  <meta name="keywords" content="time calculator, time duration, add hours, subtract hours, convert time, minutes seconds, time converter, work hours calculator">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/time-calculator.html">
+  <meta property="og:title" content="Time Calculator | Duration, Add/Subtract, Convert | calcify.solutions">
+  <meta property="og:description" content="Calculate time differences and add/subtract time units easily. Free online tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .mode-tabs {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .mode-btn {
+      background: #1E293B;
+      border: 1px solid #475569;
+      padding: 10px 24px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .mode-btn.active {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border-color: #06B6D4;
+      color: white;
+    }
+    .mode-panel {
+      display: none;
+    }
+    .mode-panel.active {
+      display: block;
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .time-input-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .time-input-row input {
+      flex: 1;
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 12px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      text-align: center;
+    }
+    .time-input-row input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn, .now-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .now-btn {
+      background: #1E293B;
+      color: #38BDF8;
+      border: 1px solid #38BDF8;
+    }
+    .calc-btn:hover, .reset-btn:hover, .now-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+    .highlight {
+      border-bottom: 2px solid #06B6D4;
+    }
+    .note {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: #94A3B8;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .result-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .time-input-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Time Calculator</h1>
+    <p class="hero-description">Calculate time differences, add/subtract hours/minutes/seconds, and convert between time units. Essential for work hours, project tracking, and everyday calculations.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="mode-tabs">
+        <button id="diffModeBtn" class="mode-btn active">⏱️ Time Difference</button>
+        <button id="addModeBtn" class="mode-btn">➕ Add/Subtract Time</button>
+        <button id="convertModeBtn" class="mode-btn">🔄 Time Unit Converter</button>
+      </div>
+
+      <!-- Mode 1: Time Difference -->
+      <div id="diffPanel" class="mode-panel active">
+        <div class="input-group">
+          <label>⏰ Start Time (HH:MM:SS)</label>
+          <div class="time-input-row">
+            <input type="number" id="startHour" placeholder="Hour" value="9" min="0" max="23">
+            <input type="number" id="startMinute" placeholder="Minute" value="0" min="0" max="59">
+            <input type="number" id="startSecond" placeholder="Second" value="0" min="0" max="59">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>⏰ End Time (HH:MM:SS)</label>
+          <div class="time-input-row">
+            <input type="number" id="endHour" placeholder="Hour" value="17" min="0" max="23">
+            <input type="number" id="endMinute" placeholder="Minute" value="30" min="0" max="59">
+            <input type="number" id="endSecond" placeholder="Second" value="0" min="0" max="59">
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="calc-btn" id="calcDiffBtn">Calculate Difference</button>
+          <button class="reset-btn" id="resetDiffBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>📊 Duration</span><span id="diffDuration">—</span></div>
+          <div class="result-item"><span>⏱️ Total Minutes</span><span id="diffMinutes">—</span></div>
+          <div class="result-item"><span>⏱️ Total Seconds</span><span id="diffSeconds">—</span></div>
+          <div class="note">Assumes same day; if end time is earlier than start, it crosses midnight (adds 24 hours).</div>
+        </div>
+      </div>
+
+      <!-- Mode 2: Add/Subtract Time -->
+      <div id="addPanel" class="mode-panel">
+        <div class="input-group">
+          <label>⏰ Base Time (HH:MM:SS)</label>
+          <div class="time-input-row">
+            <input type="number" id="baseHour" placeholder="Hour" value="10" min="0" max="23">
+            <input type="number" id="baseMinute" placeholder="Minute" value="0" min="0" max="59">
+            <input type="number" id="baseSecond" placeholder="Second" value="0" min="0" max="59">
+          </div>
+          <button class="now-btn" id="setNowBtn" style="margin-top: 8px;">⏺ Set to Current Time</button>
+        </div>
+        <div class="input-group">
+          <label>➕➖ Amount to Add/Subtract</label>
+          <div class="time-input-row">
+            <input type="number" id="addHours" placeholder="Hours" value="1" step="1">
+            <input type="number" id="addMinutes" placeholder="Minutes" value="30" step="1">
+            <input type="number" id="addSeconds" placeholder="Seconds" value="0" step="1">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>🔁 Operation</label>
+          <div class="time-input-row">
+            <label style="display: flex; align-items: center; gap: 5px;"><input type="radio" name="op" value="add" checked> Add</label>
+            <label style="display: flex; align-items: center; gap: 5px;"><input type="radio" name="op" value="subtract"> Subtract</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="calc-btn" id="calcAddBtn">Calculate New Time</button>
+          <button class="reset-btn" id="resetAddBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>🕒 Result Time</span><span id="resultTime">—</span></div>
+          <div class="result-item"><span>📅 Next Day / Previous Day</span><span id="dayChange">—</span></div>
+          <div class="note">Result wraps around 24-hour clock; day change indicated.</div>
+        </div>
+      </div>
+
+      <!-- Mode 3: Time Unit Converter -->
+      <div id="convertPanel" class="mode-panel">
+        <div class="input-group">
+          <label>📊 Convert from</label>
+          <div class="time-input-row">
+            <input type="number" id="convertValue" placeholder="Value" value="1.5" step="0.1">
+            <select id="convertFrom">
+              <option value="hours">Hours</option>
+              <option value="minutes">Minutes</option>
+              <option value="seconds">Seconds</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="calc-btn" id="calcConvertBtn">Convert</button>
+          <button class="reset-btn" id="resetConvertBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item"><span>🔄 In Hours</span><span id="convertHours">—</span></div>
+          <div class="result-item"><span>🔄 In Minutes</span><span id="convertMinutes">—</span></div>
+          <div class="result-item highlight"><span>🔄 In Seconds</span><span id="convertSeconds">—</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 How to Use</h3>
+      <ul>
+        <li><strong>Time Difference:</strong> Enter start and end times (24-hour format). Get duration in HH:MM:SS, total minutes, seconds.</li>
+        <li><strong>Add/Subtract:</strong> Enter base time, hours/minutes/seconds to add/subtract. Result shows time and whether it crosses to next/previous day.</li>
+        <li><strong>Unit Converter:</strong> Convert between hours, minutes, seconds.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>⚙️ Features</h3>
+      <ul>
+        <li>Supports 24-hour clock (0-23 hours).</li>
+        <li>Handles midnight crossover in difference and addition/subtraction.</li>
+        <li>Accurate conversions: 1 hour = 60 minutes = 3600 seconds.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Helper: convert time components to total seconds since midnight
+  function toSeconds(h, m, s) {
+    return (h * 3600) + (m * 60) + s;
+  }
+  // Helper: convert total seconds to {h,m,s, daysCross}
+  function fromSeconds(sec) {
+    let days = 0;
+    if (sec >= 86400) {
+      days = Math.floor(sec / 86400);
+      sec = sec % 86400;
+    } else if (sec < 0) {
+      days = Math.floor(sec / 86400);
+      sec = 86400 + (sec % 86400);
+      if (sec === 86400) { sec = 0; days++; }
+    }
+    let h = Math.floor(sec / 3600);
+    let m = Math.floor((sec % 3600) / 60);
+    let s = sec % 60;
+    return { hours: h, minutes: m, seconds: s, days: days };
+  }
+
+  // ---- Time Difference ----
+  function updateDifference() {
+    let h1 = parseInt(document.getElementById('startHour').value) || 0;
+    let m1 = parseInt(document.getElementById('startMinute').value) || 0;
+    let s1 = parseInt(document.getElementById('startSecond').value) || 0;
+    let h2 = parseInt(document.getElementById('endHour').value) || 0;
+    let m2 = parseInt(document.getElementById('endMinute').value) || 0;
+    let s2 = parseInt(document.getElementById('endSecond').value) || 0;
+    
+    let sec1 = toSeconds(h1, m1, s1);
+    let sec2 = toSeconds(h2, m2, s2);
+    let diff = sec2 - sec1;
+    if (diff < 0) diff += 86400; // cross midnight
+    let totalMinutes = diff / 60;
+    let totalSeconds = diff;
+    let { hours, minutes, seconds } = fromSeconds(diff);
+    
+    document.getElementById('diffDuration').innerHTML = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    document.getElementById('diffMinutes').innerHTML = totalMinutes.toFixed(2) + ' minutes';
+    document.getElementById('diffSeconds').innerHTML = totalSeconds + ' seconds';
+  }
+  
+  function resetDiff() {
+    document.getElementById('startHour').value = '9';
+    document.getElementById('startMinute').value = '0';
+    document.getElementById('startSecond').value = '0';
+    document.getElementById('endHour').value = '17';
+    document.getElementById('endMinute').value = '30';
+    document.getElementById('endSecond').value = '0';
+    updateDifference();
+  }
+
+  // ---- Add/Subtract Time ----
+  function addSubtractTime() {
+    let h = parseInt(document.getElementById('baseHour').value) || 0;
+    let m = parseInt(document.getElementById('baseMinute').value) || 0;
+    let s = parseInt(document.getElementById('baseSecond').value) || 0;
+    let addH = parseInt(document.getElementById('addHours').value) || 0;
+    let addM = parseInt(document.getElementById('addMinutes').value) || 0;
+    let addS = parseInt(document.getElementById('addSeconds').value) || 0;
+    let op = document.querySelector('input[name="op"]:checked').value;
+    
+    let baseSec = toSeconds(h, m, s);
+    let delta = toSeconds(addH, addM, addS);
+    if (op === 'subtract') delta = -delta;
+    let resultSec = baseSec + delta;
+    let { hours, minutes, seconds, days } = fromSeconds(resultSec);
+    
+    let dayChangeText = '';
+    if (days > 0) dayChangeText = `+${days} day(s) later`;
+    else if (days < 0) dayChangeText = `${Math.abs(days)} day(s) earlier`;
+    else dayChangeText = 'Same day';
+    
+    document.getElementById('resultTime').innerHTML = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    document.getElementById('dayChange').innerHTML = dayChangeText;
+  }
+  
+  function setNow() {
+    let now = new Date();
+    let h = now.getHours();
+    let m = now.getMinutes();
+    let s = now.getSeconds();
+    document.getElementById('baseHour').value = h;
+    document.getElementById('baseMinute').value = m;
+    document.getElementById('baseSecond').value = s;
+    addSubtractTime();
+  }
+  
+  function resetAdd() {
+    document.getElementById('baseHour').value = '10';
+    document.getElementById('baseMinute').value = '0';
+    document.getElementById('baseSecond').value = '0';
+    document.getElementById('addHours').value = '1';
+    document.getElementById('addMinutes').value = '30';
+    document.getElementById('addSeconds').value = '0';
+    document.querySelector('input[value="add"]').checked = true;
+    addSubtractTime();
+  }
+
+  // ---- Time Unit Converter ----
+  function convertUnits() {
+    let value = parseFloat(document.getElementById('convertValue').value);
+    let fromUnit = document.getElementById('convertFrom').value;
+    if (isNaN(value)) value = 0;
+    let hours = 0, minutes = 0, seconds = 0;
+    if (fromUnit === 'hours') {
+      hours = value;
+      minutes = value * 60;
+      seconds = value * 3600;
+    } else if (fromUnit === 'minutes') {
+      hours = value / 60;
+      minutes = value;
+      seconds = value * 60;
+    } else { // seconds
+      hours = value / 3600;
+      minutes = value / 60;
+      seconds = value;
+    }
+    document.getElementById('convertHours').innerHTML = hours.toFixed(4) + ' hours';
+    document.getElementById('convertMinutes').innerHTML = minutes.toFixed(4) + ' minutes';
+    document.getElementById('convertSeconds').innerHTML = seconds.toFixed(4) + ' seconds';
+  }
+  
+  function resetConvert() {
+    document.getElementById('convertValue').value = '1.5';
+    document.getElementById('convertFrom').value = 'hours';
+    convertUnits();
+  }
+
+  // Mode switching
+  const diffPanel = document.getElementById('diffPanel');
+  const addPanel = document.getElementById('addPanel');
+  const convertPanel = document.getElementById('convertPanel');
+  const diffModeBtn = document.getElementById('diffModeBtn');
+  const addModeBtn = document.getElementById('addModeBtn');
+  const convertModeBtn = document.getElementById('convertModeBtn');
+  
+  function setMode(mode) {
+    diffPanel.classList.remove('active');
+    addPanel.classList.remove('active');
+    convertPanel.classList.remove('active');
+    diffModeBtn.classList.remove('active');
+    addModeBtn.classList.remove('active');
+    convertModeBtn.classList.remove('active');
+    if (mode === 'diff') {
+      diffPanel.classList.add('active');
+      diffModeBtn.classList.add('active');
+    } else if (mode === 'add') {
+      addPanel.classList.add('active');
+      addModeBtn.classList.add('active');
+    } else if (mode === 'convert') {
+      convertPanel.classList.add('active');
+      convertModeBtn.classList.add('active');
+    }
+  }
+  
+  diffModeBtn.addEventListener('click', () => setMode('diff'));
+  addModeBtn.addEventListener('click', () => setMode('add'));
+  convertModeBtn.addEventListener('click', () => setMode('convert'));
+  
+  // Event listeners
+  document.getElementById('calcDiffBtn').addEventListener('click', updateDifference);
+  document.getElementById('resetDiffBtn').addEventListener('click', resetDiff);
+  const diffInputs = ['startHour', 'startMinute', 'startSecond', 'endHour', 'endMinute', 'endSecond'];
+  diffInputs.forEach(id => document.getElementById(id).addEventListener('input', updateDifference));
+  
+  document.getElementById('calcAddBtn').addEventListener('click', addSubtractTime);
+  document.getElementById('resetAddBtn').addEventListener('click', resetAdd);
+  document.getElementById('setNowBtn').addEventListener('click', setNow);
+  const addInputs = ['baseHour', 'baseMinute', 'baseSecond', 'addHours', 'addMinutes', 'addSeconds'];
+  addInputs.forEach(id => document.getElementById(id).addEventListener('input', addSubtractTime));
+  document.querySelectorAll('input[name="op"]').forEach(radio => radio.addEventListener('change', addSubtractTime));
+  
+  document.getElementById('calcConvertBtn').addEventListener('click', convertUnits);
+  document.getElementById('resetConvertBtn').addEventListener('click', resetConvert);
+  document.getElementById('convertValue').addEventListener('input', convertUnits);
+  document.getElementById('convertFrom').addEventListener('change', convertUnits);
+  
+  // Initial calculations
+  updateDifference();
+  addSubtractTime();
+  convertUnits();
+  
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate time difference?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter start and end times in HH:MM:SS format (24-hour). The calculator gives duration, total minutes, and seconds, handling midnight crossover."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I add or subtract hours/minutes/seconds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, use the Add/Subtract mode. Enter base time, the amount to add/subtract, and see the resulting time with day change indication."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How to convert hours to minutes and seconds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the Time Unit Converter. Enter a value, select the unit (hours, minutes, seconds), and get conversions instantly."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
