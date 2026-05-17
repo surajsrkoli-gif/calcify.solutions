@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Percentage Increase Calculator | Percent Change Tool | calcify.solutions</title>
+  <meta name="description" content="Free Percentage Increase Calculator: Compute percent increase/decrease between two numbers, find new value after percentage change, or calculate original value. Step-by-step explanation.">
+  <meta name="keywords" content="percentage increase calculator, percent change, percent increase, decrease calculator, find percentage increase, calculate percent">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/percentage-increase-calculator.html">
+  <meta property="og:title" content="Percentage Increase Calculator | Percent Change | calcify.solutions">
+  <meta property="og:description" content="Calculate percent increase or decrease easily. Free online tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .mode-tabs {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .mode-btn {
+      background: #1E293B;
+      border: 1px solid #475569;
+      padding: 10px 24px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .mode-btn.active {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border-color: #06B6D4;
+      color: white;
+    }
+    .mode-panel {
+      display: none;
+    }
+    .mode-panel.active {
+      display: block;
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+    }
+    .input-group input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+    .highlight {
+      border-bottom: 2px solid #06B6D4;
+    }
+    .steps {
+      margin-top: 20px;
+      background: #0F172A;
+      border-radius: 20px;
+      padding: 16px;
+      font-size: 0.85rem;
+      color: #CBD5E1;
+      text-align: left;
+      font-family: monospace;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .result-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Percentage Increase Calculator</h1>
+    <p class="hero-description">Calculate percentage increase or decrease between two values. Also find the new value after adding a percentage, or find the original value before a percentage change.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="mode-tabs">
+        <button data-mode="change" class="mode-btn active">📊 Percent Change (Old → New)</button>
+        <button data-mode="newvalue" class="mode-btn">🔢 Find New Value</button>
+        <button data-mode="original" class="mode-btn">📉 Find Original Value</button>
+      </div>
+
+      <!-- Mode 1: Percent Change -->
+      <div id="changeMode" class="mode-panel active">
+        <div class="input-group">
+          <label>📉 Old / Original Value</label>
+          <input type="number" id="oldValue" placeholder="e.g., 100" value="100" step="any">
+        </div>
+        <div class="input-group">
+          <label>📈 New / Final Value</label>
+          <input type="number" id="newValue" placeholder="e.g., 120" value="120" step="any">
+        </div>
+        <div class="button-group">
+          <button class="calc-btn" id="calcChangeBtn">Calculate % Change</button>
+          <button class="reset-btn" id="resetChangeBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>📊 Percentage Change</span><span id="percentChange">—</span></div>
+          <div class="result-item"><span>📈 Amount of Change</span><span id="amountChange">—</span></div>
+          <div class="steps" id="changeSteps">Enter values and click Calculate.</div>
+        </div>
+      </div>
+
+      <!-- Mode 2: Find New Value -->
+      <div id="newvalueMode" class="mode-panel">
+        <div class="input-group">
+          <label>📉 Original Value</label>
+          <input type="number" id="origVal" placeholder="e.g., 100" value="100" step="any">
+        </div>
+        <div class="input-group">
+          <label>📈 Percentage Increase / Decrease (%)</label>
+          <input type="number" id="pctChange" placeholder="e.g., 20" value="20" step="any">
+        </div>
+        <div class="button-group">
+          <button class="calc-btn" id="calcNewBtn">Calculate New Value</button>
+          <button class="reset-btn" id="resetNewBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>📈 New Value</span><span id="newResult">—</span></div>
+          <div class="steps" id="newSteps">Enter original value and percentage change.</div>
+        </div>
+      </div>
+
+      <!-- Mode 3: Find Original Value -->
+      <div id="originalMode" class="mode-panel">
+        <div class="input-group">
+          <label>📈 New Value (after change)</label>
+          <input type="number" id="newValAfter" placeholder="e.g., 120" value="120" step="any">
+        </div>
+        <div class="input-group">
+          <label>📊 Percentage Increase / Decrease (%)</label>
+          <input type="number" id="pctGiven" placeholder="e.g., 20" value="20" step="any">
+        </div>
+        <div class="button-group">
+          <button class="calc-btn" id="calcOriginalBtn">Calculate Original Value</button>
+          <button class="reset-btn" id="resetOriginalBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>📉 Original Value</span><span id="originalResult">—</span></div>
+          <div class="steps" id="originalSteps">Enter new value and percentage change.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 How to Use</h3>
+      <ul>
+        <li><strong>Percent Change:</strong> Enter old and new values to calculate the percentage increase or decrease.</li>
+        <li><strong>Find New Value:</strong> Enter original value and percentage (positive for increase, negative for decrease).</li>
+        <li><strong>Find Original Value:</strong> Enter new value and percentage to reverse-calculate the original.</li>
+      </ul>
+      <p>Formula: % Change = (New - Old) / Old × 100. A positive result = increase, negative = decrease.</p>
+    </div>
+    <div class="info-card">
+      <h3>⚙️ Examples</h3>
+      <ul>
+        <li>Old = 100, New = 120 → 20% increase</li>
+        <li>Old = 100, New = 80 → -20% decrease</li>
+        <li>Original = 100, increase 20% → New = 120</li>
+        <li>New = 120, increase 20% → Original = 100</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Helper: format number
+  function formatNumber(n) {
+    if (isNaN(n) || !isFinite(n)) return '—';
+    return n.toFixed(2);
+  }
+
+  // Mode 1: Percent Change
+  function computePercentChange() {
+    let oldVal = parseFloat(document.getElementById('oldValue').value);
+    let newVal = parseFloat(document.getElementById('newValue').value);
+    if (isNaN(oldVal)) oldVal = 0;
+    if (isNaN(newVal)) newVal = 0;
+    
+    let change = newVal - oldVal;
+    let percent = 0;
+    let steps = '';
+    if (oldVal === 0) {
+      if (newVal === 0) percent = 0;
+      else percent = (newVal > 0) ? 100 : -100; // infinite % relative
+    } else {
+      percent = (change / oldVal) * 100;
+    }
+    
+    let changeDisplay = formatNumber(change);
+    let percentDisplay = percent.toFixed(2) + '%';
+    if (percent > 0) percentDisplay = '+' + percent.toFixed(2) + '%';
+    
+    document.getElementById('percentChange').innerHTML = percentDisplay;
+    document.getElementById('amountChange').innerHTML = changeDisplay;
+    
+    steps = `Step 1: Change = New - Old = ${newVal} - ${oldVal} = ${change.toFixed(4)}\n`;
+    if (oldVal === 0) {
+      steps += `Step 2: Old value is zero. Percentage change is undefined (or infinite).\n`;
+    } else {
+      steps += `Step 2: % Change = (Change / Old) × 100 = (${change.toFixed(4)} / ${oldVal}) × 100 = ${percent.toFixed(4)}%\n`;
+      if (percent > 0) steps += `Result: ${percent.toFixed(2)}% increase.`;
+      else if (percent < 0) steps += `Result: ${Math.abs(percent).toFixed(2)}% decrease.`;
+      else steps += `Result: No change (0%).`;
+    }
+    document.getElementById('changeSteps').innerHTML = steps.replace(/\n/g, '<br>');
+  }
+  
+  function resetChange() {
+    document.getElementById('oldValue').value = '100';
+    document.getElementById('newValue').value = '120';
+    computePercentChange();
+  }
+  
+  // Mode 2: Find New Value
+  function computeNewValue() {
+    let original = parseFloat(document.getElementById('origVal').value);
+    let pct = parseFloat(document.getElementById('pctChange').value);
+    if (isNaN(original)) original = 0;
+    if (isNaN(pct)) pct = 0;
+    
+    let newVal = original * (1 + pct / 100);
+    let steps = `Step 1: Percentage change = ${pct}%\n`;
+    steps += `Step 2: Multiply factor = 1 + (${pct} / 100) = ${(1 + pct/100).toFixed(6)}\n`;
+    steps += `Step 3: New Value = Original × Factor = ${original} × ${(1 + pct/100).toFixed(6)} = ${newVal.toFixed(4)}`;
+    document.getElementById('newResult').innerHTML = formatNumber(newVal);
+    document.getElementById('newSteps').innerHTML = steps.replace(/\n/g, '<br>');
+  }
+  
+  function resetNew() {
+    document.getElementById('origVal').value = '100';
+    document.getElementById('pctChange').value = '20';
+    computeNewValue();
+  }
+  
+  // Mode 3: Find Original Value
+  function computeOriginalValue() {
+    let newVal = parseFloat(document.getElementById('newValAfter').value);
+    let pct = parseFloat(document.getElementById('pctGiven').value);
+    if (isNaN(newVal)) newVal = 0;
+    if (isNaN(pct)) pct = 0;
+    
+    let original = newVal / (1 + pct / 100);
+    let steps = `Step 1: Percentage change = ${pct}%\n`;
+    steps += `Step 2: Factor = 1 + (${pct} / 100) = ${(1 + pct/100).toFixed(6)}\n`;
+    steps += `Step 3: Original Value = New Value / Factor = ${newVal} / ${(1 + pct/100).toFixed(6)} = ${original.toFixed(4)}`;
+    document.getElementById('originalResult').innerHTML = formatNumber(original);
+    document.getElementById('originalSteps').innerHTML = steps.replace(/\n/g, '<br>');
+  }
+  
+  function resetOriginal() {
+    document.getElementById('newValAfter').value = '120';
+    document.getElementById('pctGiven').value = '20';
+    computeOriginalValue();
+  }
+  
+  // Mode switching
+  const changePanel = document.getElementById('changeMode');
+  const newPanel = document.getElementById('newvalueMode');
+  const originalPanel = document.getElementById('originalMode');
+  const modeBtns = document.querySelectorAll('.mode-btn');
+  
+  function setMode(mode) {
+    changePanel.classList.remove('active');
+    newPanel.classList.remove('active');
+    originalPanel.classList.remove('active');
+    modeBtns.forEach(btn => {
+      if (btn.getAttribute('data-mode') === mode) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    if (mode === 'change') changePanel.classList.add('active');
+    else if (mode === 'newvalue') newPanel.classList.add('active');
+    else if (mode === 'original') originalPanel.classList.add('active');
+  }
+  
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode')));
+  });
+  
+  // Attach event listeners for each mode's inputs
+  document.getElementById('oldValue').addEventListener('input', computePercentChange);
+  document.getElementById('newValue').addEventListener('input', computePercentChange);
+  document.getElementById('calcChangeBtn').addEventListener('click', computePercentChange);
+  document.getElementById('resetChangeBtn').addEventListener('click', resetChange);
+  
+  document.getElementById('origVal').addEventListener('input', computeNewValue);
+  document.getElementById('pctChange').addEventListener('input', computeNewValue);
+  document.getElementById('calcNewBtn').addEventListener('click', computeNewValue);
+  document.getElementById('resetNewBtn').addEventListener('click', resetNew);
+  
+  document.getElementById('newValAfter').addEventListener('input', computeOriginalValue);
+  document.getElementById('pctGiven').addEventListener('input', computeOriginalValue);
+  document.getElementById('calcOriginalBtn').addEventListener('click', computeOriginalValue);
+  document.getElementById('resetOriginalBtn').addEventListener('click', resetOriginal);
+  
+  // Initial calculations
+  computePercentChange();
+  computeNewValue();
+  computeOriginalValue();
+  
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate percentage increase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Subtract the original value from the new value, divide by the original value, then multiply by 100. Formula: ((New - Old) / Old) × 100."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How to find the new value after a percentage increase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the original value by (1 + percentage/100). For a 20% increase, multiply by 1.20."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How to find the original value before a percentage increase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the new value by (1 + percentage/100). For a 20% increase, divide by 1.20."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
