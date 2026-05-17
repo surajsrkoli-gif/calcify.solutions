@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SIP Calculator | Calculate Mutual Fund Returns | calcify.solutions</title>
+  <meta name="description" content="Free SIP Calculator: Estimate your mutual fund investment returns with monthly SIP. Plan your wealth creation with accurate future value projections.">
+  <meta name="keywords" content="SIP calculator, mutual fund SIP calculator, online SIP calculator, investment calculator, SIP return calculator, systematic investment plan">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/sip-calculator.html">
+  <meta property="og:title" content="SIP Calculator | Calculate SIP Returns Online | calcify.solutions">
+  <meta property="og:description" content="Free SIP calculator to estimate future value of monthly mutual fund investments. Plan your financial goals with ease.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://calcify.solutions/sip-calculator.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Glass & Futuristic */
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      transition: 0.2s;
+    }
+    .input-group input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1.1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+    .formula {
+      background: #0F172A;
+      padding: 16px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>SIP Calculator</h1>
+    <p class="hero-description">A SIP Calculator helps investors estimate future returns on monthly mutual fund investments. Plan your wealth creation, track financial goals, and make informed decisions with our accurate SIP return estimator.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>📆 Monthly Investment (₹)</label>
+        <input type="number" id="monthlyAmount" placeholder="e.g., 5000" value="5000">
+      </div>
+      <div class="input-group">
+        <label>📈 Expected Return Rate (% per year)</label>
+        <input type="number" id="returnRate" placeholder="e.g., 12" value="12" step="0.1">
+      </div>
+      <div class="input-group">
+        <label>⏱️ Time Period (Years)</label>
+        <input type="number" id="timeYears" placeholder="e.g., 10" value="10">
+      </div>
+      <div class="button-group">
+        <button class="calc-btn" id="calculateBtn">Calculate SIP Returns</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+      <div class="result-box">
+        <div class="result-item"><span>💰 Invested Amount</span><span id="investedAmount">₹ 0</span></div>
+        <div class="result-item"><span>📊 Estimated Returns</span><span id="estimatedReturns">₹ 0</span></div>
+        <div class="result-item"><span>🏆 Total Value</span><span id="totalValue">₹ 0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 What is a SIP Calculator?</h3>
+      <p>A Systematic Investment Plan (SIP) calculator is an online tool that estimates the maturity value of your monthly mutual fund investments. By entering monthly amount, expected return rate, and investment tenure, you can project future wealth — helping you align with goals like retirement, child education, or buying a home.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>⚙️ How SIP Calculator Works</h3>
+      <p>The calculator uses the future value of a series of monthly payments, factoring in compounding returns. It assumes a fixed rate of return and that SIP installments are invested at the beginning of each month. The formula applied is:</p>
+      <div class="formula">
+        FV = P × [ ( (1 + r)<sup>n</sup> – 1 ) / r ] × (1 + r)
+      </div>
+      <p>Where P = monthly investment, r = monthly rate of return (annual rate/12), n = total number of months. The tool instantly computes invested amount, total returns, and final corpus.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📐 SIP Formula (Detailed)</h3>
+      <p><strong>M = P × ( ( (1 + i)<sup>n</sup> – 1 ) / i ) × (1 + i)</strong><br>
+      M = Maturity amount, P = Monthly SIP amount, i = periodic rate of interest (monthly), n = number of months. This standard formula is used by financial advisors and mutual fund houses.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>✅ Benefits of SIP Investment</h3>
+      <ul>
+        <li>Rupee cost averaging – reduces market timing risk.</li>
+        <li>Power of compounding – small amounts grow significantly over time.</li>
+        <li>Disciplined saving – automated monthly investments.</li>
+        <li>Flexibility – start, stop, or increase SIP anytime.</li>
+        <li>Wealth creation for long-term goals like retirement or travel.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>📜 History of SIP Investing</h3>
+      <p>Systematic Investment Plans originated in the early 1990s when mutual funds started offering monthly investment options. In India, SIPs gained massive popularity after the 2000s as retail investors embraced disciplined investing. The rise of online SIP calculators in the 2010s empowered millions to project returns instantly, making financial planning accessible. Today, SIP is the preferred mode for millennials and Gen Z to build long-term wealth with minimal risk.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // SIP Calculator Logic (future value of monthly investments)
+  function calculateSIP() {
+    let monthlyAmount = parseFloat(document.getElementById('monthlyAmount').value);
+    let annualRate = parseFloat(document.getElementById('returnRate').value);
+    let years = parseFloat(document.getElementById('timeYears').value);
+
+    if (isNaN(monthlyAmount) || monthlyAmount <= 0) monthlyAmount = 0;
+    if (isNaN(annualRate) || annualRate < 0) annualRate = 0;
+    if (isNaN(years) || years <= 0) years = 0;
+
+    const months = years * 12;
+    const monthlyRate = annualRate / 100 / 12;
+    let investedAmount = monthlyAmount * months;
+    
+    let maturityValue = 0;
+    if (monthlyRate === 0) {
+      maturityValue = investedAmount;
+    } else {
+      // SIP formula: FV = P * ((1+r)^n - 1)/r * (1+r)
+      maturityValue = monthlyAmount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+    }
+    
+    const totalReturns = maturityValue - investedAmount;
+    
+    document.getElementById('investedAmount').innerText = '₹ ' + investedAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('estimatedReturns').innerText = '₹ ' + totalReturns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('totalValue').innerText = '₹ ' + maturityValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function resetForm() {
+    document.getElementById('monthlyAmount').value = '5000';
+    document.getElementById('returnRate').value = '12';
+    document.getElementById('timeYears').value = '10';
+    calculateSIP();
+  }
+
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculateSIP);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  
+  // Auto calculate on page load
+  window.addEventListener('DOMContentLoaded', calculateSIP);
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Explore button (redirect to homepage or calculators page)
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // Add FAQ Schema (for SEO)
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a SIP calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A SIP calculator estimates future returns on monthly mutual fund investments considering compounding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is SIP calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It provides projected returns based on assumed rate; actual market returns may vary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is SIP calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, calcify.solutions SIP calculator is completely free with no signup."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
