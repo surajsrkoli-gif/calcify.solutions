@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Calcify.solutions — premium free online calculators: finance, SIP, EMI, BMI, conversions, math. No signup, mobile-optimized, futuristic interface.">
-  <meta name="keywords" content="calculator, free online calculators, finance calculator, SIP calculator, EMI calculator, loan calculator, BMI calculator, percentage calculator, GST calculator, retirement calculator, unit converter">
+  <meta name="description" content="Calcify.solutions — premium free online calculators: financial, health, math, conversions, and utilities. Instant results, no signup, futuristic UI.">
+  <meta name="keywords" content="calculator, free online calculators, SIP calculator, EMI calculator, loan calculator, BMI calculator, percentage calculator, GST calculator, retirement calculator, unit converter">
   <meta name="author" content="Calcify Solutions">
   <link rel="canonical" href="https://calcify.solutions/">
   <meta property="og:title" content="Calcify.solutions | Futuristic Free Calculators">
-  <meta property="og:description" content="Instant, beautiful calculators for finance, health, math, and utilities. 100% free, no signup.">
+  <meta property="og:description" content="Beautiful, accurate calculators for every need. 100% free, mobile-optimized, and blazing fast.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Calcify.solutions – Modern Free Online Calculators</title>
+  <title>Calcify.solutions – Premium Free Online Calculators</title>
   <style>
     * {
       margin: 0;
@@ -31,44 +31,31 @@
       scroll-padding-top: 90px;
     }
 
-    /* Glass & Futuristic */
+    /* Glassmorphism Core */
     .glass-card, .navbar, .calculator-panel, .search-bar, .card, .faq-item, .badge {
-      background: rgba(30, 41, 59, 0.5);
+      background: rgba(30, 41, 59, 0.45);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(6, 182, 212, 0.2);
       border-radius: 32px;
     }
 
-    .card {
-      transition: transform 0.2s ease, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 35px -12px rgba(6, 182, 212, 0.3);
-      border-color: rgba(6, 182, 212, 0.6);
-    }
-
     .container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 28px;
+      padding: 0 32px;
     }
 
-    /* navbar */
+    /* ========== NAVBAR (premium centered layout) ========== */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(6, 182, 212, 0.3);
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
-
     .nav-container {
       display: flex;
       align-items: center;
@@ -76,11 +63,10 @@
       flex-wrap: wrap;
       padding: 16px 0;
     }
-
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-size: 1.5rem;
       font-weight: 700;
       background: linear-gradient(135deg, #F8FAFC, #38BDF8);
@@ -88,49 +74,55 @@
       background-clip: text;
       color: transparent;
     }
-
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 2.5rem;
       align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
-
     .nav-links a {
       color: #E2E8F0;
       text-decoration: none;
       font-weight: 500;
-      transition: 0.2s;
+      transition: color 0.2s, transform 0.2s;
     }
-
     .nav-links a:hover {
       color: #06B6D4;
+      transform: translateY(-2px);
     }
-
+    .nav-cta {
+      margin-left: auto;
+    }
     .btn-primary {
       background: linear-gradient(135deg, #2563EB, #06B6D4);
       border: none;
-      padding: 10px 24px;
+      padding: 10px 28px;
       border-radius: 40px;
       color: white;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
     }
-
     .btn-primary:hover {
       transform: scale(0.96);
-      box-shadow: 0 8px 18px rgba(6, 182, 212, 0.3);
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
     }
-
     .btn-outline {
       background: transparent;
       border: 1px solid #38BDF8;
       color: #38BDF8;
-      padding: 10px 20px;
+      padding: 10px 24px;
       border-radius: 40px;
       font-weight: 500;
+      transition: all 0.2s;
     }
-
+    .btn-outline:hover {
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateY(-2px);
+    }
     .mobile-menu {
       display: none;
       font-size: 28px;
@@ -139,42 +131,64 @@
       cursor: pointer;
     }
 
-    /* Hero */
+    /* Hero Section - centered premium */
     .hero {
-      padding: 70px 0 50px;
+      padding: 90px 0 70px;
       position: relative;
+      text-align: center;
     }
     .hero-glow {
       position: absolute;
-      width: 500px;
-      height: 500px;
+      width: 600px;
+      height: 600px;
       background: radial-gradient(circle, rgba(6,182,212,0.2), transparent);
-      filter: blur(60px);
-      top: -100px;
-      right: -80px;
+      filter: blur(70px);
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
     }
     h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      line-height: 1.2;
+      font-size: clamp(2.8rem, 7vw, 4.8rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 32px;
+      color: #CBD5E1;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
     .trust-badge {
       display: flex;
-      gap: 20px;
+      justify-content: center;
+      gap: 24px;
       flex-wrap: wrap;
-      margin-top: 30px;
     }
     .badge {
-      padding: 8px 20px;
-      font-size: 0.8rem;
+      padding: 8px 24px;
       background: rgba(30, 41, 59, 0.7);
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
 
     /* Calculator panel */
     .calculator-panel {
-      padding: 28px;
       max-width: 550px;
-      margin: 20px auto 0;
+      margin: 40px auto 0;
+      padding: 28px;
     }
     .calc-display {
       background: #0F172A;
@@ -205,87 +219,101 @@
 
     /* Search */
     .search-section {
-      margin: 60px 0 40px;
+      margin: 70px 0 50px;
     }
     .search-bar {
       width: 100%;
-      padding: 18px 26px;
+      padding: 18px 28px;
       font-size: 1.1rem;
-      background: #1E293Bcc;
+      background: rgba(30, 41, 59, 0.8);
       border: 1px solid #06B6D4;
       border-radius: 60px;
       color: white;
       outline: none;
+      transition: all 0.2s;
+    }
+    .search-bar:focus {
+      border-color: #38BDF8;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
     }
 
-    /* Grid & Cards */
+    /* Cards grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 32px;
-      margin-top: 32px;
+      margin-top: 36px;
     }
     .card {
-      padding: 26px;
+      padding: 28px;
       background: rgba(30, 41, 59, 0.5);
       border-radius: 32px;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(6, 182, 212, 0.7);
+      box-shadow: 0 25px 35px -12px rgba(6, 182, 212, 0.25);
     }
     .card-icon {
       font-size: 2.5rem;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .card h3 {
       font-size: 1.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .tool-btn {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 24px;
       background: #2563EB;
-      padding: 10px 20px;
+      padding: 12px 0;
       border-radius: 40px;
       text-decoration: none;
       color: white;
-      font-weight: 500;
+      font-weight: 600;
       text-align: center;
-      transition: 0.2s;
+      transition: all 0.2s;
     }
     .tool-btn:hover {
       background: #06B6D4;
       transform: translateY(-2px);
     }
-    @media (max-width: 768px) {
-      .tool-btn { width: 100%; text-align: center; }
-      .cards-grid { gap: 20px; }
-    }
-
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 12px;
+      font-size: 2.2rem;
+      margin-bottom: 16px;
       background: linear-gradient(120deg, #F8FAFC, #38BDF8);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    .section-sub {
-      color: #94A3B8;
-      margin-bottom: 32px;
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .section-header span {
+      font-size: 2rem;
     }
 
-    /* why choose us */
+    /* Why Choose Us */
     .why-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
-      margin: 40px 0;
+      gap: 32px;
+      margin: 50px 0;
     }
 
     /* FAQ */
     .faq-item {
-      margin-bottom: 18px;
-      padding: 20px 24px;
+      margin-bottom: 20px;
+      padding: 20px 28px;
       cursor: pointer;
+      transition: 0.2s;
     }
     .faq-question {
       font-weight: 700;
@@ -295,34 +323,69 @@
     }
     .faq-answer {
       display: none;
-      margin-top: 14px;
+      margin-top: 16px;
       color: #CBD5E1;
     }
 
-    /* Footer */
+    /* ========== PREMIUM FOOTER ========== */
     footer {
-      margin-top: 90px;
-      background: #0F172A;
-      border-top: 1px solid #1E293B;
-      padding: 50px 0 30px;
+      margin-top: 100px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6, 182, 212, 0.2);
+      padding: 60px 0 30px;
     }
     .footer-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 48px;
+      margin-bottom: 50px;
+    }
+    .footer-col h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #F8FAFC;
+    }
+    .footer-col p, .footer-col a {
+      color: #94A3B8;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover {
+      color: #38BDF8;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #1E293B;
+      color: #64748B;
     }
 
+    @media (max-width: 1024px) {
+      .nav-links {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+      }
+      .nav-container {
+        justify-content: space-between;
+      }
+      .nav-cta {
+        margin-left: 0;
+      }
+    }
     @media (max-width: 900px) {
       .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
-        background: #0F172Acc;
+        background: rgba(15, 23, 42, 0.96);
         backdrop-filter: blur(20px);
         border-radius: 32px;
         padding: 24px;
         margin-top: 16px;
+        gap: 1.5rem;
       }
       .nav-links.active {
         display: flex;
@@ -330,10 +393,18 @@
       .mobile-menu {
         display: block;
       }
+      .nav-cta {
+        margin-left: auto;
+      }
       .container {
         padding: 0 20px;
       }
-      .section-title { font-size: 1.8rem; }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .cards-grid {
+        gap: 20px;
+      }
     }
   </style>
 </head>
@@ -351,7 +422,9 @@
       <a href="#tools">Tools</a>
       <a href="#blog">Blog</a>
       <a href="#about">About</a>
-      <button class="btn-primary" id="exploreNavBtn">Explore</button>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-primary" id="exploreNavBtn">Explore →</button>
     </div>
   </div>
 </nav>
@@ -359,23 +432,22 @@
 <main>
   <div class="container hero">
     <div class="hero-glow"></div>
-    <h1>Free Online Calculators <br> for Every Need</h1>
-    <p style="font-size: 1.3rem; margin: 20px 0; max-width: 650px; color: #CBD5E1;">SIP, EMI, BMI, taxes, conversions — instant, accurate & futuristic.</p>
-    <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+    <h1>Smart calculations,<br>futuristic speed</h1>
+    <p class="hero-sub">SIP, EMI, BMI, taxes, conversions — all free, accurate, and beautifully designed.</p>
+    <div class="hero-buttons">
       <button class="btn-primary" id="heroExploreBtn">Browse Calculators</button>
-      <button class="btn-outline" id="heroCalcBtn">Try Calculator ↓</button>
+      <button class="btn-outline" id="heroCalcBtn">Try Live Calculator ↓</button>
     </div>
     <div class="trust-badge">
-      <span class="badge">✅ 100% Free</span>
+      <span class="badge">✨ 100% Free</span>
       <span class="badge">🔒 No Signup</span>
       <span class="badge">⚡ Blazing Fast</span>
       <span class="badge">📱 App-like UI</span>
     </div>
   </div>
 
-  <!-- Featured Scientific Calculator -->
+  <!-- Featured Calculator -->
   <div class="container" id="featuredCalc">
-    <h2 class="section-title">✨ Live Scientific Calculator</h2>
     <div class="calculator-panel">
       <div class="calc-display" id="calcDisplay">0</div>
       <div class="calc-buttons" id="calcButtons"></div>
@@ -387,33 +459,33 @@
 
   <!-- Smart Search Bar -->
   <div class="container search-section">
-    <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search calculators: SIP, EMI, BMI, Age, GST, Password Generator...">
-    <div id="searchStatus" style="margin-top: 12px; font-size: 0.85rem; color: #38BDF8;"></div>
+    <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search calculators: SIP, EMI, BMI, Age, GST, Password...">
+    <div id="searchStatus" style="margin-top: 14px; font-size: 0.85rem; color: #38BDF8; text-align: center;"></div>
   </div>
 
-  <!-- DYNAMIC SECTIONS: Popular, Financial, Health, Math, Conversion & Utility -->
+  <!-- Dynamic Sections will be injected here (Popular, Financial, Health, Math, Conversion & Utility) -->
   <div id="dynamicContent" class="container"></div>
 
-  <!-- Why Choose Us -->
+  <!-- Why Choose Us Section -->
   <div class="container">
-    <h2 class="section-title">Why Choose Calcify?</h2>
+    <h2 class="section-title">Why choose Calcify?</h2>
     <div class="why-grid">
-      <div class="card"><div class="card-icon">⚡</div><h3>Lightning Fast</h3><p>Client-side, instant results.</p></div>
-      <div class="card"><div class="card-icon">🎯</div><h3>Bank-Grade Accuracy</h3><p>Trusted formulas.</p></div>
-      <div class="card"><div class="card-icon">🔐</div><h3>Privacy First</h3><p>No data stored ever.</p></div>
-      <div class="card"><div class="card-icon">📱</div><h3>Mobile Perfected</h3><p>Smooth like native app.</p></div>
-      <div class="card"><div class="card-icon">💎</div><h3>Free Forever</h3><p>No premium walls.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3>Lightning Fast</h3><p>Client-side processing, instant results.</p></div>
+      <div class="card"><div class="card-icon">🎯</div><h3>Bank-Grade Accuracy</h3><p>Trusted financial formulas.</p></div>
+      <div class="card"><div class="card-icon">🔐</div><h3>Privacy First</h3><p>No data storage, zero tracking.</p></div>
+      <div class="card"><div class="card-icon">📱</div><h3>Mobile Perfected</h3><p>Smooth like a native app.</p></div>
+      <div class="card"><div class="card-icon">💎</div><h3>Free Forever</h3><p>No premium tiers, no paywalls.</p></div>
     </div>
   </div>
 
   <!-- SEO Content Block -->
   <div class="container" style="margin: 70px 0;">
-    <div class="glass-card" style="padding: 40px; border-radius: 40px;">
-      <h2 class="section-title" style="margin-bottom: 20px;">Master Your Finances & Health with Smart Calculators</h2>
-      <p style="font-size: 1.05rem; color: #E2E8F0;">From <strong>SIP calculators, EMI planning, loan amortization</strong> to <strong>BMI, calorie intake, and compound interest</strong> — Calcify delivers precision tools for every aspect of your life. Our platform combines futuristic design with robust financial formulas, making it the ultimate <strong>free online calculator ecosystem</strong>. Whether you're an investor, student, or fitness enthusiast, our tools provide accurate insights in real time. No downloads, no signups, just pure calculation power.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 28px;">
-        <a href="#" style="color:#38BDF8;">💰 Investment Planning →</a>
-        <a href="#" style="color:#38BDF8;">📊 EMI & Loan Guides →</a>
+    <div class="glass-card" style="padding: 48px; border-radius: 40px;">
+      <h2 class="section-title" style="margin-bottom: 20px;">Master your finances & health with precision tools</h2>
+      <p style="font-size: 1.05rem; color: #E2E8F0;">From <strong>SIP calculators, EMI planning, loan amortization</strong> to <strong>BMI, calorie tracking, and compound interest</strong> — Calcify delivers enterprise-grade accuracy inside a futuristic interface. Whether you're an investor, student, or fitness enthusiast, our free tools give you instant insights. No downloads, no signups, just pure calculation power.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px;">
+        <a href="#" style="color:#38BDF8;">💰 Investment Guides →</a>
+        <a href="#" style="color:#38BDF8;">📊 Loan Strategies →</a>
         <a href="#" style="color:#38BDF8;">🏋️ Health Metrics →</a>
       </div>
     </div>
@@ -421,47 +493,77 @@
 
   <!-- Blog / Guides Preview -->
   <div class="container" id="blog">
-    <h2 class="section-title">📘 Expert Guides & Insights</h2>
-    <div class="cards-grid" style="margin-bottom: 30px;">
-      <div class="card"><h3>📈 How SIP Works</h3><p>Systematic Investment Plans demystified.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
-      <div class="card"><h3>🏠 EMI vs Loan Tenure</h3><p>Optimize your home loan payments.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
-      <div class="card"><h3>🧮 Compound Interest Magic</h3><p>Why Einstein called it the 8th wonder.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
-      <div class="card"><h3>🥑 BMI & Body Fat</h3><p>Understand your health metrics.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
+    <h2 class="section-title">📘 Expert insights & guides</h2>
+    <div class="cards-grid" style="margin-bottom: 40px;">
+      <div class="card"><h3>📈 SIP Wealth Creation</h3><p>How systematic investments build long-term wealth.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read →</a></div>
+      <div class="card"><h3>🏠 EMI vs Loan Tenure</h3><p>Optimize your home loan repayments.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read →</a></div>
+      <div class="card"><h3>🧮 Compound Interest Magic</h3><p>Why Einstein called it the 8th wonder.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read →</a></div>
+      <div class="card"><h3>🥑 BMI & Body Fat %</h3><p>Understand your health beyond the scale.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read →</a></div>
     </div>
   </div>
 
   <!-- FAQ Accordion -->
   <div class="container">
-    <h2 class="section-title">Frequently Asked Questions</h2>
+    <h2 class="section-title">Frequently asked questions</h2>
     <div id="faqContainer">
-      <div class="faq-item"><div class="faq-question">📌 Are all calculators free? <span>➕</span></div><div class="faq-answer">Yes, 100% free with no hidden charges or subscriptions.</div></div>
-      <div class="faq-item"><div class="faq-question">📌 Do I need to create an account? <span>➕</span></div><div class="faq-answer">No account required – calculations happen instantly in your browser.</div></div>
-      <div class="faq-item"><div class="faq-question">📌 Are finance calculators accurate? <span>➕</span></div><div class="faq-answer">Absolutely. We use standard financial and mathematical formulas.</div></div>
-      <div class="faq-item"><div class="faq-question">📌 Is my data private? <span>➕</span></div><div class="faq-answer">No data is sent to servers; all processing is local – total privacy.</div></div>
-      <div class="faq-item"><div class="faq-question">📌 Can I use on mobile? <span>➕</span></div><div class="faq-answer">Yes, fully responsive interface works like a premium app.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Are all calculators free? <span>➕</span></div><div class="faq-answer">Yes, 100% free with no hidden subscriptions.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Do I need an account? <span>➕</span></div><div class="faq-answer">No account required – calculations happen instantly in your browser.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 How accurate are finance calculators? <span>➕</span></div><div class="faq-answer">We use standard financial and mathematical formulas used by institutions.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Is my data safe? <span>➕</span></div><div class="faq-answer">Absolutely. All processing is local – no data is sent to servers.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Can I use on mobile? <span>➕</span></div><div class="faq-answer">Yes, fully responsive with touch-friendly cards and navigation.</div></div>
     </div>
   </div>
 
   <!-- About Section -->
-  <div class="container" id="about" style="margin: 70px 0 40px;">
+  <div class="container" id="about" style="margin: 70px 0 50px;">
     <h2 class="section-title">About calcify.solutions</h2>
-    <div class="glass-card" style="padding: 36px;">
-      <p>Calcify.solutions is a next-gen, ad-friendly, free calculator platform. We combine glassmorphism design with enterprise-grade calculation logic. Covering <strong>financial planning, loan analysis, health metrics, math solvers, and utility tools</strong>, we aim to become the most trusted multi-calculator hub. Every tool is optimized for SEO and Core Web Vitals, ensuring lightning performance on GitHub Pages. Built with pure HTML/CSS/JS, privacy-first, and scalable to 1000+ calculators.</p>
+    <div class="glass-card" style="padding: 40px;">
+      <p>Calcify.solutions is a next-generation free calculator ecosystem blending glassmorphism design with robust calculation logic. We cover financial planning, loan analysis, health metrics, math solvers, and utility tools. Every calculator is optimized for SEO and Core Web Vitals, ensuring blazing-fast performance on GitHub Pages. Built with pure HTML/CSS/JS, privacy-first, and ready to scale to 1000+ tools. No backend, no databases – just pure client-side excellence.</p>
     </div>
   </div>
 </main>
 
 <footer>
   <div class="container footer-grid">
-    <div><h3>⚡ calcify.solutions</h3><p>Smart calculations made simple.</p><p style="margin-top: 12px;">📧 support@calcify.solutions</p></div>
-    <div><h4>Quick links</h4><a href="#" style="color:#94A3B8; display:block;">Home</a><a href="#financial" style="color:#94A3B8;">Calculators</a><a href="#blog" style="color:#94A3B8;">Blog</a></div>
-    <div><h4>Legal</h4><a href="#" style="color:#94A3B8;">Privacy Policy</a><a href="#" style="color:#94A3B8;">Terms</a><a href="#" style="color:#94A3B8;">Sitemap</a></div>
+    <div class="footer-col">
+      <h4>⚡ calcify.solutions</h4>
+      <p>Smart calculations made simple. Free, fast, futuristic.</p>
+      <p style="margin-top: 12px;">📍 Trusted by thousands</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick links</h4>
+      <a href="#">Home</a>
+      <a href="#financial">Calculators</a>
+      <a href="#blog">Blog</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Popular tools</h4>
+      <a href="sip-calculator.html">SIP Calculator</a>
+      <a href="emi-calculator.html">EMI Calculator</a>
+      <a href="bmi-calculator.html">BMI Calculator</a>
+      <a href="loan-calculator.html">Loan Calculator</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Disclaimer</a>
+      <a href="#">Sitemap</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <p>📧 support@calcify.solutions</p>
+      <p>🌍 24/7 online</p>
+    </div>
   </div>
-  <div class="container" style="text-align: center; margin-top: 40px; color: #64748B;">© 2025 calcify.solutions — Futuristic free calculators. All rights reserved.</div>
+  <div class="container footer-bottom">
+    <p>© 2025 calcify.solutions — Premium free calculators. All rights reserved.</p>
+  </div>
 </footer>
 
 <script>
-  // ---------- CALCULATOR LOGIC (scientific mode) ----------
+  // ========== CALCULATOR LOGIC ==========
   let scientificMode = false;
   let currentInput = '0';
   let lastOperator = null;
@@ -551,117 +653,89 @@
   toggleBtn.addEventListener('click', () => { scientificMode = !scientificMode; toggleBtn.innerText = scientificMode ? '🔬 Scientific Mode ON' : '🔬 Scientific Mode OFF'; buildCalculatorUI(); });
   buildCalculatorUI();
 
-  // ---------- CALCULATORS DATABASE (static HTML links) ----------
-  const calculatorsList = [
-    { name: "SIP Calculator", category: "Financial", slug: "sip-calculator.html" },
-    { name: "EMI Calculator", category: "Financial", slug: "emi-calculator.html" },
-    { name: "Loan Calculator", category: "Financial", slug: "loan-calculator.html" },
-    { name: "Personal Loan Calculator", category: "Financial", slug: "personal-loan-calculator.html" },
-    { name: "Home Loan Calculator", category: "Financial", slug: "home-loan-calculator.html" },
-    { name: "Car Loan Calculator", category: "Financial", slug: "car-loan-calculator.html" },
-    { name: "Mortgage Calculator", category: "Financial", slug: "mortgage-calculator.html" },
-    { name: "Compound Interest Calculator", category: "Financial", slug: "compound-interest-calculator.html" },
-    { name: "Investment Calculator", category: "Financial", slug: "investment-calculator.html" },
-    { name: "FD Calculator", category: "Financial", slug: "fd-calculator.html" },
-    { name: "RD Calculator", category: "Financial", slug: "rd-calculator.html" },
-    { name: "PPF Calculator", category: "Financial", slug: "ppf-calculator.html" },
-    { name: "Retirement Calculator", category: "Financial", slug: "retirement-calculator.html" },
-    { name: "Inflation Calculator", category: "Financial", slug: "inflation-calculator.html" },
-    { name: "GST Calculator", category: "Financial", slug: "gst-calculator.html" },
-    { name: "Income Tax Calculator", category: "Financial", slug: "income-tax-calculator.html" },
-    { name: "Salary Calculator", category: "Financial", slug: "salary-calculator.html" },
-    { name: "Profit Margin Calculator", category: "Financial", slug: "profit-margin-calculator.html" },
-    { name: "ROI Calculator", category: "Financial", slug: "roi-calculator.html" },
-    { name: "Currency Converter", category: "Financial", slug: "currency-converter.html" },
-    { name: "BMI Calculator", category: "Health", slug: "bmi-calculator.html" },
-    { name: "Calorie Calculator", category: "Health", slug: "calorie-calculator.html" },
-    { name: "BMR Calculator", category: "Health", slug: "bmr-calculator.html" },
-    { name: "Body Fat Calculator", category: "Health", slug: "body-fat-calculator.html" },
-    { name: "Ideal Weight Calculator", category: "Health", slug: "ideal-weight-calculator.html" },
-    { name: "Water Intake Calculator", category: "Health", slug: "water-intake-calculator.html" },
-    { name: "Pregnancy Calculator", category: "Health", slug: "pregnancy-calculator.html" },
-    { name: "Pace Calculator", category: "Health", slug: "pace-calculator.html" },
-    { name: "Scientific Calculator", category: "Math", slug: "scientific-calculator.html" },
-    { name: "Percentage Calculator", category: "Math", slug: "percentage-calculator.html" },
-    { name: "Fraction Calculator", category: "Math", slug: "fraction-calculator.html" },
-    { name: "GPA Calculator", category: "Math", slug: "gpa-calculator.html" },
-    { name: "Grade Calculator", category: "Math", slug: "grade-calculator.html" },
-    { name: "Algebra Calculator", category: "Math", slug: "algebra-calculator.html" },
-    { name: "Standard Deviation Calculator", category: "Math", slug: "standard-deviation-calculator.html" },
-    { name: "Average Calculator", category: "Math", slug: "average-calculator.html" },
-    { name: "Ratio Calculator", category: "Math", slug: "ratio-calculator.html" },
-    { name: "Age Calculator", category: "Conversion & Utility", slug: "age-calculator.html" },
-    { name: "Date Calculator", category: "Conversion & Utility", slug: "date-calculator.html" },
-    { name: "Time Calculator", category: "Conversion & Utility", slug: "time-calculator.html" },
-    { name: "Hours Calculator", category: "Conversion & Utility", slug: "hours-calculator.html" },
-    { name: "Unit Converter", category: "Conversion & Utility", slug: "unit-converter.html" },
-    { name: "Percentage Increase Calculator", category: "Conversion & Utility", slug: "percentage-increase-calculator.html" },
-    { name: "Random Number Generator", category: "Conversion & Utility", slug: "random-number-generator.html" },
-    { name: "Password Generator", category: "Conversion & Utility", slug: "password-generator.html" },
-    { name: "QR Code Generator", category: "Conversion & Utility", slug: "qr-code-generator.html" },
-    { name: "UUID Generator", category: "Conversion & Utility", slug: "uuid-generator.html" },
-    { name: "Subnet Calculator", category: "Conversion & Utility", slug: "subnet-calculator.html" }
+  // ========== CALCULATOR DATABASE & DYNAMIC SECTIONS (static .html links) ==========
+  const calculatorsDB = [
+    { name: "SIP Calculator", category: "Financial", slug: "sip-calculator.html", icon: "📈" }, { name: "EMI Calculator", category: "Financial", slug: "emi-calculator.html", icon: "🏦" },
+    { name: "Loan Calculator", category: "Financial", slug: "loan-calculator.html", icon: "💰" }, { name: "Personal Loan Calculator", category: "Financial", slug: "personal-loan-calculator.html", icon: "💳" },
+    { name: "Home Loan Calculator", category: "Financial", slug: "home-loan-calculator.html", icon: "🏠" }, { name: "Car Loan Calculator", category: "Financial", slug: "car-loan-calculator.html", icon: "🚗" },
+    { name: "Mortgage Calculator", category: "Financial", slug: "mortgage-calculator.html", icon: "🏡" }, { name: "Compound Interest Calculator", category: "Financial", slug: "compound-interest-calculator.html", icon: "📊" },
+    { name: "Investment Calculator", category: "Financial", slug: "investment-calculator.html", icon: "📈" }, { name: "FD Calculator", category: "Financial", slug: "fd-calculator.html", icon: "🏦" },
+    { name: "RD Calculator", category: "Financial", slug: "rd-calculator.html", icon: "📅" }, { name: "PPF Calculator", category: "Financial", slug: "ppf-calculator.html", icon: "📂" },
+    { name: "Retirement Calculator", category: "Financial", slug: "retirement-calculator.html", icon: "👴" }, { name: "Inflation Calculator", category: "Financial", slug: "inflation-calculator.html", icon: "📉" },
+    { name: "GST Calculator", category: "Financial", slug: "gst-calculator.html", icon: "🧾" }, { name: "Income Tax Calculator", category: "Financial", slug: "income-tax-calculator.html", icon: "📑" },
+    { name: "Salary Calculator", category: "Financial", slug: "salary-calculator.html", icon: "💵" }, { name: "Profit Margin Calculator", category: "Financial", slug: "profit-margin-calculator.html", icon: "📊" },
+    { name: "ROI Calculator", category: "Financial", slug: "roi-calculator.html", icon: "🎯" }, { name: "Currency Converter", category: "Financial", slug: "currency-converter.html", icon: "💱" },
+    { name: "BMI Calculator", category: "Health", slug: "bmi-calculator.html", icon: "⚖️" }, { name: "Calorie Calculator", category: "Health", slug: "calorie-calculator.html", icon: "🍎" },
+    { name: "BMR Calculator", category: "Health", slug: "bmr-calculator.html", icon: "❤️" }, { name: "Body Fat Calculator", category: "Health", slug: "body-fat-calculator.html", icon: "💪" },
+    { name: "Ideal Weight Calculator", category: "Health", slug: "ideal-weight-calculator.html", icon: "🏋️" }, { name: "Water Intake Calculator", category: "Health", slug: "water-intake-calculator.html", icon: "💧" },
+    { name: "Pregnancy Calculator", category: "Health", slug: "pregnancy-calculator.html", icon: "🤰" }, { name: "Pace Calculator", category: "Health", slug: "pace-calculator.html", icon: "🏃" },
+    { name: "Scientific Calculator", category: "Math", slug: "scientific-calculator.html", icon: "🔬" }, { name: "Percentage Calculator", category: "Math", slug: "percentage-calculator.html", icon: "%" },
+    { name: "Fraction Calculator", category: "Math", slug: "fraction-calculator.html", icon: "➗" }, { name: "GPA Calculator", category: "Math", slug: "gpa-calculator.html", icon: "🎓" },
+    { name: "Grade Calculator", category: "Math", slug: "grade-calculator.html", icon: "📝" }, { name: "Algebra Calculator", category: "Math", slug: "algebra-calculator.html", icon: "🧮" },
+    { name: "Standard Deviation Calculator", category: "Math", slug: "standard-deviation-calculator.html", icon: "📉" }, { name: "Average Calculator", category: "Math", slug: "average-calculator.html", icon: "📊" },
+    { name: "Age Calculator", category: "Conversion & Utility", slug: "age-calculator.html", icon: "🎂" }, { name: "Date Calculator", category: "Conversion & Utility", slug: "date-calculator.html", icon: "📅" },
+    { name: "Time Calculator", category: "Conversion & Utility", slug: "time-calculator.html", icon: "⏰" }, { name: "Hours Calculator", category: "Conversion & Utility", slug: "hours-calculator.html", icon: "⌛" },
+    { name: "Unit Converter", category: "Conversion & Utility", slug: "unit-converter.html", icon: "📏" }, { name: "Percentage Increase Calculator", category: "Conversion & Utility", slug: "percentage-increase-calculator.html", icon: "📈" },
+    { name: "Random Number Generator", category: "Conversion & Utility", slug: "random-number-generator.html", icon: "🎲" }, { name: "Password Generator", category: "Conversion & Utility", slug: "password-generator.html", icon: "🔑" },
+    { name: "QR Code Generator", category: "Conversion & Utility", slug: "qr-code-generator.html", icon: "📱" }, { name: "UUID Generator", category: "Conversion & Utility", slug: "uuid-generator.html", icon: "🆔" },
+    { name: "Subnet Calculator", category: "Conversion & Utility", slug: "subnet-calculator.html", icon: "🌐" }
   ];
-
-  const popularCalculators = [
-    { name: "SIP Calculator", slug: "sip-calculator.html", icon:"📈" }, 
-    { name: "EMI Calculator", slug: "emi-calculator.html", icon:"🏦" }, 
-    { name: "BMI Calculator", slug: "bmi-calculator.html", icon:"⚖️" }, 
-    { name: "Percentage Calculator", slug: "percentage-calculator.html", icon:"%"}
+  const popularList = [
+    { name: "SIP Calculator", slug: "sip-calculator.html", icon: "📈" }, { name: "EMI Calculator", slug: "emi-calculator.html", icon: "🏦" },
+    { name: "BMI Calculator", slug: "bmi-calculator.html", icon: "⚖️" }, { name: "Percentage Calculator", slug: "percentage-calculator.html", icon: "%" }
   ];
-
-  function renderSections(filter = "") {
+  function renderAllSections(filter = "") {
     const container = document.getElementById('dynamicContent');
     container.innerHTML = "";
-    const filterLower = filter.toLowerCase();
+    const f = filter.toLowerCase();
     // Popular section
-    let popularHtml = `<section style="margin-bottom: 70px;"><h2 class="section-title">⭐ Popular Calculators</h2><div class="cards-grid">`;
-    let filteredPopular = popularCalculators.filter(p => p.name.toLowerCase().includes(filterLower));
-    filteredPopular.forEach(p => {
-      popularHtml += `<div class="card"><div class="card-icon">${p.icon}</div><h3>${p.name}</h3><p>Instant, free calculation tool.</p><a href="${p.slug}" class="tool-btn">Use Calculator →</a></div>`;
-    });
-    popularHtml += `</div></section>`;
-    if(filteredPopular.length) container.innerHTML += popularHtml;
-
-    const categories = { Financial: "💰 Financial Calculators", Health: "🏋️ Health & Fitness", Math: "📐 Math & Education", "Conversion & Utility": "🛠️ Conversion & Utility Tools" };
-    for(let [catKey, catTitle] of Object.entries(categories)) {
-      let items = calculatorsList.filter(c => c.category === catKey && c.name.toLowerCase().includes(filterLower));
-      if(items.length === 0) continue;
-      let secHtml = `<section id="${catKey.toLowerCase().replace(/[& ]/g,'')}" style="margin-bottom: 80px;"><h2 class="section-title">${catTitle}</h2><div class="cards-grid">`;
+    let popularFiltered = popularList.filter(p => p.name.toLowerCase().includes(f));
+    if(popularFiltered.length) {
+      let popHtml = `<section style="margin-bottom: 70px;"><h2 class="section-title">⭐ Most Popular</h2><div class="cards-grid">`;
+      popularFiltered.forEach(p => {
+        popHtml += `<div class="card"><div class="card-icon">${p.icon}</div><h3>${p.name}</h3><p>Instant, accurate calculation.</p><a href="${p.slug}" class="tool-btn">Use Calculator →</a></div>`;
+      });
+      popHtml += `</div></section>`;
+      container.innerHTML += popHtml;
+    }
+    const sections = [
+      { key: "Financial", title: "💰 Financial Calculators", icon: "💰" },
+      { key: "Health", title: "💪 Health & Fitness", icon: "💪" },
+      { key: "Math", title: "📐 Math & Education", icon: "📐" },
+      { key: "Conversion & Utility", title: "🛠️ Conversion & Utility Tools", icon: "🛠️" }
+    ];
+    sections.forEach(sec => {
+      let items = calculatorsDB.filter(c => c.category === sec.key && c.name.toLowerCase().includes(f));
+      if(items.length === 0) return;
+      let secHtml = `<section id="${sec.key.toLowerCase().replace(/[& ]/g,'')}" style="margin-bottom: 80px;"><div class="section-header"><span>${sec.icon}</span><h2 class="section-title">${sec.title}</h2></div><div class="cards-grid">`;
       items.forEach(item => {
-        let icon = catKey === "Financial" ? "📊" : (catKey === "Health" ? "❤️" : (catKey === "Math" ? "📐" : "⚙️"));
-        secHtml += `<div class="card"><div class="card-icon">${icon}</div><h3>${item.name}</h3><p>Precision tool for ${item.name.toLowerCase()}.</p><a href="${item.slug}" class="tool-btn">Use Calculator →</a></div>`;
+        secHtml += `<div class="card"><div class="card-icon">${item.icon}</div><h3>${item.name}</h3><p>Precision tool for ${item.name.toLowerCase()}.</p><a href="${item.slug}" class="tool-btn">Use Calculator →</a></div>`;
       });
       secHtml += `</div></section>`;
       container.innerHTML += secHtml;
-    }
-    if(container.innerHTML === "") container.innerHTML = "<div class='glass-card' style='padding:40px; text-align:center;'>✨ No calculators found. Try a different keyword.</div>";
+    });
+    if(container.innerHTML === "") container.innerHTML = "<div class='glass-card' style='padding:50px; text-align:center;'>✨ No calculators found. Adjust keywords.</div>";
   }
-
-  // Search listener
   const searchBox = document.getElementById('searchInput');
-  const searchStatus = document.getElementById('searchStatus');
+  const statusDiv = document.getElementById('searchStatus');
   searchBox.addEventListener('input', (e) => {
-    let val = e.target.value;
-    renderSections(val);
-    searchStatus.innerText = val ? `🔍 Showing results for "${val}"` : "";
+    renderAllSections(e.target.value);
+    statusDiv.innerText = e.target.value ? `🔍 Showing results for “${e.target.value}”` : "";
   });
-  renderSections("");
+  renderAllSections("");
 
-  // Mobile & helper
+  // Mobile menu & interactions
   document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
   document.getElementById('heroExploreBtn').addEventListener('click', () => searchBox.focus());
   document.getElementById('heroCalcBtn').addEventListener('click', () => document.getElementById('featuredCalc').scrollIntoView({behavior:'smooth'}));
   document.getElementById('exploreNavBtn').addEventListener('click', () => searchBox.focus());
-
-  // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item => {
-    let qDiv = item.querySelector('.faq-question');
+    let q = item.querySelector('.faq-question');
     let ans = item.querySelector('.faq-answer');
-    qDiv.addEventListener('click', () => {
-      let isOpen = ans.style.display === 'block';
-      ans.style.display = isOpen ? 'none' : 'block';
-      qDiv.querySelector('span').innerHTML = isOpen ? '➕' : '➖';
+    q.addEventListener('click', () => {
+      let open = ans.style.display === 'block';
+      ans.style.display = open ? 'none' : 'block';
+      q.querySelector('span').innerHTML = open ? '➕' : '➖';
     });
   });
   // Schema
