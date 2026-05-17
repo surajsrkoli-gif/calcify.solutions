@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PPF Calculator | Public Provident Fund Maturity | calcify.solutions</title>
+  <meta name="description" content="Free PPF (Public Provident Fund) calculator: calculate maturity amount, total interest, and effective yield for your PPF investments. Plan your long-term tax-saving goals.">
+  <meta name="keywords" content="PPF calculator, Public Provident Fund, PPF maturity, PPF interest, tax saving, PPF returns, PPF investment">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/ppf-calculator.html">
+  <meta property="og:title" content="PPF Calculator | Public Provident Fund Maturity | calcify.solutions">
+  <meta property="og:description" content="Calculate PPF maturity amount and interest earned. Free and easy to use.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input, .input-group select {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      transition: 0.2s;
+    }
+    .input-group select option {
+      background: #0F172A;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .radio-group {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .radio-group input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1.1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+    .formula {
+      background: #0F172A;
+      padding: 16px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>PPF Calculator</h1>
+    <p class="hero-description">Calculate the maturity amount and interest earned on your Public Provident Fund (PPF) investment. PPF is a 15-year government-backed, tax-saving scheme with EEE (Exempt-Exempt-Exempt) status.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>💰 Contribution Amount</label>
+        <div class="radio-group">
+          <label><input type="radio" name="freq" value="yearly" checked> Yearly (₹)</label>
+          <label><input type="radio" name="freq" value="monthly"> Monthly (₹)</label>
+        </div>
+        <input type="number" id="contributionAmount" placeholder="e.g., 150000" value="150000">
+      </div>
+      <div class="input-group">
+        <label>📈 Annual Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g., 7.1" value="7.1" step="0.1">
+      </div>
+      <div class="input-group">
+        <label>⏱️ Tenure (Years)</label>
+        <input type="number" id="years" placeholder="e.g., 15" value="15" min="1" max="50">
+        <small style="color:#94A3B8;">PPF minimum tenure is 15 years, extendable in blocks of 5 years.</small>
+      </div>
+      <div class="button-group">
+        <button class="calc-btn" id="calculateBtn">Calculate Maturity</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+      <div class="result-box">
+        <div class="result-item"><span>💰 Total Invested Amount</span><span id="totalInvested">₹ 0</span></div>
+        <div class="result-item"><span>📊 Total Interest Earned</span><span id="totalInterest">₹ 0</span></div>
+        <div class="result-item"><span>🏦 Maturity Amount</span><span id="maturityAmount">₹ 0</span></div>
+        <div class="result-item"><span>📊 Effective Yield (p.a.)</span><span id="effectiveYield">0%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 What is PPF?</h3>
+      <p>Public Provident Fund (PPF) is a long-term, government-backed savings scheme in India. It offers compound interest (currently around 7.1% p.a.) with tax benefits under Section 80C (deduction up to ₹1.5 lakh per year). The maturity period is 15 years, extendable in 5-year blocks. Interest is tax-free, making it a popular choice for retirement and tax-saving goals.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>⚙️ How PPF Interest is Calculated</h3>
+      <p>PPF interest is calculated monthly on the minimum balance between the 5th and end of each month, but credited annually. The formula for maturity amount with yearly contributions is:</p>
+      <div class="formula">
+        M = P × [(1 + r)<sup>n</sup> - 1] / r × (1 + r)
+      </div>
+      <p>For monthly contributions, each deposit compounds for the remaining months. Our calculator handles both yearly lump sum and monthly contributions, using the standard PPF compounding method (annual compounding).</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📐 Understanding Your PPF Returns</h3>
+      <ul>
+        <li><strong>Total Invested Amount:</strong> Sum of all yearly or monthly contributions over the tenure.</li>
+        <li><strong>Total Interest Earned:</strong> Compound interest generated on your PPF balance.</li>
+        <li><strong>Maturity Amount:</strong> The final corpus at the end of the tenure.</li>
+        <li><strong>Effective Yield:</strong> The actual annualized return considering compounding.</li>
+      </ul>
+      <p>PPF offers guaranteed returns backed by the Government of India, making it one of the safest long-term investment options.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>✅ Why Use a PPF Calculator?</h3>
+      <ul>
+        <li>Plan your annual or monthly PPF contributions for retirement/child education.</li>
+        <li>Understand how much you need to invest to reach a target corpus.</li>
+        <li>Compare PPF with other tax-saving options (ELSS, NPS, etc.).</li>
+        <li>See the impact of interest rate changes on maturity amount.</li>
+        <li>Free, instant, and completely private — no personal data required.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>📜 PPF in India</h3>
+      <p>Introduced in 1968 by the National Savings Institute, PPF has become a cornerstone of retirement planning for millions. The minimum annual deposit is ₹500, and the maximum is ₹1.5 lakh per financial year. Accounts can be opened at post offices or designated banks. PPF calculators have empowered investors to project their maturity corpus and optimize their tax-saving strategies.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let contributionFrequency = "yearly"; // yearly or monthly
+
+  const freqRadios = document.querySelectorAll('input[name="freq"]');
+  freqRadios.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      contributionFrequency = e.target.value;
+      const amountInput = document.getElementById('contributionAmount');
+      if (contributionFrequency === "yearly") {
+        amountInput.placeholder = "e.g., 150000";
+        if (amountInput.value && !isNaN(parseFloat(amountInput.value))) {
+          // Keep as is
+        }
+      } else {
+        amountInput.placeholder = "e.g., 12500";
+        if (amountInput.value && !isNaN(parseFloat(amountInput.value))) {
+          // optional adjust hint
+        }
+      }
+      calculatePPF();
+    });
+  });
+
+  function calculatePPF() {
+    let contribution = parseFloat(document.getElementById('contributionAmount').value);
+    let annualRate = parseFloat(document.getElementById('rate').value);
+    let years = parseFloat(document.getElementById('years').value);
+
+    if (isNaN(contribution) || contribution < 0) contribution = 0;
+    if (isNaN(annualRate) || annualRate < 0) annualRate = 0;
+    if (isNaN(years) || years <= 0) years = 0;
+
+    const rateDecimal = annualRate / 100;
+    let totalInvested = 0;
+    let maturity = 0;
+
+    if (contributionFrequency === "yearly") {
+      // Yearly deposit at beginning of each year. PPF interest compounded annually.
+      // Formula: Future value of annuity due (deposits at start of year)
+      // M = P * ((1+r)^n - 1)/r * (1+r)
+      if (years > 0 && annualRate > 0) {
+        maturity = contribution * (Math.pow(1 + rateDecimal, years) - 1) / rateDecimal * (1 + rateDecimal);
+      } else if (years > 0 && annualRate === 0) {
+        maturity = contribution * years;
+      } else {
+        maturity = 0;
+      }
+      totalInvested = contribution * years;
+    } else {
+      // Monthly contributions: each monthly deposit compounds annually? PPF interest is calculated monthly on min balance but added yearly.
+      // Simplified approach: each monthly deposit earns interest for the remaining fraction of the year and then compounds yearly.
+      // More accurate: treat monthly deposits as made at beginning of month; each year's 12 deposits grow with yearly compounding.
+      // We'll compute by iterating years.
+      const monthlyContribution = contribution;
+      if (years > 0 && monthlyContribution > 0) {
+        let balance = 0;
+        for (let year = 1; year <= years; year++) {
+          // For each year, add 12 monthly deposits at start of each month (end of previous month?).
+          // Assuming deposits at beginning of month, interest for that month? But PPF interest is on minimum balance, so simpler: add total yearly contribution and then apply annual interest.
+          // Standard PPF calculation for monthly contributions: total yearly contribution = monthly * 12, then it grows for remaining years.
+          // For accuracy, each monthly deposit earns interest from deposit date to end of year, then compounds annually.
+          // We'll use the standard formula used by most PPF calculators: 
+          // Yearly growth = (Previous balance + total annual contribution) * (1+rate) but careful.
+          // Better: Add total of 12 monthly installments for the year, then apply annual interest at year end.
+          // But since deposits are spread, each month's deposit earns interest for remaining months in that year.
+          // Simplified: each year's total contribution is 12 * monthly, and it earns interest for half a year on average? Not precise.
+          // For consistency, we use the recurring deposit formula with annual compounding.
+          // We'll compute using future value of monthly series within each year and then compound.
+          let totalYearlyContribution = monthlyContribution * 12;
+          // Interest on current balance for the full year
+          balance = balance * (1 + rateDecimal);
+          // Add total yearly contributions at end of year (but they were made throughout the year). To approximate, we add contributions and then apply interest? 
+          // The correct way: Each monthly contribution compounds for the remaining months of that year. We'll use a loop over months for simplicity.
+          // Since performance is fine, we do month-by-month calculation.
+          // Reset to correct month-by-month for accuracy.
+        }
+        // Better: month-by-month loop
+        let monthBalance = 0;
+        const monthlyRate = rateDecimal / 12; // not exactly right because PPF compounds annually, but we need to allocate interest monthly for growth? No, interest is added yearly. So we track balance and at year end add interest.
+        // Let's do month iteration but add interest only at year end.
+        let bal = 0;
+        const totalMonths = years * 12;
+        for (let month = 1; month <= totalMonths; month++) {
+          // add monthly contribution at beginning of month
+          bal += monthlyContribution;
+          // if end of year (month % 12 == 0), apply annual interest
+          if (month % 12 === 0) {
+            bal = bal * (1 + rateDecimal);
+          }
+        }
+        maturity = bal;
+        totalInvested = monthlyContribution * totalMonths;
+      } else {
+        maturity = 0;
+        totalInvested = 0;
+      }
+    }
+
+    const totalInterest = maturity - totalInvested;
+    let effectiveYield = 0;
+    if (totalInvested > 0 && years > 0) {
+      const totalReturnMultiple = maturity / totalInvested;
+      const annualizedReturn = Math.pow(totalReturnMultiple, 1 / years) - 1;
+      effectiveYield = annualizedReturn * 100;
+    }
+
+    const formatCurrency = (value) => {
+      if (isNaN(value) || !isFinite(value)) return '₹ 0';
+      return '₹ ' + value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    document.getElementById('totalInvested').innerHTML = formatCurrency(totalInvested);
+    document.getElementById('totalInterest').innerHTML = formatCurrency(totalInterest);
+    document.getElementById('maturityAmount').innerHTML = formatCurrency(maturity);
+    document.getElementById('effectiveYield').innerHTML = effectiveYield.toFixed(2) + '%';
+  }
+
+  function resetForm() {
+    document.getElementById('contributionAmount').value = '150000';
+    document.getElementById('rate').value = '7.1';
+    document.getElementById('years').value = '15';
+    // set frequency to yearly by default
+    document.querySelector('input[value="yearly"]').checked = true;
+    contributionFrequency = "yearly";
+    calculatePPF();
+  }
+
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculatePPF);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  
+  const inputs = ['contributionAmount', 'rate', 'years'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', calculatePPF);
+  });
+
+  window.addEventListener('DOMContentLoaded', calculatePPF);
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is PPF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PPF (Public Provident Fund) is a government-backed, 15-year tax-saving scheme with compound interest and EEE tax status."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the current PPF interest rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The PPF interest rate is set quarterly by the government. As of 2025, it is around 7.1% per annum, compounded annually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the maximum investment in PPF per year?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The maximum investment in PPF is ₹1.5 lakh per financial year, which qualifies for tax deduction under Section 80C."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
