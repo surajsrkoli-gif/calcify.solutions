@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Random Number Generator | Custom Range & Decimal | calcify.solutions</title>
+  <meta name="description" content="Free Random Number Generator: Generate random integers or decimals within any range. Customizable min/max, decimal places, and history tracking. Perfect for games, lotteries, statistics, and decision making.">
+  <meta name="keywords" content="random number generator, random number, RNG, lottery number generator, random integer, random decimal, random number between">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/random-number-generator.html">
+  <meta property="og:title" content="Random Number Generator | Custom Range & Decimal | calcify.solutions">
+  <meta property="og:description" content="Generate random numbers with flexible settings. Free online tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input, .input-group select {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .radio-group {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .generate-btn, .reset-btn, .clear-history-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .generate-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn, .clear-history-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .generate-btn:hover, .reset-btn:hover, .clear-history-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .generated-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #38BDF8;
+      margin: 16px 0;
+      word-break: break-word;
+    }
+    .history-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .history-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: #94A3B8;
+    }
+    .history-list {
+      max-height: 200px;
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .history-item {
+      background: #1E293B;
+      padding: 8px 14px;
+      border-radius: 40px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #38BDF8;
+    }
+    .note {
+      font-size: 0.8rem;
+      color: #94A3B8;
+      margin-top: 12px;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .generated-number {
+        font-size: 2rem;
+      }
+      .history-list {
+        max-height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Random Number Generator</h1>
+    <p class="hero-description">Generate truly random numbers within any range. Choose integers or decimals, set decimal places, and track your generation history.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>📉 Minimum Value</label>
+        <input type="number" id="minVal" value="1" step="any">
+      </div>
+      <div class="input-group">
+        <label>📈 Maximum Value</label>
+        <input type="number" id="maxVal" value="100" step="any">
+      </div>
+      <div class="radio-group">
+        <label><input type="radio" name="numberType" value="integer" checked> 🔢 Integer (whole numbers)</label>
+        <label><input type="radio" name="numberType" value="decimal"> 🔘 Decimal (floating point)</label>
+      </div>
+      <div class="input-group" id="decimalPlacesGroup" style="display: none;">
+        <label>🔢 Decimal Places</label>
+        <input type="number" id="decimalPlaces" value="2" min="0" max="10" step="1">
+      </div>
+      <div class="button-group">
+        <button class="generate-btn" id="generateBtn">🎲 Generate Random Number</button>
+        <button class="reset-btn" id="resetBtn">Reset to Defaults</button>
+        <button class="clear-history-btn" id="clearHistoryBtn">🗑️ Clear History</button>
+      </div>
+      <div class="result-box">
+        <div class="note">Your random number:</div>
+        <div class="generated-number" id="randomNumber">—</div>
+      </div>
+      <div class="history-box">
+        <div class="history-title">
+          <span>📜 Generation History</span>
+          <span id="historyCount">0 entries</span>
+        </div>
+        <div class="history-list" id="historyList">
+          <div style="color:#64748B; text-align:center; width:100%;">No numbers generated yet. Click the button above.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>🎲 How to Use</h3>
+      <ul>
+        <li>Set a minimum and maximum value (inclusive).</li>
+        <li>Choose between integer (whole numbers) or decimal (floating point).</li>
+        <li>For decimals, set the number of decimal places (1-10).</li>
+        <li>Click "Generate Random Number" — the result appears instantly.</li>
+        <li>Every generation is saved in the history list for reference.</li>
+        <li>Use "Clear History" to reset the history or "Reset" to restore default settings.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>⚙️ How Randomness Works</h3>
+      <p>This generator uses JavaScript's <code>Math.random()</code> function, which produces cryptographically unpredictable pseudo-random numbers. For most applications (games, simulations, decision making), it provides sufficient randomness. For high-security needs (e.g., lottery or cryptography), use dedicated hardware or specialized APIs.</p>
+    </div>
+    <div class="info-card">
+      <h3>📊 Examples</h3>
+      <ul>
+        <li>Integer between 1 and 100 → typical lottery or dice roll.</li>
+        <li>Decimal between 0 and 1 with 3 decimal places → useful for probability simulation.</li>
+        <li>Custom ranges for giveaways, team selection, or statistical sampling.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // History array
+  let historyNumbers = [];
+
+  // DOM elements
+  const minInput = document.getElementById('minVal');
+  const maxInput = document.getElementById('maxVal');
+  const integerRadio = document.querySelector('input[value="integer"]');
+  const decimalRadio = document.querySelector('input[value="decimal"]');
+  const decimalPlacesGroup = document.getElementById('decimalPlacesGroup');
+  const decimalPlacesInput = document.getElementById('decimalPlaces');
+  const generateBtn = document.getElementById('generateBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  const randomNumberDisplay = document.getElementById('randomNumber');
+  const historyListDiv = document.getElementById('historyList');
+  const historyCountSpan = document.getElementById('historyCount');
+
+  // Show/hide decimal places input based on selection
+  function toggleDecimalPlaces() {
+    if (decimalRadio.checked) {
+      decimalPlacesGroup.style.display = 'flex';
+    } else {
+      decimalPlacesGroup.style.display = 'none';
+    }
+  }
+  integerRadio.addEventListener('change', toggleDecimalPlaces);
+  decimalRadio.addEventListener('change', toggleDecimalPlaces);
+  toggleDecimalPlaces();
+
+  // Generate random number based on settings
+  function generateRandom() {
+    let min = parseFloat(minInput.value);
+    let max = parseFloat(maxInput.value);
+    let isInteger = integerRadio.checked;
+    let decimalPlaces = parseInt(decimalPlacesInput.value);
+
+    // Validation
+    if (isNaN(min)) min = 0;
+    if (isNaN(max)) max = 100;
+    if (min >= max) {
+      // Swap if min >= max
+      [min, max] = [max, min];
+      minInput.value = min;
+      maxInput.value = max;
+    }
+    if (isNaN(decimalPlaces) || decimalPlaces < 0) decimalPlaces = 2;
+    if (decimalPlaces > 10) decimalPlaces = 10;
+
+    let random;
+    if (isInteger) {
+      random = Math.floor(Math.random() * (max - min + 1)) + min;
+      randomNumberDisplay.innerText = random;
+    } else {
+      random = Math.random() * (max - min) + min;
+      random = parseFloat(random.toFixed(decimalPlaces));
+      randomNumberDisplay.innerText = random;
+    }
+
+    // Add to history
+    historyNumbers.unshift(random); // add to beginning for newest first
+    if (historyNumbers.length > 20) historyNumbers.pop(); // limit to 20 entries
+    updateHistoryDisplay();
+  }
+
+  function updateHistoryDisplay() {
+    historyListDiv.innerHTML = '';
+    if (historyNumbers.length === 0) {
+      historyListDiv.innerHTML = '<div style="color:#64748B; text-align:center; width:100%;">No numbers generated yet. Click the button above.</div>';
+      historyCountSpan.innerText = '0 entries';
+      return;
+    }
+    historyCountSpan.innerText = historyNumbers.length + ' entries';
+    historyNumbers.forEach(num => {
+      const span = document.createElement('div');
+      span.className = 'history-item';
+      span.innerText = num;
+      historyListDiv.appendChild(span);
+    });
+  }
+
+  function resetDefaults() {
+    minInput.value = '1';
+    maxInput.value = '100';
+    integerRadio.checked = true;
+    decimalPlacesInput.value = '2';
+    toggleDecimalPlaces();
+    generateRandom(); // generate a fresh number after reset
+  }
+
+  function clearHistory() {
+    historyNumbers = [];
+    updateHistoryDisplay();
+    // Also regenerate? Keep current displayed number but clear history only
+    // Optionally generate a new number? Not necessary.
+  }
+
+  // Event listeners
+  generateBtn.addEventListener('click', generateRandom);
+  resetBtn.addEventListener('click', resetDefaults);
+  clearHistoryBtn.addEventListener('click', clearHistory);
+
+  // Auto-generate on input change? Optional but not default; we keep manual.
+  // Add initial random number on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    resetDefaults(); // sets defaults and generates first number
+  });
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How random is this number generator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It uses JavaScript's Math.random(), which is pseudo-random but sufficient for most non-cryptographic purposes like games, raffles, and simulations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I generate decimal numbers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, select the decimal option and set the desired number of decimal places (1-10)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit to the range?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use any range with both positive and negative numbers. Ensure min is less than max for valid generation."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
