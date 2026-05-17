@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Algebra Calculator | Solve Linear & Quadratic Equations | calcify.solutions</title>
+  <meta name="description" content="Free Algebra Calculator: Solve linear equations (ax + b = c) and quadratic equations (ax² + bx + c = 0). Get step-by-step solutions, real and complex roots.">
+  <meta name="keywords" content="algebra calculator, solve equations, linear equation solver, quadratic formula, math solver, equation solver">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/algebra-calculator.html">
+  <meta property="og:title" content="Algebra Calculator | Solve Linear & Quadratic Equations | calcify.solutions">
+  <meta property="og:description" content="Solve equations step by step. Free online algebra tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .mode-tabs {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .mode-btn {
+      background: #1E293B;
+      border: 1px solid #475569;
+      padding: 10px 28px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 500;
+    }
+    .mode-btn.active {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border-color: #06B6D4;
+      color: white;
+    }
+    .mode-panel {
+      display: none;
+    }
+    .mode-panel.active {
+      display: block;
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .coeff-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .coeff-item {
+      flex: 1;
+      min-width: 100px;
+    }
+    .coeff-item input {
+      width: 100%;
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 12px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      text-align: center;
+    }
+    .coeff-item input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .equation-preview {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 16px;
+      text-align: center;
+      margin: 20px 0;
+      font-family: monospace;
+      font-size: 1.2rem;
+      color: #38BDF8;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px 0 28px;
+      justify-content: center;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+    .highlight {
+      border-bottom: 2px solid #06B6D4;
+    }
+    .steps {
+      margin-top: 20px;
+      background: #0F172A;
+      border-radius: 20px;
+      padding: 16px;
+      font-size: 0.85rem;
+      color: #CBD5E1;
+      text-align: left;
+      font-family: monospace;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .coeff-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Algebra Calculator</h1>
+    <p class="hero-description">Solve linear equations (ax + b = c) and quadratic equations (ax² + bx + c = 0). Get exact solutions with step-by-step explanations.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="mode-tabs">
+        <button id="linearModeBtn" class="mode-btn active">📐 Linear Equation (ax + b = c)</button>
+        <button id="quadraticModeBtn" class="mode-btn">📈 Quadratic Equation (ax² + bx + c = 0)</button>
+      </div>
+
+      <!-- Linear Equation Panel -->
+      <div id="linearPanel" class="mode-panel active">
+        <div class="input-group">
+          <label>Enter coefficients</label>
+          <div class="coeff-row">
+            <div class="coeff-item">
+              <input type="number" id="linearA" placeholder="a (coefficient of x)" value="2" step="any">
+              <small style="color:#94A3B8;">a (coefficient of x)</small>
+            </div>
+            <div class="coeff-item">
+              <input type="number" id="linearB" placeholder="b (constant)" value="3" step="any">
+              <small style="color:#94A3B8;">b</small>
+            </div>
+            <div class="coeff-item">
+              <input type="number" id="linearC" placeholder="c (right side)" value="7" step="any">
+              <small style="color:#94A3B8;">c (result)</small>
+            </div>
+          </div>
+        </div>
+        <div class="equation-preview" id="linearPreview">2x + 3 = 7</div>
+        <div class="button-group">
+          <button class="calc-btn" id="solveLinearBtn">Solve Equation</button>
+          <button class="reset-btn" id="resetLinearBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>📌 Solution</span><span id="linearSolution">—</span></div>
+          <div class="steps" id="linearSteps">Enter coefficients and click Solve.</div>
+        </div>
+      </div>
+
+      <!-- Quadratic Equation Panel -->
+      <div id="quadraticPanel" class="mode-panel">
+        <div class="input-group">
+          <label>Enter coefficients (ax² + bx + c = 0)</label>
+          <div class="coeff-row">
+            <div class="coeff-item">
+              <input type="number" id="quadA" placeholder="a (coefficient of x²)" value="1" step="any">
+              <small>a ≠ 0</small>
+            </div>
+            <div class="coeff-item">
+              <input type="number" id="quadB" placeholder="b (coefficient of x)" value="-3" step="any">
+              <small>b</small>
+            </div>
+            <div class="coeff-item">
+              <input type="number" id="quadC" placeholder="c (constant term)" value="2" step="any">
+              <small>c</small>
+            </div>
+          </div>
+        </div>
+        <div class="equation-preview" id="quadPreview">1x² - 3x + 2 = 0</div>
+        <div class="button-group">
+          <button class="calc-btn" id="solveQuadBtn">Solve Quadratic</button>
+          <button class="reset-btn" id="resetQuadBtn">Reset</button>
+        </div>
+        <div class="result-box">
+          <div class="result-item highlight"><span>📌 Roots</span><span id="quadSolution">—</span></div>
+          <div class="result-item"><span>📊 Discriminant (Δ)</span><span id="discriminant">—</span></div>
+          <div class="steps" id="quadSteps">Enter coefficients and click Solve.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 How to Use the Algebra Calculator</h3>
+      <p><strong>Linear Equation:</strong> Enter values for a, b, c in the equation ax + b = c. The calculator solves for x and shows step-by-step work.</p>
+      <p><strong>Quadratic Equation:</strong> Enter a, b, c for ax² + bx + c = 0. The calculator computes the discriminant and roots (real or complex).</p>
+    </div>
+    <div class="info-card">
+      <h3>⚙️ Solving Methods</h3>
+      <ul>
+        <li>Linear: Isolate x by subtracting b from both sides, then divide by a.</li>
+        <li>Quadratic: Quadratic formula x = [-b ± √(b² - 4ac)] / (2a). Handles real and complex roots.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>📐 Examples</h3>
+      <ul>
+        <li>2x + 3 = 7 → x = 2</li>
+        <li>x² - 3x + 2 = 0 → x = 1, x = 2</li>
+        <li>x² + 1 = 0 → x = i, x = -i (complex)</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Helper: format number nicely
+  function formatNumber(num) {
+    if (Number.isInteger(num)) return num.toString();
+    return num.toFixed(4).replace(/\.?0+$/, '');
+  }
+
+  // Linear Equation Solver
+  function solveLinear() {
+    let a = parseFloat(document.getElementById('linearA').value);
+    let b = parseFloat(document.getElementById('linearB').value);
+    let c = parseFloat(document.getElementById('linearC').value);
+    
+    if (isNaN(a)) a = 0;
+    if (isNaN(b)) b = 0;
+    if (isNaN(c)) c = 0;
+    
+    // Preview
+    document.getElementById('linearPreview').innerHTML = `${formatNumber(a)}x + ${formatNumber(b)} = ${formatNumber(c)}`;
+    
+    let steps = '';
+    let solution = '';
+    
+    if (a === 0) {
+      if (b === c) {
+        solution = 'Infinite solutions (identity)';
+        steps = `Equation: ${b} = ${c}. Both sides are equal, so any x satisfies the equation.`;
+      } else {
+        solution = 'No solution (contradiction)';
+        steps = `Equation: ${b} = ${c}. Since ${b} ≠ ${c}, there is no solution.`;
+      }
+    } else {
+      // ax + b = c  => ax = c - b => x = (c - b)/a
+      let right = c - b;
+      let x = right / a;
+      solution = `x = ${formatNumber(x)}`;
+      steps = `Step 1: Subtract ${b} from both sides: ${a}x = ${c} - ${b} = ${right}\n`;
+      steps += `Step 2: Divide both sides by ${a}: x = ${right} / ${a} = ${formatNumber(x)}`;
+    }
+    
+    document.getElementById('linearSolution').innerHTML = solution;
+    document.getElementById('linearSteps').innerHTML = steps.replace(/\n/g, '<br>');
+  }
+  
+  function resetLinear() {
+    document.getElementById('linearA').value = '2';
+    document.getElementById('linearB').value = '3';
+    document.getElementById('linearC').value = '7';
+    solveLinear();
+  }
+  
+  // Quadratic Equation Solver
+  function solveQuadratic() {
+    let a = parseFloat(document.getElementById('quadA').value);
+    let b = parseFloat(document.getElementById('quadB').value);
+    let c = parseFloat(document.getElementById('quadC').value);
+    
+    if (isNaN(a)) a = 0;
+    if (isNaN(b)) b = 0;
+    if (isNaN(c)) c = 0;
+    
+    // Preview
+    let preview = '';
+    if (a !== 0) preview += formatNumber(a) + 'x² ';
+    if (b !== 0) preview += (b > 0 ? (preview ? '+ ' : '') : '- ') + Math.abs(b) + 'x ';
+    if (c !== 0) preview += (c > 0 ? (preview ? '+ ' : '') : '- ') + Math.abs(c);
+    if (a === 0 && b === 0 && c === 0) preview = '0 = 0';
+    preview += ' = 0';
+    document.getElementById('quadPreview').innerHTML = preview;
+    
+    let solution = '';
+    let discriminant = 0;
+    let steps = '';
+    
+    if (a === 0) {
+      if (b === 0) {
+        if (c === 0) {
+          solution = 'Infinite solutions';
+          steps = 'Equation is 0 = 0, true for all x.';
+        } else {
+          solution = 'No solution';
+          steps = `Equation: ${c} = 0, false. No solution.`;
+        }
+      } else {
+        // Linear equation: bx + c = 0 => x = -c/b
+        let x = -c / b;
+        solution = `x = ${formatNumber(x)} (linear case)`;
+        steps = `This is a linear equation (a=0): ${b}x + ${c} = 0\n`;
+        steps += `Step: x = -c / b = -(${c}) / ${b} = ${formatNumber(x)}`;
+      }
+      discriminant = 'N/A';
+    } else {
+      // Quadratic formula
+      let delta = b * b - 4 * a * c;
+      discriminant = delta;
+      let deltaFormatted = formatNumber(delta);
+      if (delta > 0) {
+        let sqrtDelta = Math.sqrt(delta);
+        let x1 = (-b + sqrtDelta) / (2 * a);
+        let x2 = (-b - sqrtDelta) / (2 * a);
+        solution = `x₁ = ${formatNumber(x1)}, x₂ = ${formatNumber(x2)}`;
+        steps = `Step 1: Identify a = ${a}, b = ${b}, c = ${c}\n`;
+        steps += `Step 2: Calculate discriminant Δ = b² - 4ac = (${b})² - 4·${a}·${c} = ${b*b} - ${4*a*c} = ${deltaFormatted}\n`;
+        steps += `Step 3: Since Δ > 0, two real roots: x = [-b ± √Δ] / (2a)\n`;
+        steps += `x₁ = [-${b} + √${deltaFormatted}] / (2·${a}) = ${formatNumber(x1)}\n`;
+        steps += `x₂ = [-${b} - √${deltaFormatted}] / (2·${a}) = ${formatNumber(x2)}`;
+      } else if (delta === 0) {
+        let x = -b / (2 * a);
+        solution = `x = ${formatNumber(x)} (double root)`;
+        steps = `Step 1: a = ${a}, b = ${b}, c = ${c}\n`;
+        steps += `Step 2: Δ = b² - 4ac = ${b*b} - ${4*a*c} = 0\n`;
+        steps += `Step 3: One real double root: x = -b/(2a) = -(${b}) / (2·${a}) = ${formatNumber(x)}`;
+      } else {
+        let real = -b / (2 * a);
+        let imag = Math.sqrt(-delta) / (2 * a);
+        solution = `x₁ = ${formatNumber(real)} + ${formatNumber(imag)}i, x₂ = ${formatNumber(real)} - ${formatNumber(imag)}i`;
+        steps = `Step 1: a = ${a}, b = ${b}, c = ${c}\n`;
+        steps += `Step 2: Δ = b² - 4ac = ${b*b} - ${4*a*c} = ${deltaFormatted} (negative)\n`;
+        steps += `Step 3: Complex roots: x = [-b ± i√|Δ|] / (2a)\n`;
+        steps += `Real part = -b/(2a) = ${formatNumber(real)}\n`;
+        steps += `Imag part = √|Δ|/(2a) = ${formatNumber(imag)}`;
+      }
+    }
+    
+    document.getElementById('quadSolution').innerHTML = solution;
+    document.getElementById('discriminant').innerHTML = (discriminant === 'N/A') ? 'N/A' : formatNumber(discriminant);
+    document.getElementById('quadSteps').innerHTML = steps.replace(/\n/g, '<br>');
+  }
+  
+  function resetQuadratic() {
+    document.getElementById('quadA').value = '1';
+    document.getElementById('quadB').value = '-3';
+    document.getElementById('quadC').value = '2';
+    solveQuadratic();
+  }
+  
+  // Mode Switching
+  const linearPanel = document.getElementById('linearPanel');
+  const quadraticPanel = document.getElementById('quadraticPanel');
+  const linearModeBtn = document.getElementById('linearModeBtn');
+  const quadModeBtn = document.getElementById('quadraticModeBtn');
+  
+  linearModeBtn.addEventListener('click', () => {
+    linearPanel.classList.add('active');
+    quadraticPanel.classList.remove('active');
+    linearModeBtn.classList.add('active');
+    quadModeBtn.classList.remove('active');
+    solveLinear();
+  });
+  
+  quadModeBtn.addEventListener('click', () => {
+    quadraticPanel.classList.add('active');
+    linearPanel.classList.remove('active');
+    quadModeBtn.classList.add('active');
+    linearModeBtn.classList.remove('active');
+    solveQuadratic();
+  });
+  
+  // Event listeners
+  document.getElementById('solveLinearBtn').addEventListener('click', solveLinear);
+  document.getElementById('resetLinearBtn').addEventListener('click', resetLinear);
+  document.getElementById('solveQuadBtn').addEventListener('click', solveQuadratic);
+  document.getElementById('resetQuadBtn').addEventListener('click', resetQuadratic);
+  
+  // Auto-update preview and solve on input
+  const linearInputs = ['linearA', 'linearB', 'linearC'];
+  linearInputs.forEach(id => {
+    document.getElementById(id).addEventListener('input', solveLinear);
+  });
+  const quadInputs = ['quadA', 'quadB', 'quadC'];
+  quadInputs.forEach(id => {
+    document.getElementById(id).addEventListener('input', solveQuadratic);
+  });
+  
+  // Initial solve
+  solveLinear();
+  solveQuadratic();
+  
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How to solve a linear equation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For ax + b = c, subtract b from both sides to get ax = c - b, then divide by a to get x = (c - b)/a."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the quadratic formula?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "x = [-b ± √(b² - 4ac)] / (2a). The discriminant Δ = b² - 4ac determines the nature of roots."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can this calculator handle complex roots?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, when the discriminant is negative, it displays complex roots in the form a + bi."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
