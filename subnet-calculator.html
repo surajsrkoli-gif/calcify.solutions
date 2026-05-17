@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Subnet Calculator | IPv4 CIDR & Subnet Mask | calcify.solutions</title>
+  <meta name="description" content="Free Subnet Calculator: Calculate network address, broadcast address, usable hosts, wildcard mask, and more for any IPv4 subnet. Supports CIDR notation (e.g., /24) or subnet mask (255.255.255.0).">
+  <meta name="keywords" content="subnet calculator, IPv4 subnet, CIDR calculator, network calculator, subnet mask, IP subnetting, usable hosts">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/subnet-calculator.html">
+  <meta property="og:title" content="Subnet Calculator | IPv4 CIDR & Subnet Mask | calcify.solutions">
+  <meta property="og:description" content="Calculate subnet details instantly. Free online tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      font-family: monospace;
+    }
+    .input-group input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .radio-group {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-grid {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .result-card {
+      background: #1E293B;
+      border-radius: 24px;
+      padding: 16px;
+      transition: 0.2s;
+    }
+    .result-card h4 {
+      font-size: 0.85rem;
+      color: #94A3B8;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .result-card .value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #38BDF8;
+      word-break: break-all;
+      font-family: monospace;
+    }
+    .note {
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: #94A3B8;
+      text-align: center;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Subnet Calculator</h1>
+    <p class="hero-description">Calculate IPv4 subnet details: network address, broadcast address, usable host range, total hosts, wildcard mask, and more. Supports CIDR notation (e.g., /24) or subnet mask (e.g., 255.255.255.0).</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>🌐 IP Address</label>
+        <input type="text" id="ipAddress" placeholder="e.g., 192.168.1.1" value="192.168.1.1">
+      </div>
+      <div class="radio-group">
+        <label><input type="radio" name="subnetType" value="cidr" checked> CIDR (e.g., /24)</label>
+        <label><input type="radio" name="subnetType" value="mask"> Subnet Mask (e.g., 255.255.255.0)</label>
+      </div>
+      <div class="input-group" id="cidrGroup">
+        <label>🔢 CIDR Prefix (0-32)</label>
+        <input type="number" id="cidrValue" placeholder="e.g., 24" value="24" min="0" max="32" step="1">
+      </div>
+      <div class="input-group" id="maskGroup" style="display: none;">
+        <label>📋 Subnet Mask</label>
+        <input type="text" id="subnetMask" placeholder="e.g., 255.255.255.0" value="255.255.255.0">
+      </div>
+      <div class="button-group">
+        <button class="calc-btn" id="calculateBtn">Calculate Subnet</button>
+        <button class="reset-btn" id="resetBtn">Reset to Default</button>
+      </div>
+      <div class="result-grid" id="resultGrid">
+        <div class="result-card">
+          <h4>Network Address</h4>
+          <div class="value" id="networkAddr">—</div>
+        </div>
+        <div class="result-card">
+          <h4>Broadcast Address</h4>
+          <div class="value" id="broadcastAddr">—</div>
+        </div>
+        <div class="result-card">
+          <h4>First Usable Host</h4>
+          <div class="value" id="firstUsable">—</div>
+        </div>
+        <div class="result-card">
+          <h4>Last Usable Host</h4>
+          <div class="value" id="lastUsable">—</div>
+        </div>
+        <div class="result-card">
+          <h4>Total Hosts</h4>
+          <div class="value" id="totalHosts">—</div>
+        </div>
+        <div class="result-card">
+          <h4>Usable Hosts</h4>
+          <div class="value" id="usableHosts">—</div>
+        </div>
+        <div class="result-card">
+          <h4>Subnet Mask</h4>
+          <div class="value" id="subnetMaskResult">—</div>
+        </div>
+        <div class="result-card">
+          <h4>Wildcard Mask</h4>
+          <div class="value" id="wildcardMask">—</div>
+        </div>
+        <div class="result-card">
+          <h4>CIDR Notation</h4>
+          <div class="value" id="cidrResult">—</div>
+        </div>
+        <div class="result-card">
+          <h4>IP Class</h4>
+          <div class="value" id="ipClass">—</div>
+        </div>
+      </div>
+      <div class="note">Note: /31 and /32 subnets have special rules (usable hosts = 0 for /32, 2 for /31). This calculator follows RFC 3021 for point-to-point links.</div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 How to Use</h3>
+      <ul>
+        <li>Enter an IPv4 address (e.g., 192.168.1.1).</li>
+        <li>Choose either CIDR prefix (e.g., /24) or subnet mask (e.g., 255.255.255.0).</li>
+        <li>Click "Calculate Subnet" to see network details.</li>
+        <li>Use "Reset" to restore default example.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>⚙️ Understanding Results</h3>
+      <ul>
+        <li><strong>Network Address:</strong> First address of the subnet (not assignable).</li>
+        <li><strong>Broadcast Address:</strong> Last address of the subnet (not assignable).</li>
+        <li><strong>Usable Hosts:</strong> Network and broadcast addresses excluded. For /31, 2 usable hosts (RFC 3021). For /32, 0 usable hosts.</li>
+        <li><strong>Wildcard Mask:</strong> Inverse of subnet mask, used in access control lists.</li>
+        <li><strong>IP Class:</strong> Class A (1-126), B (128-191), C (192-223).</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>📐 Example</h3>
+      <p>IP: 192.168.1.1, CIDR /24 → Network: 192.168.1.0, Broadcast: 192.168.1.255, Usable: 192.168.1.1 – 192.168.1.254, 254 usable hosts.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Helper: convert IP string to integer
+  function ipToInt(ip) {
+    const parts = ip.split('.');
+    if (parts.length !== 4) return NaN;
+    let result = 0;
+    for (let i = 0; i < 4; i++) {
+      const octet = parseInt(parts[i], 10);
+      if (isNaN(octet) || octet < 0 || octet > 255) return NaN;
+      result = (result << 8) | octet;
+    }
+    return result >>> 0;
+  }
+
+  // Helper: convert integer to IP string
+  function intToIP(intVal) {
+    return `${(intVal >>> 24) & 0xFF}.${(intVal >>> 16) & 0xFF}.${(intVal >>> 8) & 0xFF}.${intVal & 0xFF}`;
+  }
+
+  // Helper: convert CIDR to mask integer
+  function cidrToMaskInt(cidr) {
+    if (cidr < 0 || cidr > 32) return NaN;
+    if (cidr === 0) return 0;
+    return (~0) << (32 - cidr) >>> 0;
+  }
+
+  // Helper: convert mask integer to CIDR
+  function maskIntToCidr(maskInt) {
+    let cidr = 0;
+    let m = maskInt;
+    while (m > 0) {
+      if ((m & 1) === 0) return NaN; // invalid mask
+      cidr++;
+      m >>= 1;
+    }
+    return cidr;
+  }
+
+  // Helper: mask string to integer
+  function maskStringToInt(mask) {
+    const parts = mask.split('.');
+    if (parts.length !== 4) return NaN;
+    let intVal = 0;
+    for (let i = 0; i < 4; i++) {
+      const octet = parseInt(parts[i], 10);
+      if (isNaN(octet) || octet < 0 || octet > 255) return NaN;
+      intVal = (intVal << 8) | octet;
+    }
+    return intVal >>> 0;
+  }
+
+  // Helper: mask integer to string
+  function maskIntToString(maskInt) {
+    return intToIP(maskInt);
+  }
+
+  // Determine IP class based on first octet
+  function getIPClass(firstOctet) {
+    if (firstOctet >= 1 && firstOctet <= 126) return 'Class A';
+    if (firstOctet >= 128 && firstOctet <= 191) return 'Class B';
+    if (firstOctet >= 192 && firstOctet <= 223) return 'Class C';
+    if (firstOctet >= 224 && firstOctet <= 239) return 'Class D (Multicast)';
+    if (firstOctet >= 240 && firstOctet <= 255) return 'Class E (Reserved)';
+    return 'Unknown';
+  }
+
+  function calculateSubnet() {
+    let ipStr = document.getElementById('ipAddress').value.trim();
+    const ipInt = ipToInt(ipStr);
+    if (isNaN(ipInt)) {
+      alert('Invalid IP address. Please use format like 192.168.1.1');
+      return;
+    }
+
+    const type = document.querySelector('input[name="subnetType"]:checked').value;
+    let maskInt;
+    if (type === 'cidr') {
+      let cidr = parseInt(document.getElementById('cidrValue').value, 10);
+      if (isNaN(cidr) || cidr < 0 || cidr > 32) {
+        alert('CIDR must be between 0 and 32');
+        return;
+      }
+      maskInt = cidrToMaskInt(cidr);
+    } else {
+      const maskStr = document.getElementById('subnetMask').value.trim();
+      maskInt = maskStringToInt(maskStr);
+      if (isNaN(maskInt) || maskInt === 0) {
+        alert('Invalid subnet mask. Use format like 255.255.255.0');
+        return;
+      }
+      // Verify mask is contiguous (valid)
+      const cidr = maskIntToCidr(maskInt);
+      if (isNaN(cidr)) {
+        alert('Invalid subnet mask: bits must be contiguous (e.g., 255.255.255.0)');
+        return;
+      }
+    }
+
+    const networkInt = ipInt & maskInt;
+    const broadcastInt = networkInt | (~maskInt >>> 0);
+    let firstUsable = networkInt + 1;
+    let lastUsable = broadcastInt - 1;
+    let totalHosts = broadcastInt - networkInt + 1;
+    let usableHosts = totalHosts - 2;
+
+    // Special cases: /31 and /32
+    const cidr = maskIntToCidr(maskInt);
+    if (cidr === 31) {
+      // RFC 3021: /31 has 2 usable hosts, no network/broadcast
+      firstUsable = networkInt;
+      lastUsable = broadcastInt;
+      usableHosts = 2;
+    } else if (cidr === 32) {
+      firstUsable = networkInt;
+      lastUsable = networkInt;
+      usableHosts = 0;
+    } else if (totalHosts === 1) {
+      firstUsable = networkInt;
+      lastUsable = networkInt;
+      usableHosts = 0;
+    }
+
+    // Display results
+    document.getElementById('networkAddr').innerHTML = intToIP(networkInt);
+    document.getElementById('broadcastAddr').innerHTML = intToIP(broadcastInt);
+    document.getElementById('firstUsable').innerHTML = intToIP(firstUsable);
+    document.getElementById('lastUsable').innerHTML = intToIP(lastUsable);
+    document.getElementById('totalHosts').innerHTML = totalHosts.toLocaleString();
+    document.getElementById('usableHosts').innerHTML = usableHosts.toLocaleString();
+    document.getElementById('subnetMaskResult').innerHTML = maskIntToString(maskInt);
+    document.getElementById('wildcardMask').innerHTML = intToIP(~maskInt >>> 0);
+    document.getElementById('cidrResult').innerHTML = `/${cidr}`;
+    
+    const firstOctet = (ipInt >>> 24) & 0xFF;
+    document.getElementById('ipClass').innerHTML = getIPClass(firstOctet);
+  }
+
+  function resetForm() {
+    document.getElementById('ipAddress').value = '192.168.1.1';
+    document.getElementById('cidrValue').value = '24';
+    document.getElementById('subnetMask').value = '255.255.255.0';
+    document.querySelector('input[value="cidr"]').checked = true;
+    toggleSubnetInput();
+    calculateSubnet();
+  }
+
+  function toggleSubnetInput() {
+    const type = document.querySelector('input[name="subnetType"]:checked').value;
+    const cidrGroup = document.getElementById('cidrGroup');
+    const maskGroup = document.getElementById('maskGroup');
+    if (type === 'cidr') {
+      cidrGroup.style.display = 'flex';
+      maskGroup.style.display = 'none';
+    } else {
+      cidrGroup.style.display = 'none';
+      maskGroup.style.display = 'flex';
+    }
+    calculateSubnet();
+  }
+
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculateSubnet);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  document.querySelectorAll('input[name="subnetType"]').forEach(radio => {
+    radio.addEventListener('change', toggleSubnetInput);
+  });
+  document.getElementById('ipAddress').addEventListener('input', calculateSubnet);
+  document.getElementById('cidrValue').addEventListener('input', calculateSubnet);
+  document.getElementById('subnetMask').addEventListener('input', calculateSubnet);
+
+  // Initial calculation
+  toggleSubnetInput();
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a subnet mask?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A subnet mask separates the network portion from the host portion of an IP address. For example, 255.255.255.0 means the first 24 bits are network."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is CIDR notation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CIDR (Classless Inter-Domain Routing) notation uses a slash followed by the number of network bits (e.g., /24 for 255.255.255.0)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many usable hosts are in a /24 subnet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A /24 subnet has 256 total addresses. Network and broadcast use 2, so 254 usable hosts."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
