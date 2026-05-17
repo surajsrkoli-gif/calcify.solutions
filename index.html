@@ -1,448 +1,740 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>calcify.solutions | Smart Financial & Utility Calculators</title>
-    <meta name="description" content="50+ powerful free calculators for finance, loans, investments, taxes, business, retirement, and everyday math. Fast, accurate, no signup required.">
-    <meta name="keywords" content="financial calculator, loan calculator, investment calculator, tax calculator, EMI calculator, SIP calculator, GST calculator, retirement planner, profit margin calculator, inflation calculator">
-    <meta name="author" content="calcify.solutions">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="calcify.solutions - Smart Financial Calculators">
-    <meta property="og:description" content="Calculate loans, investments, taxes, and savings instantly — premium tools, free forever. No registration needed.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Calcify+Solutions">
-    <meta property="og:url" content="https://calcify.solutions">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="calcify.solutions - 50+ Free Calculators">
-    <meta name="twitter:description" content="Fast, accurate financial tools for everyone. No signup, completely free.">
-    <link rel="canonical" href="https://calcify.solutions">
-    <!-- Schema.org markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "calcify.solutions",
-        "url": "https://calcify.solutions",
-        "description": "50+ free online financial and utility calculators for loans, investments, taxes, business, and personal finance.",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://calcify.solutions/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Calcify.solutions — free, fast, and futuristic online calculators for finance, health, math, conversions, and utilities. No signup, mobile-friendly, 100% accurate.">
+  <meta name="keywords" content="calculator, free online calculators, finance calculator, SIP calculator, EMI calculator, loan calculator, BMI calculator, percentage calculator, scientific calculator, GST calculator, retirement calculator, unit converter, age calculator, password generator">
+  <meta name="author" content="Calcify Solutions">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://calcify.solutions/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Calcify.solutions | Free Online Calculators – Futuristic & Fast">
+  <meta property="og:description" content="Instant calculations: loans, SIP, BMI, taxes, conversions. Beautiful, free, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://calcify.solutions/">
+  <meta property="og:image" content="https://calcify.solutions/og-calcify.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calcify.solutions – Modern Multi-Calculator Platform">
+  <meta name="twitter:description" content="Fast, sleek calculators for finance, health, math, and more. Free & accurate.">
+  <!-- Favicon + theme -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <title>Calcify.solutions – Futuristic Free Online Calculators</title>
+  <style>
+    /* ---------- RESET & GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    </script>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles with proper dark mode handling */
-        * {
-            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-        }
-        body {
-            font-family: 'Inter', 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        /* Dark mode overrides - ensures all text is readable */
-        .dark {
-            background-color: #0b1120;
-            color: #e2e8f0;
-        }
-        .dark .bg-white {
-            background-color: #1e293b !important;
-        }
-        .dark .bg-gray-50, .dark .bg-[#F8FAFC], .dark .bg-gray-100 {
-            background-color: #0f172a !important;
-        }
-        .dark .border-gray-100, .dark .border-gray-200, .dark .border-gray-300 {
-            border-color: #334155 !important;
-        }
-        .dark .text-gray-600, .dark .text-gray-500, .dark .text-gray-700, .dark .text-gray-800 {
-            color: #cbd5e1 !important;
-        }
-        .dark .text-[#0F172A], .dark .text-[#1E293B], .dark .text-gray-900 {
-            color: #f1f5f9 !important;
-        }
-        .dark .bg-[#F8FAFC] {
-            background-color: #0f172a !important;
-        }
-        .dark .bg-white\/80, .dark .bg-white\/60, .dark .bg-white\/95 {
-            background-color: rgba(30, 41, 59, 0.9) !important;
-            backdrop-filter: blur(4px);
-        }
-        .dark .shadow-md, .dark .shadow-lg, .dark .shadow-soft, .dark .shadow-xl {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4) !important;
-        }
-        .dark .ad-container {
-            background: #1e293b;
-            border-color: #475569;
-            color: #94a3b8;
-        }
-        .dark .category-card {
-            background-color: #1e293b !important;
-            border-color: #334155 !important;
-        }
-        .dark input, .dark .bg-white, .dark textarea, .dark select {
-            background-color: #0f172a !important;
-            color: #f1f5f9 !important;
-            border-color: #475569 !important;
-        }
-        .dark footer {
-            background-color: #030712 !important;
-        }
-        .dark .gradient-hero {
-            background: linear-gradient(135deg, #0b1120 0%, #111827 100%);
-        }
-        .dark .dark-mode-toggle {
-            background: #334155;
-            color: #e2e8f0;
-        }
-        .dark .btn-outline {
-            border-color: #60a5fa;
-            color: #60a5fa;
-        }
-        .dark .text-[#2563EB] {
-            color: #60a5fa !important;
-        }
-        .dark .bg-[#2563EB] {
-            background-color: #3b82f6 !important;
-        }
-        .dark .hover\:bg-[#1D4ED8]:hover {
-            background-color: #2563eb !important;
-        }
-        .dark .bg-[#EFF6FF] {
-            background-color: #1e293b !important;
-        }
-        /* Modern light theme refinements */
-        .gradient-hero {
-            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
-        }
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #3b82f6;
-        }
-        .dark .stat-number {
-            color: #60a5fa;
-        }
-        .dark-mode-toggle {
-            cursor: pointer;
-            background: #e2e8f0;
-            padding: 8px 14px;
-            border-radius: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .dark-mode-toggle:hover {
-            transform: scale(1.02);
-        }
-        .btn-primary-custom {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
-        }
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59,130,246,0.4);
-        }
-        .hover-scale {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .hover-scale:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
-        }
-        .dark .hover-scale:hover {
-            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.4);
-        }
-    </style>
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom smooth scroll */
+    html {
+      scroll-padding-top: 80px;
+    }
+
+    /* glassmorphism & futuristic */
+    .glass, .navbar, .calculator-panel, .card, .badge, .faq-item, .search-container {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .card, .calculator-panel {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -12px rgba(6, 182, 212, 0.25);
+      border-color: rgba(6, 182, 212, 0.5);
+    }
+
+    button, .btn {
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: none;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+      box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: scale(0.97);
+      background: linear-gradient(135deg, #1E4FD9, #05A0BA);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #38BDF8;
+      color: #38BDF8;
+    }
+
+    .btn-outline:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #06B6D4;
+    }
+
+    /* container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* navbar sticky */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.7);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      transition: padding 0.2s, background 0.2s;
+    }
+
+    .navbar.scrolled {
+      padding: 8px 0;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 16px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        border-radius: 28px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* hero */
+    .hero {
+      padding: 64px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(6,182,212,0.2), transparent);
+      filter: blur(60px);
+      top: -100px;
+      right: -100px;
+      z-index: 0;
+    }
+
+    .trust-badge {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .badge {
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(30, 41, 59, 0.6);
+    }
+
+    /* calculator UI */
+    .calculator-panel {
+      padding: 24px;
+      max-width: 500px;
+      margin: 0 auto 30px;
+      background: #1E293Bcc;
+    }
+
+    .calc-display {
+      background: #0F172A;
+      padding: 20px;
+      border-radius: 24px;
+      font-size: 2rem;
+      text-align: right;
+      font-family: monospace;
+      margin-bottom: 20px;
+      word-wrap: break-word;
+      min-height: 85px;
+    }
+
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .calc-btn {
+      background: #0F172A;
+      border: none;
+      padding: 16px 0;
+      border-radius: 24px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      transition: 0.1s;
+    }
+
+    .calc-btn.operator {
+      background: #2563EB;
+      color: white;
+    }
+    .calc-btn.equals {
+      background: #06B6D4;
+    }
+    .sci-mode {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    /* Search + categories */
+    .search-section {
+      margin: 60px 0 40px;
+    }
+    .search-bar {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: 1.2rem;
+      background: #1E293B;
+      border: 1px solid #06B6D4;
+      border-radius: 60px;
+      color: white;
+      outline: none;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 30px;
+    }
+
+    .calc-card {
+      background: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 20px;
+      transition: all 0.2s;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .calc-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    .calc-link {
+      display: inline-block;
+      margin-top: 18px;
+      background: #2563EB;
+      padding: 8px 18px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      background: linear-gradient(120deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .grid-why {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .faq-item {
+      margin-bottom: 16px;
+      padding: 16px 20px;
+    }
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 12px;
+      color: #E2E8F0;
+    }
+    footer {
+      margin-top: 80px;
+      background: #0F172A;
+      padding: 48px 0 30px;
+      border-top: 1px solid rgba(6,182,212,0.2);
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 20px;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body>
 
-    <!-- Header with sticky and dark mode toggle -->
-    <header id="mainHeader" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-200">
-        <div class="container mx-auto px-5 lg:px-8 py-4 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2">
-                <i class="fas fa-calculator text-2xl text-[#3b82f6]"></i>
-                <span class="text-xl font-bold tracking-tight text-gray-800">calcify<span class="text-[#3b82f6]">.solutions</span></span>
-            </a>
-            <nav class="hidden md:flex items-center space-x-8 text-gray-700 font-medium">
-                <a href="/" class="hover:text-[#3b82f6] transition">Home</a>
-                <a href="#" class="hover:text-[#3b82f6] transition">Calculators</a>
-                <a href="#" class="hover:text-[#3b82f6] transition">Categories</a>
-                <a href="#" class="hover:text-[#3b82f6] transition">Blog</a>
-                <a href="#" class="hover:text-[#3b82f6] transition">Contact</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <button id="darkModeToggle" class="dark-mode-toggle">
-                    <i class="fas fa-moon"></i>
-                    <span class="hidden sm:inline">Dark/Light</span>
-                </button>
-                <div class="hidden md:block">
-                    <a href="#" class="bg-[#3b82f6] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#2563eb] transition-all shadow-md hover:shadow-lg">Explore Calculators</a>
-                </div>
-                <button id="menuToggle" class="md:hidden text-2xl focus:outline-none">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 px-5 pb-5 overflow-hidden transition-all duration-300 max-h-0 opacity-0 invisible">
-            <div class="flex flex-col space-y-4 pt-3">
-                <a href="/" class="py-2 hover:text-[#3b82f6] font-medium">Home</a>
-                <a href="#" class="py-2 hover:text-[#3b82f6] font-medium">Calculators</a>
-                <a href="#" class="py-2 hover:text-[#3b82f6] font-medium">Categories</a>
-                <a href="#" class="py-2 hover:text-[#3b82f6] font-medium">Blog</a>
-                <a href="#" class="py-2 hover:text-[#3b82f6] font-medium">Contact</a>
-                <a href="#" class="bg-[#3b82f6] text-white text-center py-2.5 rounded-xl font-semibold">Explore Calculators</a>
-            </div>
-        </div>
-    </header>
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <div class="logo">
+      <span style="font-size:28px;">⚡</span> calcify.solutions
+    </div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#calculators">Calculators</a>
+      <a href="#categories">Categories</a>
+      <a href="#blog">Blog</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="btn btn-primary" style="padding: 8px 20px;" id="exploreBtn">Explore Calculators</button>
+    </div>
+  </div>
+</nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="gradient-hero overflow-hidden py-12 md:py-20">
-            <div class="container mx-auto px-5 lg:px-8">
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <div class="flex-1 text-center lg:text-left">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">50+ Powerful Calculators in <span class="text-[#3b82f6]">One Smart Platform</span></h1>
-                        <p class="text-lg md:text-xl text-gray-600 mt-6 max-w-2xl lg:mx-0 mx-auto">Calculate investments, loans, taxes, savings, profits, and everyday finances instantly — fast, accurate, and free.</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8">
-                            <a href="emi-calculator.html" class="bg-[#3b82f6] text-white px-7 py-3.5 rounded-xl font-semibold text-center hover:bg-[#2563eb] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"><i class="fas fa-calculator"></i> Start Calculating</a>
-                            <a href="#categories" class="border-2 border-[#3b82f6] text-[#3b82f6] px-7 py-3.5 rounded-xl font-semibold text-center hover:bg-blue-50 transition-all flex items-center justify-center gap-2"><i class="fas fa-th-large"></i> Browse Categories</a>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex justify-center">
-                        <div class="grid grid-cols-2 gap-4 max-w-sm">
-                            <div class="bg-white/70 backdrop-blur p-4 rounded-2xl shadow-md text-center"><i class="fas fa-chart-line text-3xl text-[#3b82f6] mb-2"></i><p class="text-sm font-medium">Investment</p></div>
-                            <div class="bg-white/70 backdrop-blur p-4 rounded-2xl shadow-md text-center"><i class="fas fa-landmark text-3xl text-[#3b82f6] mb-2"></i><p class="text-sm font-medium">Tax</p></div>
-                            <div class="bg-white/70 backdrop-blur p-4 rounded-2xl shadow-md text-center"><i class="fas fa-home text-3xl text-[#3b82f6] mb-2"></i><p class="text-sm font-medium">Loan</p></div>
-                            <div class="bg-white/70 backdrop-blur p-4 rounded-2xl shadow-md text-center"><i class="fas fa-chart-pie text-3xl text-[#3b82f6] mb-2"></i><p class="text-sm font-medium">Savings</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<main>
+  <div class="container hero">
+    <div class="hero-glow"></div>
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700;">Free Online Calculators <br> for Every Need</h1>
+    <p style="font-size: 1.3rem; margin: 24px 0; max-width: 700px; color: #E2E8F0;">Calculate loans, SIP returns, BMI, taxes, investments, percentages, conversions — instantly & free.</p>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+      <button class="btn btn-primary" style="padding: 14px 32px;" onclick="document.getElementById('search-calc').focus();">Browse Calculators</button>
+      <button class="btn btn-outline" style="padding: 14px 32px;" onclick="document.querySelector('.calculator-panel').scrollIntoView({behavior:'smooth'})">Start Calculating</button>
+    </div>
+    <div class="trust-badge">
+      <span class="badge">✅ Free to Use</span>
+      <span class="badge">🔒 No Signup Needed</span>
+      <span class="badge">⚡ Fast & Accurate</span>
+      <span class="badge">📱 Mobile Friendly</span>
+    </div>
+  </div>
 
-        <!-- Ad placeholder -->
-        <div class="container mx-auto px-5 lg:px-8 mt-10">
-            <div class="ad-container bg-gray-100 rounded-xl text-center text-gray-500 py-3 text-sm border border-dashed">Advertisement Space - Responsive Banner</div>
-        </div>
+  <!-- WORKING SCIENTIFIC CALCULATOR SECTION -->
+  <div class="container" style="margin-top: 20px;">
+    <h2 class="section-title">Free Scientific Calculator Online</h2>
+    <div class="calculator-panel" id="futuristicCalc">
+      <div class="calc-display" id="calcDisplay">0</div>
+      <div class="calc-buttons" id="calcButtons">
+        <!-- JS injected dynamically -->
+      </div>
+      <div class="sci-mode">
+        <button id="toggleSciBtn" class="btn btn-outline" style="padding: 8px 20px;">🔬 Scientific Mode OFF</button>
+      </div>
+    </div>
+    <p style="margin: 20px 0 40px; background: #1E293B80; padding: 20px; border-radius: 24px;">Experience lightning-fast calculations with our futuristic scientific calculator. Perfect for students, engineers, and finance experts. Mobile-optimized, keyboard supported, and 100% free.</p>
+  </div>
 
-        <!-- Live Search -->
-        <section class="container mx-auto px-5 lg:px-8 mt-12">
-            <div class="max-w-3xl mx-auto">
-                <div class="relative">
-                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="liveSearchInput" placeholder="Search calculators… (EMI, SIP, GST, tax, loan…)" class="w-full pl-12 pr-4 py-4 text-lg rounded-2xl border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 transition">
-                </div>
-                <div id="searchResults" class="mt-4 bg-white rounded-xl shadow-lg border border-gray-100 hidden overflow-hidden"></div>
-                <p class="text-xs text-gray-500 mt-2 text-center">🔍 Instant search — find any finance tool by name or category</p>
-            </div>
-        </section>
+  <!-- SEARCH BAR - live filtering -->
+  <div class="container search-section">
+    <input type="text" id="search-calc" class="search-bar" placeholder="Search calculators like SIP, EMI, BMI, GST, Loan, Age, Password Generator...">
+    <div id="suggestionsHint" style="margin-top: 10px; font-size: 0.85rem; color: #38BDF8;"></div>
+  </div>
 
-        <!-- Categories Section -->
-        <section id="categories" class="container mx-auto px-5 lg:px-8 mt-16">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Explore smart <span class="text-[#3b82f6]">calculator categories</span></h2>
-                <p class="text-gray-600 mt-3">Powerful financial tools tailored for loans, investments, taxes, business and retirement planning.</p>
-            </div>
-        </section>
-        <div class="container mx-auto px-5 lg:px-8">
-            <div id="categoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7"></div>
-        </div>
+  <!-- DYNAMIC CALCULATOR CATEGORIES (will be injected via JS) -->
+  <div id="categoriesContainer" class="container"></div>
 
-        <!-- In-feed ad -->
-        <div class="container mx-auto px-5 lg:px-8 my-10">
-            <div class="ad-container bg-gray-100 rounded-xl text-center text-gray-500 py-3 text-sm border border-dashed">In-feed Advertisement - Google AdSense compatible</div>
-        </div>
+  <!-- WHY CHOOSE US -->
+  <div class="container">
+    <h2 class="section-title">Why Choose Calcify?</h2>
+    <div class="grid-why">
+      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">⚡</div><h3>Lightning Fast</h3><p>Instant results, no delays.</p></div>
+      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">🎯</div><h3>Accurate Results</h3><p>Trusted formulas & updates.</p></div>
+      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">🔐</div><h3>Privacy Friendly</h3><p>Zero data storage, fully client-side.</p></div>
+      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">📱</div><h3>Mobile Optimized</h3><p>Native app-like experience.</p></div>
+      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">💎</div><h3>Free Forever</h3><p>No paywalls, unlimited access.</p></div>
+      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">🧠</div><h3>Trusted Calculations</h3><p>Used globally by millions.</p></div>
+    </div>
+  </div>
 
-        <!-- Stats Section -->
-        <section class="bg-gray-50 py-16 mt-8">
-            <div class="container mx-auto px-5 lg:px-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div><div class="stat-number" data-count="52">0</div><p class="text-gray-600 font-medium mt-2">+ Financial Tools</p></div>
-                    <div><div class="stat-number" data-count="100">0</div><p class="text-gray-600 font-medium mt-2">% Accurate Results</p></div>
-                    <div><div class="stat-number" data-count="100">0</div><p class="text-gray-600 font-medium mt-2">% Mobile Friendly</p></div>
-                    <div><div class="stat-number" data-count="0">0</div><p class="text-gray-600 font-medium mt-2">$ Free Forever</p></div>
-                </div>
-            </div>
-        </section>
+  <!-- SEO BLOG PLACEHOLDER -->
+  <div class="container" id="blog">
+    <h2 class="section-title">Financial & Math Guides</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; margin: 30px 0;">
+      <div class="card" style="padding: 20px;"><h3>📈 How SIP Investments Work</h3><p>Maximize returns with systematic investing.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
+      <div class="card" style="padding: 20px;"><h3>💰 EMI vs Personal Loan</h3><p>Choose smart borrowing strategies.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
+      <div class="card" style="padding: 20px;"><h3>📊 Compound Interest Explained</h3><p>The 8th wonder of the world.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
+      <div class="card" style="padding: 20px;"><h3>🧾 How to Calculate GST</h3><p>Simplify tax compliance.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
+    </div>
+  </div>
 
-        <!-- SEO Content Block -->
-        <section class="container mx-auto px-5 lg:px-8 py-16">
-            <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-md p-8 md:p-10 border border-gray-100">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Mission: Free, Fast, and Reliable Calculations for Everyone</h2>
-                <div class="space-y-5 text-gray-700 leading-relaxed">
-                    <p><strong>calcify.solutions</strong> is solely focused on providing fast, comprehensive, convenient, and free online calculators across a wide range of financial and utility domains. Currently, we offer <strong>50+ powerful calculators</strong> covering areas such as loans, investments, taxes, business metrics, retirement planning, deposits, and everyday personal finance — and we are continuously developing more tools. Our goal is to become the one-stop, go-to platform for individuals and professionals who need to make quick, accurate calculations without any hassle.</p>
-                    <p>We strongly believe that the internet should be a source of free and accessible information. That's why all of our tools and services are <strong>completely free, with no registration or sign-up required</strong>. You don't need to share personal details — just click, calculate, and get instant results.</p>
-                    <p>Each calculator on calcify.solutions is carefully coded, designed, and tested to ensure accuracy and reliability. We put every tool through rigorous testing across different devices and scenarios. However, if you notice even the slightest error or have a suggestion, please inform us — your feedback is extremely valuable and helps us improve the platform for everyone.</p>
-                    <p>Our calculators are designed to be universally applicable, but some tools (like Income Tax Calculator based on specific tax slabs) may be tailored for Indian financial regulations initially. We are working on expanding to global versions soon. Whether you're a student, professional, investor, or retiree, calcify.solutions empowers you to make smarter financial decisions with confidence.</p>
-                    <p class="font-semibold text-[#3b82f6]">Start exploring now — no signup, no limits, just accurate calculations.</p>
-                </div>
-            </div>
-        </section>
+  <!-- FAQ ACCORDION -->
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div id="faqContainer">
+      <div class="faq-item"><div class="faq-question">❓ What is an online calculator? <span>➕</span></div><div class="faq-answer">Online calculators are web-based tools for instant math, finance, health, or conversion tasks without installation.</div></div>
+      <div class="faq-item"><div class="faq-question">❓ Are calculators free to use? <span>➕</span></div><div class="faq-answer">Absolutely! All calculators on calcify.solutions are 100% free, no hidden charges.</div></div>
+      <div class="faq-item"><div class="faq-question">❓ Are finance calculators accurate? <span>➕</span></div><div class="faq-answer">Yes, we follow standard financial formulas used by institutions, providing reliable estimates.</div></div>
+      <div class="faq-item"><div class="faq-question">❓ Can I use calculators on mobile? <span>➕</span></div><div class="faq-answer">Yes, fully responsive design works like a premium app on any device.</div></div>
+      <div class="faq-item"><div class="faq-question">❓ Is my data stored? <span>➕</span></div><div class="faq-answer">Never. All calculations happen locally in your browser — total privacy.</div></div>
+      <div class="faq-item"><div class="faq-question">❓ Do I need an account? <span>➕</span></div><div class="faq-answer">No signup or login required. Just calculate instantly.</div></div>
+    </div>
+  </div>
 
-        <!-- Blog Preview -->
-        <section class="bg-white py-16 border-t border-gray-100">
-            <div class="container mx-auto px-5 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-900">Latest from <span class="text-[#3b82f6]">Finance Blog</span></h2>
-                    <p class="text-gray-600 mt-2">Insights, tax tips, and investment strategies</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-2xl shadow-md overflow-hidden hover-scale transition-all"><img src="https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=500&auto=format" alt="investment tips" class="w-full h-48 object-cover" loading="lazy"><div class="p-6"><h3 class="text-xl font-semibold text-gray-800">5 Smart Investment Tips for 2025</h3><p class="text-gray-600 mt-2">Discover how to maximize returns with SIP and diversification strategies.</p><a href="#" class="text-[#3b82f6] font-medium mt-4 inline-block">Read more →</a></div></div>
-                    <div class="bg-white rounded-2xl shadow-md overflow-hidden hover-scale transition-all"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=500&auto=format" alt="loan guide" class="w-full h-48 object-cover" loading="lazy"><div class="p-6"><h3 class="text-xl font-semibold text-gray-800">Home Loan EMI: Complete Guide</h3><p class="text-gray-600 mt-2">Understand interest rates, tenure, and prepayment benefits easily.</p><a href="#" class="text-[#3b82f6] font-medium mt-4 inline-block">Read more →</a></div></div>
-                    <div class="bg-white rounded-2xl shadow-md overflow-hidden hover-scale transition-all"><img src="https://images.unsplash.com/photo-1554224154-26032ffc0f07?w=500&auto=format" alt="tax saving" class="w-full h-48 object-cover" loading="lazy"><div class="p-6"><h3 class="text-xl font-semibold text-gray-800">Tax Saving Strategies Under 80C</h3><p class="text-gray-600 mt-2">Maximize deductions with ELSS, PPF, and insurance tools.</p><a href="#" class="text-[#3b82f6] font-medium mt-4 inline-block">Read more →</a></div></div>
-                </div>
-            </div>
-        </section>
+  <!-- ABOUT SECTION -->
+  <div class="container" id="about" style="margin-top: 60px;">
+    <h2 class="section-title">About calcify.solutions</h2>
+    <div class="glass" style="padding: 36px; border-radius: 32px;">
+      <p>Calcify.solutions is a next-generation, free online calculator ecosystem designed for speed, accuracy, and elegance. From <strong>SIP calculators, EMI, loan tools, BMI, and retirement planning</strong> to math solvers and unit converters — we bring professional-grade calculations in a futuristic interface. No signup, no ads clutter (yet AdSense friendly), and fully client-side for privacy. We are redefining utility tools with glassmorphism and instant reactivity.</p>
+    </div>
+  </div>
+</main>
 
-        <!-- Footer with Sitemap -->
-        <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
-            <div class="container mx-auto px-5 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    <div><div class="flex items-center gap-2 text-white"><i class="fas fa-calculator text-2xl text-blue-400"></i><span class="text-xl font-bold">calcify<span class="text-blue-400">.solutions</span></span></div><p class="mt-4 text-sm">Making calculations smarter, faster, and easier.</p><div class="flex gap-4 mt-5"><i class="fab fa-twitter hover:text-white text-xl cursor-pointer"></i><i class="fab fa-linkedin hover:text-white text-xl cursor-pointer"></i><i class="fab fa-github hover:text-white text-xl cursor-pointer"></i></div></div>
-                    <div><h4 class="font-semibold text-white mb-4">Quick Links</h4><ul class="space-y-2 text-sm"><li><a href="/" class="hover:text-white">Home</a></li><li><a href="#" class="hover:text-white">All Calculators</a></li><li><a href="#" class="hover:text-white">Categories</a></li><li><a href="#" class="hover:text-white">Blog</a></li><li><a href="#" class="hover:text-white">Sitemap</a></li></ul></div>
-                    <div><h4 class="font-semibold text-white mb-4">Categories</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Loan & EMI</a></li><li><a href="#" class="hover:text-white">Investment & SIP</a></li><li><a href="#" class="hover:text-white">Tax & GST</a></li><li><a href="#" class="hover:text-white">Retirement Planning</a></li></ul></div>
-                    <div><h4 class="font-semibold text-white mb-4">Legal</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-white">Privacy Policy</a></li><li><a href="#" class="hover:text-white">Terms of Use</a></li><li><a href="#" class="hover:text-white">Disclaimer</a></li><li><a href="#" class="hover:text-white">AdChoices</a></li><li><a href="#" class="hover:text-white">Sitemap</a></li></ul><div class="mt-4"><p class="text-sm">📧 support@calcify.solutions</p><div class="mt-3 flex"><input type="email" placeholder="Email for newsletter" class="bg-gray-800 rounded-l-lg px-3 py-2 text-sm w-full"><button class="bg-blue-600 px-3 rounded-r-lg text-sm hover:bg-blue-700">Subscribe</button></div></div></div>
-                </div>
-                <div class="border-t border-gray-800 mt-12 pt-6 text-center text-sm text-gray-500">© 2025 calcify.solutions — Smart financial tools for everyone. | <a href="#" class="hover:text-white">Sitemap</a></div>
-            </div>
-        </footer>
-    </main>
+<footer>
+  <div class="container">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      <div><h3>calcify.solutions</h3><p>Smart calculations made simple.</p><p style="margin-top: 12px;">📧 support@calcify.solutions</p></div>
+      <div><h4>Quick links</h4><a href="#" style="display:block; color:#94A3B8;">Home</a><a href="#calculators" style="display:block; color:#94A3B8;">Calculators</a><a href="#blog" style="display:block; color:#94A3B8;">Blog</a></div>
+      <div><h4>Legal</h4><a href="#" style="display:block; color:#94A3B8;">Privacy Policy</a><a href="#" style="display:block; color:#94A3B8;">Terms & Conditions</a><a href="#" style="display:block; color:#94A3B8;">Disclaimer</a><a href="#" style="display:block; color:#94A3B8;">Sitemap</a></div>
+    </div>
+    <hr style="margin: 30px 0; border-color: #1E293B;">
+    <div style="text-align: center; color:#64748B;">© 2025 calcify.solutions — Free, fast, futuristic calculators. All rights reserved.</div>
+  </div>
+</footer>
 
-    <script>
-        // Dark mode toggle with proper persistence and class handling
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark');
-        }
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            if (body.classList.contains('dark')) {
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-            }
-        });
+<script>
+  // ------------------------- CALCULATOR LOGIC (scientific toggle) -------------------------
+  let scientificMode = false;
+  let currentInput = '0';
+  let lastOperator = null;
+  let pendingValue = null;
+  let shouldReset = false;
 
-        // Categories data with working links
-        const categoriesData = [
-            { name: "💰 Loan Calculators", icon: "fas fa-hand-holding-usd", desc: "EMI, home, car, personal loan tools", tools: [{ name: "EMI Calculator", link: "emi-calculator.html" },{ name: "Home Loan Calculator", link: "home-loan-calculator.html" },{ name: "Car Loan Calculator", link: "car-loan-calculator.html" }], viewAll: "loan-calculators.html" },
-            { name: "📈 Investment Calculators", icon: "fas fa-chart-line", desc: "SIP, CAGR, ROI & mutual funds", tools: [{ name: "SIP Calculator", link: "sip-calculator.html" },{ name: "CAGR Calculator", link: "cagr-calculator.html" },{ name: "ROI Calculator", link: "roi-calculator.html" }], viewAll: "investment-calculators.html" },
-            { name: "🧾 Tax Calculators", icon: "fas fa-file-invoice-dollar", desc: "Income tax, GST, VAT simplified", tools: [{ name: "Income Tax Calculator", link: "income-tax-calculator.html" },{ name: "GST Calculator", link: "gst-calculator.html" },{ name: "VAT Calculator", link: "vat-calculator.html" }], viewAll: "tax-calculators.html" },
-            { name: "🏦 Deposit Calculators", icon: "fas fa-piggy-bank", desc: "FD, RD, PPF & savings interest", tools: [{ name: "FD Calculator", link: "fd-calculator.html" },{ name: "RD Calculator", link: "rd-calculator.html" },{ name: "PPF Calculator", link: "ppf-calculator.html" }], viewAll: "deposit-calculator.html" },
-            { name: "📊 Business Calculators", icon: "fas fa-chart-simple", desc: "Profit margin, break-even, cash flow", tools: [{ name: "Profit Margin Calculator", link: "profit-margin-calculator.html" },{ name: "Break-even Calculator", link: "break-even-calculator.html" },{ name: "Cash Flow Calculator", link: "cash-flow-calculator.html" }], viewAll: "business-calculators.html" },
-            { name: "👴 Retirement Calculators", icon: "fas fa-umbrella-beach", desc: "Pension, FIRE, retirement corpus", tools: [{ name: "Pension Calculator", link: "pension-calculator.html" },{ name: "FIRE Calculator", link: "fire-calculator.html" },{ name: "Retirement Planner", link: "retirement-planner.html" }], viewAll: "retirement-calculators.html" },
-            { name: "🛠️ Utility Calculators", icon: "fas fa-toolbox", desc: "Inflation, discount, savings goal", tools: [{ name: "Inflation Calculator", link: "inflation-calculator.html" },{ name: "Discount Calculator", link: "discount-calculator.html" },{ name: "Savings Goal Calculator", link: "savings-goal-calculator.html" }], viewAll: "utility-calculators.html" }
-        ];
+  const displayEl = document.getElementById('calcDisplay');
+  const toggleBtn = document.getElementById('toggleSciBtn');
+  const buttonsContainer = document.getElementById('calcButtons');
 
-        function renderCategories() {
-            const grid = document.getElementById('categoryGrid');
-            if(!grid) return;
-            grid.innerHTML = categoriesData.map(cat => `
-                <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-md hover:shadow-xl transition-all category-card">
-                    <div class="flex items-center gap-3 mb-3"><i class="${cat.icon} text-2xl text-[#3b82f6]"></i><h3 class="text-xl font-bold text-gray-800">${cat.name}</h3></div>
-                    <p class="text-gray-600 text-sm mb-4">${cat.desc}</p>
-                    <ul class="space-y-2 mb-5">
-                        ${cat.tools.map(tool => `<li class="text-gray-700 tool-link transition flex items-center gap-2"><i class="fas fa-calculator text-xs text-blue-500"></i><a href="${tool.link}" class="hover:text-[#3b82f6] block w-full">${tool.name}</a></li>`).join('')}
-                    </ul>
-                    <a href="${cat.viewAll}" class="text-[#3b82f6] font-medium text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">View all calculators <i class="fas fa-arrow-right text-xs"></i></a>
-                </div>
-            `).join('');
-        }
-        renderCategories();
+  function updateDisplay() {
+    displayEl.innerText = currentInput.length > 18 ? parseFloat(currentInput).toExponential(8) : currentInput;
+  }
 
-        // Live search
-        const allCalculators = [];
-        categoriesData.forEach(cat => {
-            cat.tools.forEach(tool => {
-                allCalculators.push({ name: tool.name, link: tool.link, category: cat.name.replace(/[💰📈🧾🏦📊👴🛠️]/g, '').trim() });
-            });
-        });
-        const searchInput = document.getElementById('liveSearchInput');
-        const resultsDiv = document.getElementById('searchResults');
-        function performSearch() {
-            const query = searchInput.value.trim().toLowerCase();
-            if(query.length === 0) { resultsDiv.classList.add('hidden'); return; }
-            const filtered = allCalculators.filter(calc => calc.name.toLowerCase().includes(query) || calc.category.toLowerCase().includes(query));
-            if(filtered.length === 0) {
-                resultsDiv.innerHTML = `<div class="p-4 text-gray-500 text-center"><i class="fas fa-search"></i> No calculators found. Try "EMI" or "tax"</div>`;
-                resultsDiv.classList.remove('hidden');
-                return;
-            }
-            resultsDiv.innerHTML = `<div class="divide-y divide-gray-100">${filtered.slice(0,12).map(calc => `
-                <a href="${calc.link}" class="block p-3 hover:bg-gray-50 cursor-pointer flex justify-between items-center transition">
-                    <div><i class="fas fa-calculator text-[#3b82f6] mr-3"></i><span class="font-medium text-gray-800">${calc.name}</span><span class="text-xs text-gray-500 ml-2">${calc.category}</span></div>
-                    <i class="fas fa-chevron-right text-gray-400"></i>
-                </a>
-            `).join('')}</div>`;
-            resultsDiv.classList.remove('hidden');
-        }
-        searchInput.addEventListener('input', performSearch);
-        document.addEventListener('click', function(e) {
-            if(!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) resultsDiv.classList.add('hidden');
-        });
+  function handleNumber(num) {
+    if (shouldReset) {
+      currentInput = num.toString();
+      shouldReset = false;
+    } else {
+      currentInput = currentInput === '0' ? num.toString() : currentInput + num;
+    }
+    updateDisplay();
+  }
 
-        // Stats counter
-        const statNumbers = document.querySelectorAll('.stat-number');
-        function animateNumber(el, target) {
-            let current = 0;
-            const increment = Math.ceil(target / 40);
-            const timer = setInterval(() => {
-                current += increment;
-                if(current >= target) { el.innerText = target; clearInterval(timer); }
-                else el.innerText = current;
-            }, 20);
-        }
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    const el = entry.target;
-                    const targetVal = parseInt(el.getAttribute('data-count'));
-                    if(!isNaN(targetVal) && el.innerText == '0') {
-                        if(targetVal === 0) el.innerText = "100%";
-                        else if(targetVal === 100) animateNumber(el, targetVal);
-                        else if(targetVal === 52) animateNumber(el, 52);
-                        else animateNumber(el, targetVal);
-                    }
-                    observer.unobserve(el);
-                }
-            });
-        }, { threshold: 0.5 });
-        statNumbers.forEach(stat => observer.observe(stat));
-        document.querySelectorAll('.stat-number').forEach(stat => {
-            if(stat.getAttribute('data-count') === '0' && stat.parentElement?.innerText.includes('Free')) {
-                stat.setAttribute('data-count', '100');
-                stat.innerText = '0';
-            }
-        });
+  function handleOperator(op) {
+    if (pendingValue !== null && !shouldReset) {
+      calculate();
+    }
+    pendingValue = parseFloat(currentInput);
+    lastOperator = op;
+    shouldReset = true;
+  }
 
-        // Mobile menu
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuToggle?.addEventListener('click', () => {
-            const isClosed = mobileMenu.classList.contains('max-h-0');
-            if(isClosed) {
-                mobileMenu.classList.remove('max-h-0', 'opacity-0', 'invisible');
-                mobileMenu.classList.add('max-h-[500px]', 'opacity-100', 'visible');
-            } else {
-                mobileMenu.classList.add('max-h-0', 'opacity-0', 'invisible');
-                mobileMenu.classList.remove('max-h-[500px]', 'opacity-100', 'visible');
-            }
-        });
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('mainHeader');
-            if(window.scrollY > 10) header.classList.add('shadow-md');
-            else header.classList.remove('shadow-md');
-        });
-    </script>
+  function calculate() {
+    if (pendingValue === null || lastOperator === null) return;
+    let second = parseFloat(currentInput);
+    let result = 0;
+    switch (lastOperator) {
+      case '+': result = pendingValue + second; break;
+      case '-': result = pendingValue - second; break;
+      case '*': result = pendingValue * second; break;
+      case '/': result = pendingValue / second; break;
+      case '%': result = pendingValue * (second / 100); break;
+      case '√': result = Math.sqrt(second); pendingValue = null; lastOperator = null; currentInput = result.toString(); updateDisplay(); shouldReset = true; return;
+      default: return;
+    }
+    currentInput = result.toString();
+    pendingValue = null;
+    lastOperator = null;
+    shouldReset = true;
+    updateDisplay();
+  }
+
+  function handleSqrt() {
+    let val = parseFloat(currentInput);
+    if (isNaN(val)) return;
+    currentInput = Math.sqrt(val).toString();
+    updateDisplay();
+    shouldReset = true;
+  }
+
+  function handlePercentage() {
+    let val = parseFloat(currentInput);
+    currentInput = (val / 100).toString();
+    updateDisplay();
+    shouldReset = true;
+  }
+
+  function clearAll() {
+    currentInput = '0';
+    pendingValue = null;
+    lastOperator = null;
+    shouldReset = false;
+    updateDisplay();
+  }
+
+  function deleteLast() {
+    if (currentInput.length === 1) currentInput = '0';
+    else currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+  }
+
+  function buildCalculatorUI() {
+    let basicButtons = [
+      ['7','8','9','/'], ['4','5','6','*'], ['1','2','3','-'], ['0','.','=','+'],
+      ['C','⌫','%','√']
+    ];
+    let sciButtons = [['sin','cos','tan','log'], ['ln','x²','xʸ','('], [')','π','e','^']];
+    let html = '';
+    for(let row of basicButtons) {
+      html += '<div style="display:contents;">';
+      row.forEach(btn => {
+        if(btn === '=') html += `<button class="calc-btn equals" data-val="${btn}">${btn}</button>`;
+        else if(['/','*','-','+','%'].includes(btn)) html += `<button class="calc-btn operator" data-val="${btn}">${btn}</button>`;
+        else html += `<button class="calc-btn" data-val="${btn}">${btn}</button>`;
+      });
+      html += '</div>';
+    }
+    if(scientificMode) {
+      html += '<div style="grid-column: span 4; display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 8px;">';
+      sciButtons.flat().forEach(btn => {
+        html += `<button class="calc-btn operator" data-val="${btn}">${btn}</button>`;
+      });
+      html += '</div>';
+    }
+    buttonsContainer.innerHTML = html;
+    attachCalcEvents();
+  }
+
+  function attachCalcEvents() {
+    document.querySelectorAll('#calcButtons .calc-btn').forEach(btn => {
+      btn.removeEventListener('click', calcHandler);
+      btn.addEventListener('click', calcHandler);
+    });
+  }
+  function calcHandler(e) {
+    let val = e.currentTarget.getAttribute('data-val');
+    if(!isNaN(val) || val === '.') handleNumber(val);
+    else if(val === 'C') clearAll();
+    else if(val === '⌫') deleteLast();
+    else if(val === '=') calculate();
+    else if(val === '√') handleSqrt();
+    else if(val === '%') handlePercentage();
+    else if(['+','-','*','/'].includes(val)) handleOperator(val);
+    else if(scientificMode) {
+      if(val === 'sin') { currentInput = Math.sin(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
+      else if(val === 'cos') { currentInput = Math.cos(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
+      else if(val === 'tan') { currentInput = Math.tan(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
+      else if(val === 'log') { currentInput = Math.log10(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
+      else if(val === 'ln') { currentInput = Math.log(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
+      else if(val === 'x²') { let n = parseFloat(currentInput); currentInput = (n*n).toString(); updateDisplay(); shouldReset=true;}
+      else if(val === 'π') { handleNumber(Math.PI.toString()); }
+      else if(val === 'e') { handleNumber(Math.E.toString()); }
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    scientificMode = !scientificMode;
+    toggleBtn.innerText = scientificMode ? '🔬 Scientific Mode ON' : '🔬 Scientific Mode OFF';
+    buildCalculatorUI();
+  });
+  buildCalculatorUI();
+
+  // ---------- GLOBAL CALCULATORS DATA (all 70+ tools) ----------
+  const calculatorsDB = [
+    // Financial
+    { name: "SIP Calculator", category: "Financial Calculators", slug: "sip-calculator" },
+    { name: "EMI Calculator", category: "Financial Calculators", slug: "emi-calculator" },
+    { name: "Loan Calculator", category: "Financial Calculators", slug: "loan-calculator" },
+    { name: "Personal Loan Calculator", category: "Financial Calculators", slug: "personal-loan-calculator" },
+    { name: "Home Loan Calculator", category: "Financial Calculators", slug: "home-loan-calculator" },
+    { name: "Car Loan Calculator", category: "Financial Calculators", slug: "car-loan-calculator" },
+    { name: "Mortgage Calculator", category: "Financial Calculators", slug: "mortgage-calculator" },
+    { name: "Compound Interest Calculator", category: "Financial Calculators", slug: "compound-interest-calculator" },
+    { name: "Investment Calculator", category: "Financial Calculators", slug: "investment-calculator" },
+    { name: "FD Calculator", category: "Financial Calculators", slug: "fd-calculator" },
+    { name: "RD Calculator", category: "Financial Calculators", slug: "rd-calculator" },
+    { name: "PPF Calculator", category: "Financial Calculators", slug: "ppf-calculator" },
+    { name: "Retirement Calculator", category: "Financial Calculators", slug: "retirement-calculator" },
+    { name: "Inflation Calculator", category: "Financial Calculators", slug: "inflation-calculator" },
+    { name: "GST Calculator", category: "Financial Calculators", slug: "gst-calculator" },
+    { name: "Income Tax Calculator", category: "Financial Calculators", slug: "income-tax-calculator" },
+    { name: "Salary Calculator", category: "Financial Calculators", slug: "salary-calculator" },
+    { name: "Profit Margin Calculator", category: "Financial Calculators", slug: "profit-margin-calculator" },
+    { name: "ROI Calculator", category: "Financial Calculators", slug: "roi-calculator" },
+    { name: "Currency Converter", category: "Financial Calculators", slug: "currency-converter" },
+    // Health
+    { name: "BMI Calculator", category: "Health & Fitness Calculators", slug: "bmi-calculator" },
+    { name: "Calorie Calculator", category: "Health & Fitness Calculators", slug: "calorie-calculator" },
+    { name: "BMR Calculator", category: "Health & Fitness Calculators", slug: "bmr-calculator" },
+    { name: "Body Fat Calculator", category: "Health & Fitness Calculators", slug: "body-fat-calculator" },
+    { name: "Ideal Weight Calculator", category: "Health & Fitness Calculators", slug: "ideal-weight-calculator" },
+    { name: "Water Intake Calculator", category: "Health & Fitness Calculators", slug: "water-intake-calculator" },
+    { name: "Pregnancy Calculator", category: "Health & Fitness Calculators", slug: "pregnancy-calculator" },
+    { name: "Due Date Calculator", category: "Health & Fitness Calculators", slug: "due-date-calculator" },
+    { name: "Pace Calculator", category: "Health & Fitness Calculators", slug: "pace-calculator" },
+    // Math & Education
+    { name: "Scientific Calculator", category: "Math & Education Calculators", slug: "scientific-calculator-math" },
+    { name: "Percentage Calculator", category: "Math & Education Calculators", slug: "percentage-calculator" },
+    { name: "Fraction Calculator", category: "Math & Education Calculators", slug: "fraction-calculator" },
+    { name: "GPA Calculator", category: "Math & Education Calculators", slug: "gpa-calculator" },
+    { name: "Grade Calculator", category: "Math & Education Calculators", slug: "grade-calculator" },
+    { name: "Algebra Calculator", category: "Math & Education Calculators", slug: "algebra-calculator" },
+    { name: "Standard Deviation Calculator", category: "Math & Education Calculators", slug: "standard-deviation-calculator" },
+    { name: "Average Calculator", category: "Math & Education Calculators", slug: "average-calculator" },
+    { name: "Ratio Calculator", category: "Math & Education Calculators", slug: "ratio-calculator" },
+    // Time & Conversion
+    { name: "Age Calculator", category: "Time & Conversion Calculators", slug: "age-calculator" },
+    { name: "Date Calculator", category: "Time & Conversion Calculators", slug: "date-calculator" },
+    { name: "Time Calculator", category: "Time & Conversion Calculators", slug: "time-calculator" },
+    { name: "Hours Calculator", category: "Time & Conversion Calculators", slug: "hours-calculator" },
+    { name: "Unit Converter", category: "Time & Conversion Calculators", slug: "unit-converter" },
+    { name: "Percentage Increase Calculator", category: "Time & Conversion Calculators", slug: "percentage-increase-calculator" },
+    // Utility
+    { name: "Random Number Generator", category: "Utility Tools", slug: "random-number-generator" },
+    { name: "Password Generator", category: "Utility Tools", slug: "password-generator" },
+    { name: "QR Code Generator", category: "Utility Tools", slug: "qr-code-generator" },
+    { name: "UUID Generator", category: "Utility Tools", slug: "uuid-generator" },
+    { name: "Subnet Calculator", category: "Utility Tools", slug: "subnet-calculator" }
+  ];
+
+  const categoriesMap = new Map();
+  calculatorsDB.forEach(calc => {
+    if(!categoriesMap.has(calc.category)) categoriesMap.set(calc.category, []);
+    categoriesMap.get(calc.category).push(calc);
+  });
+
+  function renderCategories(filterText = "") {
+    const container = document.getElementById('categoriesContainer');
+    container.innerHTML = "";
+    const filteredLower = filterText.toLowerCase();
+    for(let [catName, calcs] of categoriesMap.entries()) {
+      let filteredCalcs = calcs.filter(c => c.name.toLowerCase().includes(filteredLower));
+      if(filteredCalcs.length === 0 && filterText !== "") continue;
+      let secHtml = `<div style="margin-bottom: 60px;" id="cat-${catName.replace(/\s/g,'')}"><h2 class="section-title">${catName}</h2><p style="margin-bottom: 20px;">Fast, reliable ${catName.toLowerCase()} with real-time results.</p><div class="category-grid" id="grid-${catName.replace(/\s/g,'')}">`;
+      filteredCalcs.forEach(calc => {
+        secHtml += `<div class="calc-card"><h4>📐 ${calc.name}</h4><p>Precision tool for instant ${calc.name.split(' ')[0]} calculations.</p><a href="/calculators/${calc.slug}/" class="calc-link">Use Calculator →</a></div>`;
+      });
+      secHtml += `</div></div>`;
+      container.innerHTML += secHtml;
+    }
+    if(container.innerHTML === "") container.innerHTML = "<p style='text-align:center; padding:40px;'>✨ No calculators found. Try another keyword.</p>";
+  }
+  const searchInput = document.getElementById('search-calc');
+  searchInput.addEventListener('input', (e) => {
+    renderCategories(e.target.value);
+    document.getElementById('suggestionsHint').innerHTML = e.target.value ? `🔍 Showing results for “${e.target.value}”` : "";
+  });
+  renderCategories("");
+
+  // Mobile / scroll shrink
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if(window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+  });
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => document.getElementById('search-calc').focus());
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      let ans = q.nextElementSibling;
+      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
+      q.querySelector('span').innerHTML = ans.style.display === 'block' ? '➖' : '➕';
+    });
+  });
+  // JSON-LD Schema (Organization + FAQ)
+  const scriptSchema = document.createElement('script');
+  scriptSchema.type = 'application/ld+json';
+  scriptSchema.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Calcify Solutions",
+    "url": "https://calcify.solutions",
+    "potentialAction": { "@type": "SearchAction", "target": "https://calcify.solutions/?s={search_term_string}" },
+    "description": "Free online calculators for finance, health, math & conversions. Futuristic & accurate."
+  });
+  document.head.appendChild(scriptSchema);
+</script>
 </body>
 </html>
