@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Retirement Calculator | Plan Your Financial Future | calcify.solutions</title>
+  <meta name="description" content="Free retirement calculator: estimate the corpus needed for retirement, monthly savings required, and retirement income. Plan your golden years with confidence.">
+  <meta name="keywords" content="retirement calculator, retirement planning, corpus calculator, pension calculator, monthly savings for retirement, financial freedom">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/retirement-calculator.html">
+  <meta property="og:title" content="Retirement Calculator | Plan Your Golden Years | calcify.solutions">
+  <meta property="og:description" content="Calculate retirement corpus and monthly savings needed. Free and easy to use.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      transition: 0.2s;
+    }
+    .input-group input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .small-note {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      margin-top: -5px;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1.1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+    .formula {
+      background: #0F172A;
+      padding: 16px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Retirement Calculator</h1>
+    <p class="hero-description">Plan your retirement confidently. Estimate the corpus needed to maintain your lifestyle, monthly savings required, and expected monthly income after retirement.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>👤 Current Age (Years)</label>
+        <input type="number" id="currentAge" placeholder="e.g., 30" value="30">
+      </div>
+      <div class="input-group">
+        <label>🎯 Retirement Age (Years)</label>
+        <input type="number" id="retirementAge" placeholder="e.g., 60" value="60">
+      </div>
+      <div class="input-group">
+        <label>❤️ Life Expectancy (Years)</label>
+        <input type="number" id="lifeExpectancy" placeholder="e.g., 85" value="85">
+      </div>
+      <div class="input-group">
+        <label>💰 Current Monthly Expenses (₹)</label>
+        <input type="number" id="monthlyExpenses" placeholder="e.g., 50000" value="50000">
+        <div class="small-note">Your current household expenses per month (excluding savings/investments).</div>
+      </div>
+      <div class="input-group">
+        <label>📈 Expected Inflation Rate (%)</label>
+        <input type="number" id="inflation" placeholder="e.g., 6" value="6" step="0.1">
+      </div>
+      <div class="input-group">
+        <label>📊 Pre-Retirement Return Rate (%)</label>
+        <input type="number" id="preReturn" placeholder="e.g., 12" value="12" step="0.1">
+        <div class="small-note">Expected annual return on investments during accumulation phase.</div>
+      </div>
+      <div class="input-group">
+        <label>📉 Post-Retirement Return Rate (%)</label>
+        <input type="number" id="postReturn" placeholder="e.g., 7" value="7" step="0.1">
+        <div class="small-note">Expected return on your corpus after retirement (safer instruments).</div>
+      </div>
+      <div class="button-group">
+        <button class="calc-btn" id="calculateBtn">Calculate Retirement Plan</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+      <div class="result-box">
+        <div class="result-item"><span>🏦 Corpus Required at Retirement</span><span id="corpusNeeded">₹ 0</span></div>
+        <div class="result-item"><span>💰 Monthly Savings Required</span><span id="monthlySaving">₹ 0</span></div>
+        <div class="result-item"><span>📊 Monthly Retirement Income (Today's Value)</span><span id="monthlyIncomeToday">₹ 0</span></div>
+        <div class="result-item"><span>📈 Monthly Retirement Income (Future Value)</span><span id="monthlyIncomeFuture">₹ 0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 What is a Retirement Calculator?</h3>
+      <p>A retirement calculator helps you estimate how much money you will need to maintain your desired lifestyle after retirement and how much you should save monthly. It considers inflation, expected returns, current expenses, and life expectancy to give you a realistic financial roadmap.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>⚙️ How the Calculation Works</h3>
+      <p>The calculator follows three steps:</p>
+      <ol style="margin-left: 20px; color: #CBD5E1; margin-bottom: 12px;">
+        <li><strong>Future Monthly Expense:</strong> Your current monthly expense inflated up to retirement age: FV = Current Expense × (1 + inflation)<sup>(retirement age - current age)</sup></li>
+        <li><strong>Corpus Needed at Retirement:</strong> A sum that can generate the inflated monthly expense for the rest of your life (post-retirement period). Using the present value of annuity formula (assuming withdrawals at beginning of each month).</li>
+        <li><strong>Monthly Savings Required:</strong> Amount to save each month from now until retirement to accumulate the target corpus, using the future value of annuity formula (monthly compounding).</li>
+      </ol>
+      <p>The result shows the corpus needed, monthly savings, and expected monthly income in today's and future terms.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📐 Understanding Your Results</h3>
+      <ul>
+        <li><strong>Corpus Required:</strong> The lump sum you need at retirement age to fund your expenses for life.</li>
+        <li><strong>Monthly Savings Required:</strong> How much you should invest each month (from today until retirement) to reach that corpus.</li>
+        <li><strong>Monthly Retirement Income:</strong> The inflation-adjusted monthly amount you can withdraw during retirement (shown in today's purchasing power and future nominal value).</li>
+      </ul>
+      <p>Start saving early to reduce the monthly burden and benefit from compounding.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>✅ Why Use a Retirement Calculator?</h3>
+      <ul>
+        <li>Set realistic retirement goals based on your lifestyle.</li>
+        <li>Understand the impact of inflation on your future needs.</li>
+        <li>Adjust your savings rate or retirement age to see trade-offs.</li>
+        <li>Plan for tax-efficient retirement instruments (NPS, PPF, mutual funds).</li>
+        <li>Free, instant, and no personal data stored.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>📜 Importance of Retirement Planning</h3>
+      <p>With increasing life expectancy and reducing joint family support, retirement planning has become critical. The earlier you start, the less you need to save monthly. A rule of thumb is to aim for a corpus that is 30-40 times your annual expenses. Modern retirement calculators empower individuals to take control of their financial future with data-driven insights.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function calculateRetirement() {
+    let currentAge = parseFloat(document.getElementById('currentAge').value);
+    let retirementAge = parseFloat(document.getElementById('retirementAge').value);
+    let lifeExpectancy = parseFloat(document.getElementById('lifeExpectancy').value);
+    let monthlyExpense = parseFloat(document.getElementById('monthlyExpenses').value);
+    let inflation = parseFloat(document.getElementById('inflation').value) / 100;
+    let preReturn = parseFloat(document.getElementById('preReturn').value) / 100;
+    let postReturn = parseFloat(document.getElementById('postReturn').value) / 100;
+
+    if (isNaN(currentAge) || currentAge < 0) currentAge = 0;
+    if (isNaN(retirementAge) || retirementAge <= currentAge) retirementAge = currentAge + 1;
+    if (isNaN(lifeExpectancy) || lifeExpectancy <= retirementAge) lifeExpectancy = retirementAge + 1;
+    if (isNaN(monthlyExpense) || monthlyExpense <= 0) monthlyExpense = 0;
+    if (isNaN(inflation)) inflation = 0;
+    if (isNaN(preReturn)) preReturn = 0;
+    if (isNaN(postReturn)) postReturn = 0;
+
+    const yearsToRetirement = retirementAge - currentAge;
+    const yearsInRetirement = lifeExpectancy - retirementAge;
+    if (yearsToRetirement <= 0 || yearsInRetirement <= 0) {
+      // invalid
+      document.getElementById('corpusNeeded').innerHTML = '₹ 0';
+      document.getElementById('monthlySaving').innerHTML = '₹ 0';
+      document.getElementById('monthlyIncomeToday').innerHTML = '₹ 0';
+      document.getElementById('monthlyIncomeFuture').innerHTML = '₹ 0';
+      return;
+    }
+
+    // Step 1: Future monthly expense at retirement (inflated)
+    const futureMonthlyExpense = monthlyExpense * Math.pow(1 + inflation, yearsToRetirement);
+    
+    // Step 2: Corpus needed at retirement (PV of annuity due for post-retirement period)
+    // Monthly post-retirement return rate
+    const monthlyPostReturn = postReturn / 12;
+    const totalMonthsRetirement = yearsInRetirement * 12;
+    let corpus = 0;
+    if (monthlyPostReturn === 0) {
+      corpus = futureMonthlyExpense * totalMonthsRetirement;
+    } else {
+      // PV of annuity due (payments at beginning of each month)
+      corpus = futureMonthlyExpense * (1 + monthlyPostReturn) * (1 - Math.pow(1 + monthlyPostReturn, -totalMonthsRetirement)) / monthlyPostReturn;
+    }
+    
+    // Step 3: Monthly savings needed to achieve corpus (FV of annuity due)
+    const monthlyPreReturn = preReturn / 12;
+    const totalMonthsSaving = yearsToRetirement * 12;
+    let monthlySaving = 0;
+    if (monthlyPreReturn === 0) {
+      monthlySaving = corpus / totalMonthsSaving;
+    } else {
+      // FV of annuity due (payments at beginning of each month)
+      // monthlySaving * ((1+ r)^n - 1)/r * (1+r) = corpus
+      monthlySaving = corpus / ((Math.pow(1 + monthlyPreReturn, totalMonthsSaving) - 1) / monthlyPreReturn * (1 + monthlyPreReturn));
+    }
+    
+    // Step 4: Monthly retirement income in today's value = corpus * withdrawal rate adjusted? Already given.
+    const monthlyIncomeFuture = futureMonthlyExpense;
+    const monthlyIncomeToday = monthlyIncomeFuture / Math.pow(1 + inflation, yearsToRetirement);
+    
+    const formatCurrency = (value) => {
+      if (isNaN(value) || !isFinite(value) || value < 0) return '₹ 0';
+      return '₹ ' + value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+    
+    document.getElementById('corpusNeeded').innerHTML = formatCurrency(corpus);
+    document.getElementById('monthlySaving').innerHTML = formatCurrency(monthlySaving);
+    document.getElementById('monthlyIncomeToday').innerHTML = formatCurrency(monthlyIncomeToday);
+    document.getElementById('monthlyIncomeFuture').innerHTML = formatCurrency(monthlyIncomeFuture);
+  }
+
+  function resetForm() {
+    document.getElementById('currentAge').value = '30';
+    document.getElementById('retirementAge').value = '60';
+    document.getElementById('lifeExpectancy').value = '85';
+    document.getElementById('monthlyExpenses').value = '50000';
+    document.getElementById('inflation').value = '6';
+    document.getElementById('preReturn').value = '12';
+    document.getElementById('postReturn').value = '7';
+    calculateRetirement();
+  }
+
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculateRetirement);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  
+  const inputs = ['currentAge', 'retirementAge', 'lifeExpectancy', 'monthlyExpenses', 'inflation', 'preReturn', 'postReturn'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', calculateRetirement);
+  });
+
+  window.addEventListener('DOMContentLoaded', calculateRetirement);
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a retirement calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A retirement calculator estimates the corpus needed to maintain your lifestyle after retirement and the monthly savings required to achieve it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much should I save for retirement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A common guideline is to save at least 15-20% of your income. Use this calculator to get a personalized number."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What rate of return should I assume?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For long-term equity investments, assume 10-12% pre-retirement; for post-retirement, assume 6-7% from debt instruments."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
