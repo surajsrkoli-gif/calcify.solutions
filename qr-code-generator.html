@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>QR Code Generator | Create Custom QR Codes | calcify.solutions</title>
+  <meta name="description" content="Free QR Code Generator: Create custom QR codes for text, URLs, contact info, and more. Download as PNG. Fast, secure, client-side generation.">
+  <meta name="keywords" content="QR code generator, create QR code, free QR generator, QR code for URL, QR code download, QR maker">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/qr-code-generator.html">
+  <meta property="og:title" content="QR Code Generator | Create Custom QR Codes | calcify.solutions">
+  <meta property="og:description" content="Generate QR codes instantly and download as PNG. Free online tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input, .input-group select {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .qr-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 30px;
+      margin: 20px 0;
+      min-height: 280px;
+    }
+    #qrcode {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #qrcode img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 20px;
+      justify-content: center;
+    }
+    .generate-btn, .download-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .generate-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .download-btn {
+      background: #1E293B;
+      color: #38BDF8;
+      border: 1px solid #38BDF8;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .generate-btn:hover, .download-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .note {
+      font-size: 0.8rem;
+      color: #94A3B8;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>QR Code Generator</h1>
+    <p class="hero-description">Generate custom QR codes for text, URLs, Wi-Fi credentials, contact info, and more. Download as PNG. Client-side, secure, and fast.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>📝 Text or URL</label>
+        <input type="text" id="qrText" placeholder="Enter any text, URL, or data..." value="https://calcify.solutions">
+      </div>
+      <div class="input-group">
+        <label>📐 QR Code Size (pixels)</label>
+        <select id="qrSize">
+          <option value="100">100 x 100</option>
+          <option value="150">150 x 150</option>
+          <option value="200" selected>200 x 200</option>
+          <option value="250">250 x 250</option>
+          <option value="300">300 x 300</option>
+          <option value="400">400 x 400</option>
+        </select>
+      </div>
+      <div class="qr-preview" id="qrPreviewContainer">
+        <div id="qrcode"></div>
+        <div class="note" id="qrNote">QR code preview will appear here</div>
+      </div>
+      <div class="button-group">
+        <button class="generate-btn" id="generateBtn">✨ Generate QR Code</button>
+        <button class="download-btn" id="downloadBtn">📥 Download as PNG</button>
+        <button class="reset-btn" id="resetBtn">Reset to Default</button>
+      </div>
+      <div class="note">QR codes generated locally in your browser. No data is sent to any server. Supports text, URLs, contact (vCard), Wi-Fi, and more.</div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 How to Use</h3>
+      <ul>
+        <li>Enter any text, URL, or structured data in the input field.</li>
+        <li>Select the desired QR code size (pixels).</li>
+        <li>Click "Generate QR Code" to create the QR code.</li>
+        <li>Click "Download as PNG" to save the QR code image to your device.</li>
+        <li>Use "Reset to Default" to restore the example URL.</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>⚙️ What Can You Encode?</h3>
+      <ul>
+        <li><strong>Website URLs:</strong> https://example.com</li>
+        <li><strong>Plain text:</strong> Any message</li>
+        <li><strong>Contact (vCard):</strong> BEGIN:VCARD...END:VCARD</li>
+        <li><strong>Wi-Fi credentials:</strong> WIFI:S:SSID;T:WPA;P:password;;</li>
+        <li><strong>Email/Phone/SMS:</strong> mailto:email@example.com, tel:1234567890</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>📱 QR Code Use Cases</h3>
+      <ul>
+        <li>Share website links, app downloads, or social media profiles.</li>
+        <li>Add contactless menus, payment links, or event check-ins.</li>
+        <li>Encode Wi-Fi credentials for easy network sharing.</li>
+        <li>Create business cards with vCard QR codes.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let currentQRCode = null;
+  let currentText = "";
+  let currentSize = 200;
+
+  function generateQRCode(text, size) {
+    // Clear existing QR code
+    const qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = '';
+    
+    if (!text || text.trim() === '') {
+      qrContainer.innerHTML = '<div style="color:#94A3B8; padding:20px;">⚠️ Please enter some text or URL.</div>';
+      document.getElementById('qrNote').innerHTML = 'Enter valid text to generate QR code.';
+      return false;
+    }
+    
+    try {
+      // Create new QR code using qrcodejs library
+      // qrcodejs expects a DOM element id, text, and options
+      new QRCode(qrContainer, {
+        text: text,
+        width: size,
+        height: size,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      document.getElementById('qrNote').innerHTML = `QR code generated for: ${text.substring(0, 50)}${text.length > 50 ? '...' : ''}`;
+      return true;
+    } catch (error) {
+      console.error("QR generation error:", error);
+      qrContainer.innerHTML = '<div style="color:#EF4444; padding:20px;">❌ Error generating QR code. Text may be too long for selected size.</div>';
+      document.getElementById('qrNote').innerHTML = 'Error: Try reducing text length or increasing size.';
+      return false;
+    }
+  }
+
+  function downloadQRCode() {
+    const qrDiv = document.getElementById('qrcode');
+    const qrCanvas = qrDiv.querySelector('canvas');
+    const qrImg = qrDiv.querySelector('img');
+    let imageData = null;
+    
+    if (qrCanvas) {
+      // Library might use canvas
+      imageData = qrCanvas.toDataURL('image/png');
+    } else if (qrImg) {
+      // Some implementations use img element
+      imageData = qrImg.src;
+    } else {
+      alert('No QR code generated yet. Click "Generate QR Code" first.');
+      return;
+    }
+    
+    if (!imageData) {
+      alert('Could not capture QR code image.');
+      return;
+    }
+    
+    const link = document.createElement('a');
+    const timestamp = new Date().toISOString().slice(0,19).replace(/:/g, '-');
+    link.download = `qrcode_${timestamp}.png`;
+    link.href = imageData;
+    link.click();
+  }
+
+  function getCurrentQRText() {
+    return document.getElementById('qrText').value;
+  }
+
+  function getCurrentSize() {
+    return parseInt(document.getElementById('qrSize').value);
+  }
+
+  function refreshQRCode() {
+    const text = getCurrentQRText();
+    const size = getCurrentSize();
+    currentText = text;
+    currentSize = size;
+    generateQRCode(text, size);
+  }
+
+  function resetToDefault() {
+    document.getElementById('qrText').value = 'https://calcify.solutions';
+    document.getElementById('qrSize').value = '200';
+    refreshQRCode();
+  }
+
+  // Event listeners
+  document.getElementById('generateBtn').addEventListener('click', refreshQRCode);
+  document.getElementById('downloadBtn').addEventListener('click', downloadQRCode);
+  document.getElementById('resetBtn').addEventListener('click', resetToDefault);
+  
+  // Auto-generate on input change (debounced)
+  let debounceTimeout;
+  function debouncedGenerate() {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      refreshQRCode();
+    }, 500);
+  }
+  document.getElementById('qrText').addEventListener('input', debouncedGenerate);
+  document.getElementById('qrSize').addEventListener('change', refreshQRCode);
+  
+  // Initial generation
+  refreshQRCode();
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this QR code generator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it's completely free with no usage limits. All processing happens in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What data can I encode in a QR code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can encode URLs, plain text, contact info (vCard), Wi-Fi credentials, email addresses, phone numbers, and more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the QR code as an image?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, click the 'Download as PNG' button to save the QR code image to your device."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
