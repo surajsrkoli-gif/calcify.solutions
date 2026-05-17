@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Profit Margin Calculator | Gross Margin & Markup | calcify.solutions</title>
+  <meta name="description" content="Free profit margin calculator: calculate gross profit margin, profit amount, and markup percentage from cost price and selling price. Essential for businesses and freelancers.">
+  <meta name="keywords" content="profit margin calculator, gross margin, markup calculator, profit percentage, cost price, selling price, business calculator">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/profit-margin-calculator.html">
+  <meta property="og:title" content="Profit Margin Calculator | Gross Margin & Markup | calcify.solutions">
+  <meta property="og:description" content="Calculate your profit margin, markup, and profit amount instantly. Free tool.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      transition: 0.2s;
+    }
+    .input-group input:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1.1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+    .formula {
+      background: #0F172A;
+      padding: 16px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>Profit Margin Calculator</h1>
+    <p class="hero-description">Calculate your gross profit margin, profit amount, and markup percentage based on cost price and selling price. Essential for pricing strategy and business profitability analysis.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>💰 Cost Price (₹)</label>
+        <input type="number" id="costPrice" placeholder="e.g., 500" value="500">
+        <small style="color:#94A3B8;">Your total cost to produce or purchase the product</small>
+      </div>
+      <div class="input-group">
+        <label>🏷️ Selling Price (₹)</label>
+        <input type="number" id="sellingPrice" placeholder="e.g., 800" value="800">
+        <small style="color:#94A3B8;">The price at which you sell the product</small>
+      </div>
+      <div class="button-group">
+        <button class="calc-btn" id="calculateBtn">Calculate Margin</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+      <div class="result-box">
+        <div class="result-item"><span>💰 Profit Amount</span><span id="profitAmount">₹ 0</span></div>
+        <div class="result-item"><span>📊 Gross Profit Margin (%)</span><span id="profitMargin">0%</span></div>
+        <div class="result-item"><span>📈 Markup Percentage (%)</span><span id="markupPercent">0%</span></div>
+        <div class="result-item"><span>🔄 Selling Price = Cost × (1 + Markup)</span><span id="checkFormula">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 What is Profit Margin?</h3>
+      <p>Profit margin is a measure of profitability. It represents the percentage of revenue that turns into profit. Gross profit margin is calculated as (Profit / Selling Price) × 100. Markup percentage is (Profit / Cost Price) × 100. Both metrics help businesses set prices and evaluate performance.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>⚙️ How Calculations Work</h3>
+      <div class="formula">
+        Profit = Selling Price - Cost Price<br>
+        Profit Margin (%) = (Profit / Selling Price) × 100<br>
+        Markup (%) = (Profit / Cost Price) × 100
+      </div>
+      <p>If your cost price is ₹500 and selling price ₹800, profit = ₹300, profit margin = 37.5%, markup = 60%. This means you added 60% to your cost to set the price, but your margin on sales is 37.5%.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📐 Understanding Your Results</h3>
+      <ul>
+        <li><strong>Profit Amount:</strong> Absolute profit earned per unit or transaction.</li>
+        <li><strong>Gross Profit Margin:</strong> The percentage of selling price that is profit. Higher margin means better profitability on sales.</li>
+        <li><strong>Markup Percentage:</strong> The percentage added to cost price to determine selling price. Useful for pricing products.</li>
+      </ul>
+      <p>Both metrics are vital for comparing products, tracking business health, and making pricing decisions.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>✅ Why Use a Profit Margin Calculator?</h3>
+      <ul>
+        <li>Determine if your pricing strategy is profitable.</li>
+        <li>Compare margins across different products or services.</li>
+        <li>Calculate required selling price to achieve a target margin.</li>
+        <li>Analyze cost structures and identify areas to improve profitability.</li>
+        <li>Free, instant, and no personal data required.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>📜 Profit Margin in Business</h3>
+      <p>Profit margins vary widely by industry. Grocery stores operate on thin margins (1-3%), while software companies often have margins above 80%. Understanding your margin is crucial for survival and growth. This calculator helps entrepreneurs, freelancers, and small business owners quickly assess their profitability.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function calculateProfitMargin() {
+    let cost = parseFloat(document.getElementById('costPrice').value);
+    let selling = parseFloat(document.getElementById('sellingPrice').value);
+    
+    if (isNaN(cost) || cost < 0) cost = 0;
+    if (isNaN(selling) || selling < 0) selling = 0;
+    
+    let profit = selling - cost;
+    let margin = 0;
+    let markup = 0;
+    
+    if (selling > 0) {
+      margin = (profit / selling) * 100;
+    }
+    if (cost > 0) {
+      markup = (profit / cost) * 100;
+    }
+    
+    // For display formatting
+    const formatCurrency = (value) => {
+      if (isNaN(value) || !isFinite(value)) return '₹ 0';
+      return '₹ ' + value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+    
+    document.getElementById('profitAmount').innerHTML = formatCurrency(profit);
+    document.getElementById('profitMargin').innerHTML = margin.toFixed(2) + '%';
+    document.getElementById('markupPercent').innerHTML = markup.toFixed(2) + '%';
+    
+    let checkText = (cost > 0 && markup > 0) ? `₹ ${cost} × (1 + ${(markup/100).toFixed(2)}) = ₹ ${(cost * (1 + markup/100)).toFixed(2)}` : '—';
+    document.getElementById('checkFormula').innerHTML = checkText;
+  }
+  
+  function resetForm() {
+    document.getElementById('costPrice').value = '500';
+    document.getElementById('sellingPrice').value = '800';
+    calculateProfitMargin();
+  }
+  
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculateProfitMargin);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  
+  const inputs = ['costPrice', 'sellingPrice'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', calculateProfitMargin);
+  });
+  
+  window.addEventListener('DOMContentLoaded', calculateProfitMargin);
+  
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+  
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is profit margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Profit margin is the percentage of selling price that is profit. It's calculated as (Profit / Selling Price) × 100."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between margin and markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Margin is based on selling price, markup is based on cost price. For a product with ₹500 cost and ₹800 selling price, margin is 37.5%, markup is 60%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good profit margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It varies by industry. Retail: 2-10%, restaurants: 10-20%, software: 70-90%. Compare with industry averages."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
