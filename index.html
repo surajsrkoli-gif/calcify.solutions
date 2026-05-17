@@ -3,25 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Calcify.solutions — free, fast, and futuristic online calculators for finance, health, math, conversions, and utilities. No signup, mobile-friendly, 100% accurate.">
-  <meta name="keywords" content="calculator, free online calculators, finance calculator, SIP calculator, EMI calculator, loan calculator, BMI calculator, percentage calculator, scientific calculator, GST calculator, retirement calculator, unit converter, age calculator, password generator">
+  <meta name="description" content="Calcify.solutions — premium free online calculators: finance, SIP, EMI, BMI, conversions, math. No signup, mobile-optimized, futuristic interface.">
+  <meta name="keywords" content="calculator, free online calculators, finance calculator, SIP calculator, EMI calculator, loan calculator, BMI calculator, percentage calculator, GST calculator, retirement calculator, unit converter">
   <meta name="author" content="Calcify Solutions">
-  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://calcify.solutions/">
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Calcify.solutions | Free Online Calculators – Futuristic & Fast">
-  <meta property="og:description" content="Instant calculations: loans, SIP, BMI, taxes, conversions. Beautiful, free, no signup.">
+  <meta property="og:title" content="Calcify.solutions | Futuristic Free Calculators">
+  <meta property="og:description" content="Instant, beautiful calculators for finance, health, math, and utilities. 100% free, no signup.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://calcify.solutions/">
-  <meta property="og:image" content="https://calcify.solutions/og-calcify.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Calcify.solutions – Modern Multi-Calculator Platform">
-  <meta name="twitter:description" content="Fast, sleek calculators for finance, health, math, and more. Free & accurate.">
-  <!-- Favicon + theme -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
-  <title>Calcify.solutions – Futuristic Free Online Calculators</title>
+  <title>Calcify.solutions – Modern Free Online Calculators</title>
   <style>
-    /* ---------- RESET & GLOBAL ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -31,86 +22,51 @@
     body {
       background: #0F172A;
       color: #F8FAFC;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.5;
       scroll-behavior: smooth;
     }
 
-    /* Custom smooth scroll */
     html {
-      scroll-padding-top: 80px;
+      scroll-padding-top: 90px;
     }
 
-    /* glassmorphism & futuristic */
-    .glass, .navbar, .calculator-panel, .card, .badge, .faq-item, .search-container {
-      background: rgba(30, 41, 59, 0.45);
+    /* Glass & Futuristic */
+    .glass-card, .navbar, .calculator-panel, .search-bar, .card, .faq-item, .badge {
+      background: rgba(30, 41, 59, 0.5);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(6, 182, 212, 0.2);
-      border-radius: 28px;
+      border-radius: 32px;
     }
 
-    .card, .calculator-panel {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .card {
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 35px -12px rgba(6, 182, 212, 0.25);
-      border-color: rgba(6, 182, 212, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 35px -12px rgba(6, 182, 212, 0.3);
+      border-color: rgba(6, 182, 212, 0.6);
     }
 
-    button, .btn {
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      border: none;
-      font-weight: 500;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #2563EB, #06B6D4);
-      color: white;
-      box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: scale(0.97);
-      background: linear-gradient(135deg, #1E4FD9, #05A0BA);
-      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #38BDF8;
-      color: #38BDF8;
-    }
-
-    .btn-outline:hover {
-      background: rgba(56, 189, 248, 0.1);
-      border-color: #06B6D4;
-    }
-
-    /* container */
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 28px;
     }
 
-    /* navbar sticky */
+    /* navbar */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.8);
       border-bottom: 1px solid rgba(6, 182, 212, 0.3);
-      transition: padding 0.2s, background 0.2s;
-    }
-
-    .navbar.scrolled {
-      padding: 8px 0;
-      background: rgba(15, 23, 42, 0.9);
+      transition: all 0.2s;
     }
 
     .nav-container {
@@ -135,7 +91,7 @@
 
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 32px;
       align-items: center;
     }
 
@@ -150,11 +106,211 @@
       color: #06B6D4;
     }
 
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 8px 18px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #38BDF8;
+      color: #38BDF8;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+
     .mobile-menu {
       display: none;
       font-size: 28px;
       background: none;
       color: white;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 70px 0 50px;
+      position: relative;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(6,182,212,0.2), transparent);
+      filter: blur(60px);
+      top: -100px;
+      right: -80px;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .trust-badge {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .badge {
+      padding: 8px 20px;
+      font-size: 0.8rem;
+      background: rgba(30, 41, 59, 0.7);
+    }
+
+    /* Calculator panel */
+    .calculator-panel {
+      padding: 28px;
+      max-width: 550px;
+      margin: 20px auto 0;
+    }
+    .calc-display {
+      background: #0F172A;
+      padding: 20px;
+      border-radius: 28px;
+      font-size: 2rem;
+      text-align: right;
+      font-family: monospace;
+      margin-bottom: 24px;
+    }
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .calc-btn {
+      background: #0F172A;
+      border: none;
+      padding: 16px 0;
+      border-radius: 28px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: 0.1s;
+    }
+    .calc-btn.operator { background: #2563EB; }
+    .calc-btn.equals { background: #06B6D4; }
+
+    /* Search */
+    .search-section {
+      margin: 60px 0 40px;
+    }
+    .search-bar {
+      width: 100%;
+      padding: 18px 26px;
+      font-size: 1.1rem;
+      background: #1E293Bcc;
+      border: 1px solid #06B6D4;
+      border-radius: 60px;
+      color: white;
+      outline: none;
+    }
+
+    /* Grid & Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 32px;
+    }
+    .card {
+      padding: 26px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 32px;
+      transition: all 0.2s;
+    }
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .tool-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #2563EB;
+      padding: 10px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      text-align: center;
+      transition: 0.2s;
+    }
+    .tool-btn:hover {
+      background: #06B6D4;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .tool-btn { width: 100%; text-align: center; }
+      .cards-grid { gap: 20px; }
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      background: linear-gradient(120deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section-sub {
+      color: #94A3B8;
+      margin-bottom: 32px;
+    }
+
+    /* why choose us */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 18px;
+      padding: 20px 24px;
+      cursor: pointer;
+    }
+    .faq-question {
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 14px;
+      color: #CBD5E1;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 90px;
+      background: #0F172A;
+      border-top: 1px solid #1E293B;
+      padding: 50px 0 30px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
     }
 
     @media (max-width: 900px) {
@@ -162,11 +318,11 @@
         display: none;
         flex-direction: column;
         width: 100%;
-        background: rgba(15, 23, 42, 0.95);
+        background: #0F172Acc;
         backdrop-filter: blur(20px);
-        padding: 20px;
-        border-radius: 28px;
-        margin-top: 12px;
+        border-radius: 32px;
+        padding: 24px;
+        margin-top: 16px;
       }
       .nav-links.active {
         display: flex;
@@ -174,183 +330,10 @@
       .mobile-menu {
         display: block;
       }
-      .nav-container {
-        flex-wrap: wrap;
-      }
-    }
-
-    /* hero */
-    .hero {
-      padding: 64px 0 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(6,182,212,0.2), transparent);
-      filter: blur(60px);
-      top: -100px;
-      right: -100px;
-      z-index: 0;
-    }
-
-    .trust-badge {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    .badge {
-      padding: 8px 18px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: rgba(30, 41, 59, 0.6);
-    }
-
-    /* calculator UI */
-    .calculator-panel {
-      padding: 24px;
-      max-width: 500px;
-      margin: 0 auto 30px;
-      background: #1E293Bcc;
-    }
-
-    .calc-display {
-      background: #0F172A;
-      padding: 20px;
-      border-radius: 24px;
-      font-size: 2rem;
-      text-align: right;
-      font-family: monospace;
-      margin-bottom: 20px;
-      word-wrap: break-word;
-      min-height: 85px;
-    }
-
-    .calc-buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .calc-btn {
-      background: #0F172A;
-      border: none;
-      padding: 16px 0;
-      border-radius: 24px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: white;
-      transition: 0.1s;
-    }
-
-    .calc-btn.operator {
-      background: #2563EB;
-      color: white;
-    }
-    .calc-btn.equals {
-      background: #06B6D4;
-    }
-    .sci-mode {
-      margin-top: 16px;
-      text-align: center;
-    }
-
-    /* Search + categories */
-    .search-section {
-      margin: 60px 0 40px;
-    }
-    .search-bar {
-      width: 100%;
-      padding: 18px 24px;
-      font-size: 1.2rem;
-      background: #1E293B;
-      border: 1px solid #06B6D4;
-      border-radius: 60px;
-      color: white;
-      outline: none;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 32px;
-      margin-top: 30px;
-    }
-
-    .calc-card {
-      background: rgba(30, 41, 59, 0.5);
-      backdrop-filter: blur(4px);
-      border-radius: 28px;
-      padding: 20px;
-      transition: all 0.2s;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    .calc-card h4 {
-      font-size: 1.3rem;
-      margin-bottom: 8px;
-    }
-
-    .calc-link {
-      display: inline-block;
-      margin-top: 18px;
-      background: #2563EB;
-      padding: 8px 18px;
-      border-radius: 40px;
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      font-size: 0.85rem;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      background: linear-gradient(120deg, #F8FAFC, #38BDF8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .grid-why {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin: 40px 0;
-    }
-    .faq-item {
-      margin-bottom: 16px;
-      padding: 16px 20px;
-    }
-    .faq-question {
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-    }
-    .faq-answer {
-      display: none;
-      margin-top: 12px;
-      color: #E2E8F0;
-    }
-    footer {
-      margin-top: 80px;
-      background: #0F172A;
-      padding: 48px 0 30px;
-      border-top: 1px solid rgba(6,182,212,0.2);
-    }
-    @media (max-width: 640px) {
       .container {
         padding: 0 20px;
       }
-      .section-title {
-        font-size: 1.8rem;
-      }
+      .section-title { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -358,18 +341,17 @@
 
 <nav class="navbar" id="navbar">
   <div class="container nav-container">
-    <div class="logo">
-      <span style="font-size:28px;">⚡</span> calcify.solutions
-    </div>
+    <div class="logo">⚡ calcify.solutions</div>
     <div class="mobile-menu" id="mobileMenuBtn">☰</div>
     <div class="nav-links" id="navLinks">
       <a href="#">Home</a>
-      <a href="#calculators">Calculators</a>
-      <a href="#categories">Categories</a>
+      <a href="#financial">Finance</a>
+      <a href="#health">Health</a>
+      <a href="#math">Math</a>
+      <a href="#tools">Tools</a>
       <a href="#blog">Blog</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <button class="btn btn-primary" style="padding: 8px 20px;" id="exploreBtn">Explore Calculators</button>
+      <button class="btn-primary" id="exploreNavBtn">Explore</button>
     </div>
   </div>
 </nav>
@@ -377,137 +359,130 @@
 <main>
   <div class="container hero">
     <div class="hero-glow"></div>
-    <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700;">Free Online Calculators <br> for Every Need</h1>
-    <p style="font-size: 1.3rem; margin: 24px 0; max-width: 700px; color: #E2E8F0;">Calculate loans, SIP returns, BMI, taxes, investments, percentages, conversions — instantly & free.</p>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <button class="btn btn-primary" style="padding: 14px 32px;" onclick="document.getElementById('search-calc').focus();">Browse Calculators</button>
-      <button class="btn btn-outline" style="padding: 14px 32px;" onclick="document.querySelector('.calculator-panel').scrollIntoView({behavior:'smooth'})">Start Calculating</button>
+    <h1>Free Online Calculators <br> for Every Need</h1>
+    <p style="font-size: 1.3rem; margin: 20px 0; max-width: 650px; color: #CBD5E1;">SIP, EMI, BMI, taxes, conversions — instant, accurate & futuristic.</p>
+    <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+      <button class="btn-primary" id="heroExploreBtn">Browse Calculators</button>
+      <button class="btn-outline" id="heroCalcBtn">Try Calculator ↓</button>
     </div>
     <div class="trust-badge">
-      <span class="badge">✅ Free to Use</span>
-      <span class="badge">🔒 No Signup Needed</span>
-      <span class="badge">⚡ Fast & Accurate</span>
-      <span class="badge">📱 Mobile Friendly</span>
+      <span class="badge">✅ 100% Free</span>
+      <span class="badge">🔒 No Signup</span>
+      <span class="badge">⚡ Blazing Fast</span>
+      <span class="badge">📱 App-like UI</span>
     </div>
   </div>
 
-  <!-- WORKING SCIENTIFIC CALCULATOR SECTION -->
-  <div class="container" style="margin-top: 20px;">
-    <h2 class="section-title">Free Scientific Calculator Online</h2>
-    <div class="calculator-panel" id="futuristicCalc">
+  <!-- Featured Scientific Calculator -->
+  <div class="container" id="featuredCalc">
+    <h2 class="section-title">✨ Live Scientific Calculator</h2>
+    <div class="calculator-panel">
       <div class="calc-display" id="calcDisplay">0</div>
-      <div class="calc-buttons" id="calcButtons">
-        <!-- JS injected dynamically -->
-      </div>
-      <div class="sci-mode">
-        <button id="toggleSciBtn" class="btn btn-outline" style="padding: 8px 20px;">🔬 Scientific Mode OFF</button>
+      <div class="calc-buttons" id="calcButtons"></div>
+      <div style="margin-top: 16px; text-align: center;">
+        <button id="toggleSciBtn" class="btn-outline" style="padding: 8px 20px;">🔬 Scientific Mode OFF</button>
       </div>
     </div>
-    <p style="margin: 20px 0 40px; background: #1E293B80; padding: 20px; border-radius: 24px;">Experience lightning-fast calculations with our futuristic scientific calculator. Perfect for students, engineers, and finance experts. Mobile-optimized, keyboard supported, and 100% free.</p>
   </div>
 
-  <!-- SEARCH BAR - live filtering -->
+  <!-- Smart Search Bar -->
   <div class="container search-section">
-    <input type="text" id="search-calc" class="search-bar" placeholder="Search calculators like SIP, EMI, BMI, GST, Loan, Age, Password Generator...">
-    <div id="suggestionsHint" style="margin-top: 10px; font-size: 0.85rem; color: #38BDF8;"></div>
+    <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search calculators: SIP, EMI, BMI, Age, GST, Password Generator...">
+    <div id="searchStatus" style="margin-top: 12px; font-size: 0.85rem; color: #38BDF8;"></div>
   </div>
 
-  <!-- DYNAMIC CALCULATOR CATEGORIES (will be injected via JS) -->
-  <div id="categoriesContainer" class="container"></div>
+  <!-- DYNAMIC SECTIONS: Popular, Financial, Health, Math, Conversion & Utility -->
+  <div id="dynamicContent" class="container"></div>
 
-  <!-- WHY CHOOSE US -->
+  <!-- Why Choose Us -->
   <div class="container">
     <h2 class="section-title">Why Choose Calcify?</h2>
-    <div class="grid-why">
-      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">⚡</div><h3>Lightning Fast</h3><p>Instant results, no delays.</p></div>
-      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">🎯</div><h3>Accurate Results</h3><p>Trusted formulas & updates.</p></div>
-      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">🔐</div><h3>Privacy Friendly</h3><p>Zero data storage, fully client-side.</p></div>
-      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">📱</div><h3>Mobile Optimized</h3><p>Native app-like experience.</p></div>
-      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">💎</div><h3>Free Forever</h3><p>No paywalls, unlimited access.</p></div>
-      <div class="card" style="padding: 28px;"><div style="font-size:2rem;">🧠</div><h3>Trusted Calculations</h3><p>Used globally by millions.</p></div>
+    <div class="why-grid">
+      <div class="card"><div class="card-icon">⚡</div><h3>Lightning Fast</h3><p>Client-side, instant results.</p></div>
+      <div class="card"><div class="card-icon">🎯</div><h3>Bank-Grade Accuracy</h3><p>Trusted formulas.</p></div>
+      <div class="card"><div class="card-icon">🔐</div><h3>Privacy First</h3><p>No data stored ever.</p></div>
+      <div class="card"><div class="card-icon">📱</div><h3>Mobile Perfected</h3><p>Smooth like native app.</p></div>
+      <div class="card"><div class="card-icon">💎</div><h3>Free Forever</h3><p>No premium walls.</p></div>
     </div>
   </div>
 
-  <!-- SEO BLOG PLACEHOLDER -->
+  <!-- SEO Content Block -->
+  <div class="container" style="margin: 70px 0;">
+    <div class="glass-card" style="padding: 40px; border-radius: 40px;">
+      <h2 class="section-title" style="margin-bottom: 20px;">Master Your Finances & Health with Smart Calculators</h2>
+      <p style="font-size: 1.05rem; color: #E2E8F0;">From <strong>SIP calculators, EMI planning, loan amortization</strong> to <strong>BMI, calorie intake, and compound interest</strong> — Calcify delivers precision tools for every aspect of your life. Our platform combines futuristic design with robust financial formulas, making it the ultimate <strong>free online calculator ecosystem</strong>. Whether you're an investor, student, or fitness enthusiast, our tools provide accurate insights in real time. No downloads, no signups, just pure calculation power.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 28px;">
+        <a href="#" style="color:#38BDF8;">💰 Investment Planning →</a>
+        <a href="#" style="color:#38BDF8;">📊 EMI & Loan Guides →</a>
+        <a href="#" style="color:#38BDF8;">🏋️ Health Metrics →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog / Guides Preview -->
   <div class="container" id="blog">
-    <h2 class="section-title">Financial & Math Guides</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; margin: 30px 0;">
-      <div class="card" style="padding: 20px;"><h3>📈 How SIP Investments Work</h3><p>Maximize returns with systematic investing.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
-      <div class="card" style="padding: 20px;"><h3>💰 EMI vs Personal Loan</h3><p>Choose smart borrowing strategies.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
-      <div class="card" style="padding: 20px;"><h3>📊 Compound Interest Explained</h3><p>The 8th wonder of the world.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
-      <div class="card" style="padding: 20px;"><h3>🧾 How to Calculate GST</h3><p>Simplify tax compliance.</p><a href="#" style="color:#06B6D4;">Read more →</a></div>
+    <h2 class="section-title">📘 Expert Guides & Insights</h2>
+    <div class="cards-grid" style="margin-bottom: 30px;">
+      <div class="card"><h3>📈 How SIP Works</h3><p>Systematic Investment Plans demystified.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
+      <div class="card"><h3>🏠 EMI vs Loan Tenure</h3><p>Optimize your home loan payments.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
+      <div class="card"><h3>🧮 Compound Interest Magic</h3><p>Why Einstein called it the 8th wonder.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
+      <div class="card"><h3>🥑 BMI & Body Fat</h3><p>Understand your health metrics.</p><a href="#" class="tool-btn" style="background: #1E293B;">Read More →</a></div>
     </div>
   </div>
 
-  <!-- FAQ ACCORDION -->
+  <!-- FAQ Accordion -->
   <div class="container">
     <h2 class="section-title">Frequently Asked Questions</h2>
     <div id="faqContainer">
-      <div class="faq-item"><div class="faq-question">❓ What is an online calculator? <span>➕</span></div><div class="faq-answer">Online calculators are web-based tools for instant math, finance, health, or conversion tasks without installation.</div></div>
-      <div class="faq-item"><div class="faq-question">❓ Are calculators free to use? <span>➕</span></div><div class="faq-answer">Absolutely! All calculators on calcify.solutions are 100% free, no hidden charges.</div></div>
-      <div class="faq-item"><div class="faq-question">❓ Are finance calculators accurate? <span>➕</span></div><div class="faq-answer">Yes, we follow standard financial formulas used by institutions, providing reliable estimates.</div></div>
-      <div class="faq-item"><div class="faq-question">❓ Can I use calculators on mobile? <span>➕</span></div><div class="faq-answer">Yes, fully responsive design works like a premium app on any device.</div></div>
-      <div class="faq-item"><div class="faq-question">❓ Is my data stored? <span>➕</span></div><div class="faq-answer">Never. All calculations happen locally in your browser — total privacy.</div></div>
-      <div class="faq-item"><div class="faq-question">❓ Do I need an account? <span>➕</span></div><div class="faq-answer">No signup or login required. Just calculate instantly.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Are all calculators free? <span>➕</span></div><div class="faq-answer">Yes, 100% free with no hidden charges or subscriptions.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Do I need to create an account? <span>➕</span></div><div class="faq-answer">No account required – calculations happen instantly in your browser.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Are finance calculators accurate? <span>➕</span></div><div class="faq-answer">Absolutely. We use standard financial and mathematical formulas.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Is my data private? <span>➕</span></div><div class="faq-answer">No data is sent to servers; all processing is local – total privacy.</div></div>
+      <div class="faq-item"><div class="faq-question">📌 Can I use on mobile? <span>➕</span></div><div class="faq-answer">Yes, fully responsive interface works like a premium app.</div></div>
     </div>
   </div>
 
-  <!-- ABOUT SECTION -->
-  <div class="container" id="about" style="margin-top: 60px;">
+  <!-- About Section -->
+  <div class="container" id="about" style="margin: 70px 0 40px;">
     <h2 class="section-title">About calcify.solutions</h2>
-    <div class="glass" style="padding: 36px; border-radius: 32px;">
-      <p>Calcify.solutions is a next-generation, free online calculator ecosystem designed for speed, accuracy, and elegance. From <strong>SIP calculators, EMI, loan tools, BMI, and retirement planning</strong> to math solvers and unit converters — we bring professional-grade calculations in a futuristic interface. No signup, no ads clutter (yet AdSense friendly), and fully client-side for privacy. We are redefining utility tools with glassmorphism and instant reactivity.</p>
+    <div class="glass-card" style="padding: 36px;">
+      <p>Calcify.solutions is a next-gen, ad-friendly, free calculator platform. We combine glassmorphism design with enterprise-grade calculation logic. Covering <strong>financial planning, loan analysis, health metrics, math solvers, and utility tools</strong>, we aim to become the most trusted multi-calculator hub. Every tool is optimized for SEO and Core Web Vitals, ensuring lightning performance on GitHub Pages. Built with pure HTML/CSS/JS, privacy-first, and scalable to 1000+ calculators.</p>
     </div>
   </div>
 </main>
 
 <footer>
-  <div class="container">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
-      <div><h3>calcify.solutions</h3><p>Smart calculations made simple.</p><p style="margin-top: 12px;">📧 support@calcify.solutions</p></div>
-      <div><h4>Quick links</h4><a href="#" style="display:block; color:#94A3B8;">Home</a><a href="#calculators" style="display:block; color:#94A3B8;">Calculators</a><a href="#blog" style="display:block; color:#94A3B8;">Blog</a></div>
-      <div><h4>Legal</h4><a href="#" style="display:block; color:#94A3B8;">Privacy Policy</a><a href="#" style="display:block; color:#94A3B8;">Terms & Conditions</a><a href="#" style="display:block; color:#94A3B8;">Disclaimer</a><a href="#" style="display:block; color:#94A3B8;">Sitemap</a></div>
-    </div>
-    <hr style="margin: 30px 0; border-color: #1E293B;">
-    <div style="text-align: center; color:#64748B;">© 2025 calcify.solutions — Free, fast, futuristic calculators. All rights reserved.</div>
+  <div class="container footer-grid">
+    <div><h3>⚡ calcify.solutions</h3><p>Smart calculations made simple.</p><p style="margin-top: 12px;">📧 support@calcify.solutions</p></div>
+    <div><h4>Quick links</h4><a href="#" style="color:#94A3B8; display:block;">Home</a><a href="#financial" style="color:#94A3B8;">Calculators</a><a href="#blog" style="color:#94A3B8;">Blog</a></div>
+    <div><h4>Legal</h4><a href="#" style="color:#94A3B8;">Privacy Policy</a><a href="#" style="color:#94A3B8;">Terms</a><a href="#" style="color:#94A3B8;">Sitemap</a></div>
   </div>
+  <div class="container" style="text-align: center; margin-top: 40px; color: #64748B;">© 2025 calcify.solutions — Futuristic free calculators. All rights reserved.</div>
 </footer>
 
 <script>
-  // ------------------------- CALCULATOR LOGIC (scientific toggle) -------------------------
+  // ---------- CALCULATOR LOGIC (scientific mode) ----------
   let scientificMode = false;
   let currentInput = '0';
   let lastOperator = null;
   let pendingValue = null;
   let shouldReset = false;
-
   const displayEl = document.getElementById('calcDisplay');
   const toggleBtn = document.getElementById('toggleSciBtn');
   const buttonsContainer = document.getElementById('calcButtons');
 
-  function updateDisplay() {
-    displayEl.innerText = currentInput.length > 18 ? parseFloat(currentInput).toExponential(8) : currentInput;
-  }
-
+  function updateDisplay() { displayEl.innerText = currentInput.length > 18 ? parseFloat(currentInput).toExponential(8) : currentInput; }
   function handleNumber(num) {
-    if (shouldReset) {
-      currentInput = num.toString();
-      shouldReset = false;
-    } else {
-      currentInput = currentInput === '0' ? num.toString() : currentInput + num;
-    }
+    if (shouldReset) { currentInput = num.toString(); shouldReset = false; } 
+    else { currentInput = currentInput === '0' ? num.toString() : currentInput + num; }
     updateDisplay();
   }
-
   function handleOperator(op) {
-    if (pendingValue !== null && !shouldReset) {
-      calculate();
-    }
+    if (pendingValue !== null && !shouldReset) calculate();
     pendingValue = parseFloat(currentInput);
     lastOperator = op;
     shouldReset = true;
   }
-
   function calculate() {
     if (pendingValue === null || lastOperator === null) return;
     let second = parseFloat(currentInput);
@@ -518,223 +493,182 @@
       case '*': result = pendingValue * second; break;
       case '/': result = pendingValue / second; break;
       case '%': result = pendingValue * (second / 100); break;
-      case '√': result = Math.sqrt(second); pendingValue = null; lastOperator = null; currentInput = result.toString(); updateDisplay(); shouldReset = true; return;
       default: return;
     }
     currentInput = result.toString();
-    pendingValue = null;
-    lastOperator = null;
-    shouldReset = true;
+    pendingValue = null; lastOperator = null; shouldReset = true;
     updateDisplay();
   }
-
-  function handleSqrt() {
-    let val = parseFloat(currentInput);
-    if (isNaN(val)) return;
-    currentInput = Math.sqrt(val).toString();
-    updateDisplay();
-    shouldReset = true;
-  }
-
-  function handlePercentage() {
-    let val = parseFloat(currentInput);
-    currentInput = (val / 100).toString();
-    updateDisplay();
-    shouldReset = true;
-  }
-
-  function clearAll() {
-    currentInput = '0';
-    pendingValue = null;
-    lastOperator = null;
-    shouldReset = false;
-    updateDisplay();
-  }
-
-  function deleteLast() {
-    if (currentInput.length === 1) currentInput = '0';
-    else currentInput = currentInput.slice(0, -1);
-    updateDisplay();
-  }
+  function clearAll() { currentInput = '0'; pendingValue = null; lastOperator = null; shouldReset = false; updateDisplay(); }
+  function deleteLast() { if (currentInput.length === 1) currentInput = '0'; else currentInput = currentInput.slice(0, -1); updateDisplay(); }
+  function handleSqrt() { let val = parseFloat(currentInput); if (!isNaN(val)) { currentInput = Math.sqrt(val).toString(); updateDisplay(); shouldReset = true; } }
+  function handlePercentage() { let val = parseFloat(currentInput); currentInput = (val / 100).toString(); updateDisplay(); shouldReset = true; }
 
   function buildCalculatorUI() {
-    let basicButtons = [
-      ['7','8','9','/'], ['4','5','6','*'], ['1','2','3','-'], ['0','.','=','+'],
-      ['C','⌫','%','√']
-    ];
-    let sciButtons = [['sin','cos','tan','log'], ['ln','x²','xʸ','('], [')','π','e','^']];
+    let basic = [['7','8','9','/'],['4','5','6','*'],['1','2','3','-'],['0','.','=','+'],['C','⌫','%','√']];
+    let sci = [['sin','cos','tan','log'],['ln','x²','π','e']];
     let html = '';
-    for(let row of basicButtons) {
-      html += '<div style="display:contents;">';
+    for(let row of basic) {
       row.forEach(btn => {
         if(btn === '=') html += `<button class="calc-btn equals" data-val="${btn}">${btn}</button>`;
         else if(['/','*','-','+','%'].includes(btn)) html += `<button class="calc-btn operator" data-val="${btn}">${btn}</button>`;
         else html += `<button class="calc-btn" data-val="${btn}">${btn}</button>`;
       });
-      html += '</div>';
     }
     if(scientificMode) {
-      html += '<div style="grid-column: span 4; display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 8px;">';
-      sciButtons.flat().forEach(btn => {
-        html += `<button class="calc-btn operator" data-val="${btn}">${btn}</button>`;
-      });
+      html += '<div style="grid-column: span 4; display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 10px;">';
+      sci.flat().forEach(btn => { html += `<button class="calc-btn operator" data-val="${btn}">${btn}</button>`; });
       html += '</div>';
     }
     buttonsContainer.innerHTML = html;
-    attachCalcEvents();
+    attachEvents();
   }
-
-  function attachCalcEvents() {
+  function attachEvents() {
     document.querySelectorAll('#calcButtons .calc-btn').forEach(btn => {
-      btn.removeEventListener('click', calcHandler);
-      btn.addEventListener('click', calcHandler);
+      btn.addEventListener('click', (e) => {
+        let val = e.currentTarget.getAttribute('data-val');
+        if (!isNaN(val) || val === '.') handleNumber(val);
+        else if (val === 'C') clearAll();
+        else if (val === '⌫') deleteLast();
+        else if (val === '=') calculate();
+        else if (val === '√') handleSqrt();
+        else if (val === '%') handlePercentage();
+        else if (['+','-','*','/'].includes(val)) handleOperator(val);
+        else if (scientificMode) {
+          let num = parseFloat(currentInput);
+          if (val === 'sin') { currentInput = Math.sin(num).toString(); updateDisplay(); shouldReset=true; }
+          else if (val === 'cos') { currentInput = Math.cos(num).toString(); updateDisplay(); shouldReset=true; }
+          else if (val === 'tan') { currentInput = Math.tan(num).toString(); updateDisplay(); shouldReset=true; }
+          else if (val === 'log') { currentInput = Math.log10(num).toString(); updateDisplay(); shouldReset=true; }
+          else if (val === 'ln') { currentInput = Math.log(num).toString(); updateDisplay(); shouldReset=true; }
+          else if (val === 'x²') { currentInput = (num*num).toString(); updateDisplay(); shouldReset=true; }
+          else if (val === 'π') { handleNumber(Math.PI.toString()); }
+          else if (val === 'e') { handleNumber(Math.E.toString()); }
+        }
+      });
     });
   }
-  function calcHandler(e) {
-    let val = e.currentTarget.getAttribute('data-val');
-    if(!isNaN(val) || val === '.') handleNumber(val);
-    else if(val === 'C') clearAll();
-    else if(val === '⌫') deleteLast();
-    else if(val === '=') calculate();
-    else if(val === '√') handleSqrt();
-    else if(val === '%') handlePercentage();
-    else if(['+','-','*','/'].includes(val)) handleOperator(val);
-    else if(scientificMode) {
-      if(val === 'sin') { currentInput = Math.sin(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
-      else if(val === 'cos') { currentInput = Math.cos(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
-      else if(val === 'tan') { currentInput = Math.tan(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
-      else if(val === 'log') { currentInput = Math.log10(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
-      else if(val === 'ln') { currentInput = Math.log(parseFloat(currentInput)).toString(); updateDisplay(); shouldReset=true;}
-      else if(val === 'x²') { let n = parseFloat(currentInput); currentInput = (n*n).toString(); updateDisplay(); shouldReset=true;}
-      else if(val === 'π') { handleNumber(Math.PI.toString()); }
-      else if(val === 'e') { handleNumber(Math.E.toString()); }
-    }
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    scientificMode = !scientificMode;
-    toggleBtn.innerText = scientificMode ? '🔬 Scientific Mode ON' : '🔬 Scientific Mode OFF';
-    buildCalculatorUI();
-  });
+  toggleBtn.addEventListener('click', () => { scientificMode = !scientificMode; toggleBtn.innerText = scientificMode ? '🔬 Scientific Mode ON' : '🔬 Scientific Mode OFF'; buildCalculatorUI(); });
   buildCalculatorUI();
 
-  // ---------- GLOBAL CALCULATORS DATA (all 70+ tools) ----------
-  const calculatorsDB = [
-    // Financial
-    { name: "SIP Calculator", category: "Financial Calculators", slug: "sip-calculator" },
-    { name: "EMI Calculator", category: "Financial Calculators", slug: "emi-calculator" },
-    { name: "Loan Calculator", category: "Financial Calculators", slug: "loan-calculator" },
-    { name: "Personal Loan Calculator", category: "Financial Calculators", slug: "personal-loan-calculator" },
-    { name: "Home Loan Calculator", category: "Financial Calculators", slug: "home-loan-calculator" },
-    { name: "Car Loan Calculator", category: "Financial Calculators", slug: "car-loan-calculator" },
-    { name: "Mortgage Calculator", category: "Financial Calculators", slug: "mortgage-calculator" },
-    { name: "Compound Interest Calculator", category: "Financial Calculators", slug: "compound-interest-calculator" },
-    { name: "Investment Calculator", category: "Financial Calculators", slug: "investment-calculator" },
-    { name: "FD Calculator", category: "Financial Calculators", slug: "fd-calculator" },
-    { name: "RD Calculator", category: "Financial Calculators", slug: "rd-calculator" },
-    { name: "PPF Calculator", category: "Financial Calculators", slug: "ppf-calculator" },
-    { name: "Retirement Calculator", category: "Financial Calculators", slug: "retirement-calculator" },
-    { name: "Inflation Calculator", category: "Financial Calculators", slug: "inflation-calculator" },
-    { name: "GST Calculator", category: "Financial Calculators", slug: "gst-calculator" },
-    { name: "Income Tax Calculator", category: "Financial Calculators", slug: "income-tax-calculator" },
-    { name: "Salary Calculator", category: "Financial Calculators", slug: "salary-calculator" },
-    { name: "Profit Margin Calculator", category: "Financial Calculators", slug: "profit-margin-calculator" },
-    { name: "ROI Calculator", category: "Financial Calculators", slug: "roi-calculator" },
-    { name: "Currency Converter", category: "Financial Calculators", slug: "currency-converter" },
-    // Health
-    { name: "BMI Calculator", category: "Health & Fitness Calculators", slug: "bmi-calculator" },
-    { name: "Calorie Calculator", category: "Health & Fitness Calculators", slug: "calorie-calculator" },
-    { name: "BMR Calculator", category: "Health & Fitness Calculators", slug: "bmr-calculator" },
-    { name: "Body Fat Calculator", category: "Health & Fitness Calculators", slug: "body-fat-calculator" },
-    { name: "Ideal Weight Calculator", category: "Health & Fitness Calculators", slug: "ideal-weight-calculator" },
-    { name: "Water Intake Calculator", category: "Health & Fitness Calculators", slug: "water-intake-calculator" },
-    { name: "Pregnancy Calculator", category: "Health & Fitness Calculators", slug: "pregnancy-calculator" },
-    { name: "Due Date Calculator", category: "Health & Fitness Calculators", slug: "due-date-calculator" },
-    { name: "Pace Calculator", category: "Health & Fitness Calculators", slug: "pace-calculator" },
-    // Math & Education
-    { name: "Scientific Calculator", category: "Math & Education Calculators", slug: "scientific-calculator-math" },
-    { name: "Percentage Calculator", category: "Math & Education Calculators", slug: "percentage-calculator" },
-    { name: "Fraction Calculator", category: "Math & Education Calculators", slug: "fraction-calculator" },
-    { name: "GPA Calculator", category: "Math & Education Calculators", slug: "gpa-calculator" },
-    { name: "Grade Calculator", category: "Math & Education Calculators", slug: "grade-calculator" },
-    { name: "Algebra Calculator", category: "Math & Education Calculators", slug: "algebra-calculator" },
-    { name: "Standard Deviation Calculator", category: "Math & Education Calculators", slug: "standard-deviation-calculator" },
-    { name: "Average Calculator", category: "Math & Education Calculators", slug: "average-calculator" },
-    { name: "Ratio Calculator", category: "Math & Education Calculators", slug: "ratio-calculator" },
-    // Time & Conversion
-    { name: "Age Calculator", category: "Time & Conversion Calculators", slug: "age-calculator" },
-    { name: "Date Calculator", category: "Time & Conversion Calculators", slug: "date-calculator" },
-    { name: "Time Calculator", category: "Time & Conversion Calculators", slug: "time-calculator" },
-    { name: "Hours Calculator", category: "Time & Conversion Calculators", slug: "hours-calculator" },
-    { name: "Unit Converter", category: "Time & Conversion Calculators", slug: "unit-converter" },
-    { name: "Percentage Increase Calculator", category: "Time & Conversion Calculators", slug: "percentage-increase-calculator" },
-    // Utility
-    { name: "Random Number Generator", category: "Utility Tools", slug: "random-number-generator" },
-    { name: "Password Generator", category: "Utility Tools", slug: "password-generator" },
-    { name: "QR Code Generator", category: "Utility Tools", slug: "qr-code-generator" },
-    { name: "UUID Generator", category: "Utility Tools", slug: "uuid-generator" },
-    { name: "Subnet Calculator", category: "Utility Tools", slug: "subnet-calculator" }
+  // ---------- CALCULATORS DATABASE (static HTML links) ----------
+  const calculatorsList = [
+    { name: "SIP Calculator", category: "Financial", slug: "sip-calculator.html" },
+    { name: "EMI Calculator", category: "Financial", slug: "emi-calculator.html" },
+    { name: "Loan Calculator", category: "Financial", slug: "loan-calculator.html" },
+    { name: "Personal Loan Calculator", category: "Financial", slug: "personal-loan-calculator.html" },
+    { name: "Home Loan Calculator", category: "Financial", slug: "home-loan-calculator.html" },
+    { name: "Car Loan Calculator", category: "Financial", slug: "car-loan-calculator.html" },
+    { name: "Mortgage Calculator", category: "Financial", slug: "mortgage-calculator.html" },
+    { name: "Compound Interest Calculator", category: "Financial", slug: "compound-interest-calculator.html" },
+    { name: "Investment Calculator", category: "Financial", slug: "investment-calculator.html" },
+    { name: "FD Calculator", category: "Financial", slug: "fd-calculator.html" },
+    { name: "RD Calculator", category: "Financial", slug: "rd-calculator.html" },
+    { name: "PPF Calculator", category: "Financial", slug: "ppf-calculator.html" },
+    { name: "Retirement Calculator", category: "Financial", slug: "retirement-calculator.html" },
+    { name: "Inflation Calculator", category: "Financial", slug: "inflation-calculator.html" },
+    { name: "GST Calculator", category: "Financial", slug: "gst-calculator.html" },
+    { name: "Income Tax Calculator", category: "Financial", slug: "income-tax-calculator.html" },
+    { name: "Salary Calculator", category: "Financial", slug: "salary-calculator.html" },
+    { name: "Profit Margin Calculator", category: "Financial", slug: "profit-margin-calculator.html" },
+    { name: "ROI Calculator", category: "Financial", slug: "roi-calculator.html" },
+    { name: "Currency Converter", category: "Financial", slug: "currency-converter.html" },
+    { name: "BMI Calculator", category: "Health", slug: "bmi-calculator.html" },
+    { name: "Calorie Calculator", category: "Health", slug: "calorie-calculator.html" },
+    { name: "BMR Calculator", category: "Health", slug: "bmr-calculator.html" },
+    { name: "Body Fat Calculator", category: "Health", slug: "body-fat-calculator.html" },
+    { name: "Ideal Weight Calculator", category: "Health", slug: "ideal-weight-calculator.html" },
+    { name: "Water Intake Calculator", category: "Health", slug: "water-intake-calculator.html" },
+    { name: "Pregnancy Calculator", category: "Health", slug: "pregnancy-calculator.html" },
+    { name: "Pace Calculator", category: "Health", slug: "pace-calculator.html" },
+    { name: "Scientific Calculator", category: "Math", slug: "scientific-calculator.html" },
+    { name: "Percentage Calculator", category: "Math", slug: "percentage-calculator.html" },
+    { name: "Fraction Calculator", category: "Math", slug: "fraction-calculator.html" },
+    { name: "GPA Calculator", category: "Math", slug: "gpa-calculator.html" },
+    { name: "Grade Calculator", category: "Math", slug: "grade-calculator.html" },
+    { name: "Algebra Calculator", category: "Math", slug: "algebra-calculator.html" },
+    { name: "Standard Deviation Calculator", category: "Math", slug: "standard-deviation-calculator.html" },
+    { name: "Average Calculator", category: "Math", slug: "average-calculator.html" },
+    { name: "Ratio Calculator", category: "Math", slug: "ratio-calculator.html" },
+    { name: "Age Calculator", category: "Conversion & Utility", slug: "age-calculator.html" },
+    { name: "Date Calculator", category: "Conversion & Utility", slug: "date-calculator.html" },
+    { name: "Time Calculator", category: "Conversion & Utility", slug: "time-calculator.html" },
+    { name: "Hours Calculator", category: "Conversion & Utility", slug: "hours-calculator.html" },
+    { name: "Unit Converter", category: "Conversion & Utility", slug: "unit-converter.html" },
+    { name: "Percentage Increase Calculator", category: "Conversion & Utility", slug: "percentage-increase-calculator.html" },
+    { name: "Random Number Generator", category: "Conversion & Utility", slug: "random-number-generator.html" },
+    { name: "Password Generator", category: "Conversion & Utility", slug: "password-generator.html" },
+    { name: "QR Code Generator", category: "Conversion & Utility", slug: "qr-code-generator.html" },
+    { name: "UUID Generator", category: "Conversion & Utility", slug: "uuid-generator.html" },
+    { name: "Subnet Calculator", category: "Conversion & Utility", slug: "subnet-calculator.html" }
   ];
 
-  const categoriesMap = new Map();
-  calculatorsDB.forEach(calc => {
-    if(!categoriesMap.has(calc.category)) categoriesMap.set(calc.category, []);
-    categoriesMap.get(calc.category).push(calc);
-  });
+  const popularCalculators = [
+    { name: "SIP Calculator", slug: "sip-calculator.html", icon:"📈" }, 
+    { name: "EMI Calculator", slug: "emi-calculator.html", icon:"🏦" }, 
+    { name: "BMI Calculator", slug: "bmi-calculator.html", icon:"⚖️" }, 
+    { name: "Percentage Calculator", slug: "percentage-calculator.html", icon:"%"}
+  ];
 
-  function renderCategories(filterText = "") {
-    const container = document.getElementById('categoriesContainer');
+  function renderSections(filter = "") {
+    const container = document.getElementById('dynamicContent');
     container.innerHTML = "";
-    const filteredLower = filterText.toLowerCase();
-    for(let [catName, calcs] of categoriesMap.entries()) {
-      let filteredCalcs = calcs.filter(c => c.name.toLowerCase().includes(filteredLower));
-      if(filteredCalcs.length === 0 && filterText !== "") continue;
-      let secHtml = `<div style="margin-bottom: 60px;" id="cat-${catName.replace(/\s/g,'')}"><h2 class="section-title">${catName}</h2><p style="margin-bottom: 20px;">Fast, reliable ${catName.toLowerCase()} with real-time results.</p><div class="category-grid" id="grid-${catName.replace(/\s/g,'')}">`;
-      filteredCalcs.forEach(calc => {
-        secHtml += `<div class="calc-card"><h4>📐 ${calc.name}</h4><p>Precision tool for instant ${calc.name.split(' ')[0]} calculations.</p><a href="/calculators/${calc.slug}/" class="calc-link">Use Calculator →</a></div>`;
+    const filterLower = filter.toLowerCase();
+    // Popular section
+    let popularHtml = `<section style="margin-bottom: 70px;"><h2 class="section-title">⭐ Popular Calculators</h2><div class="cards-grid">`;
+    let filteredPopular = popularCalculators.filter(p => p.name.toLowerCase().includes(filterLower));
+    filteredPopular.forEach(p => {
+      popularHtml += `<div class="card"><div class="card-icon">${p.icon}</div><h3>${p.name}</h3><p>Instant, free calculation tool.</p><a href="${p.slug}" class="tool-btn">Use Calculator →</a></div>`;
+    });
+    popularHtml += `</div></section>`;
+    if(filteredPopular.length) container.innerHTML += popularHtml;
+
+    const categories = { Financial: "💰 Financial Calculators", Health: "🏋️ Health & Fitness", Math: "📐 Math & Education", "Conversion & Utility": "🛠️ Conversion & Utility Tools" };
+    for(let [catKey, catTitle] of Object.entries(categories)) {
+      let items = calculatorsList.filter(c => c.category === catKey && c.name.toLowerCase().includes(filterLower));
+      if(items.length === 0) continue;
+      let secHtml = `<section id="${catKey.toLowerCase().replace(/[& ]/g,'')}" style="margin-bottom: 80px;"><h2 class="section-title">${catTitle}</h2><div class="cards-grid">`;
+      items.forEach(item => {
+        let icon = catKey === "Financial" ? "📊" : (catKey === "Health" ? "❤️" : (catKey === "Math" ? "📐" : "⚙️"));
+        secHtml += `<div class="card"><div class="card-icon">${icon}</div><h3>${item.name}</h3><p>Precision tool for ${item.name.toLowerCase()}.</p><a href="${item.slug}" class="tool-btn">Use Calculator →</a></div>`;
       });
-      secHtml += `</div></div>`;
+      secHtml += `</div></section>`;
       container.innerHTML += secHtml;
     }
-    if(container.innerHTML === "") container.innerHTML = "<p style='text-align:center; padding:40px;'>✨ No calculators found. Try another keyword.</p>";
+    if(container.innerHTML === "") container.innerHTML = "<div class='glass-card' style='padding:40px; text-align:center;'>✨ No calculators found. Try a different keyword.</div>";
   }
-  const searchInput = document.getElementById('search-calc');
-  searchInput.addEventListener('input', (e) => {
-    renderCategories(e.target.value);
-    document.getElementById('suggestionsHint').innerHTML = e.target.value ? `🔍 Showing results for “${e.target.value}”` : "";
-  });
-  renderCategories("");
 
-  // Mobile / scroll shrink
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if(window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+  // Search listener
+  const searchBox = document.getElementById('searchInput');
+  const searchStatus = document.getElementById('searchStatus');
+  searchBox.addEventListener('input', (e) => {
+    let val = e.target.value;
+    renderSections(val);
+    searchStatus.innerText = val ? `🔍 Showing results for "${val}"` : "";
   });
-  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-    document.getElementById('navLinks').classList.toggle('active');
-  });
-  document.getElementById('exploreBtn').addEventListener('click', () => document.getElementById('search-calc').focus());
+  renderSections("");
+
+  // Mobile & helper
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
+  document.getElementById('heroExploreBtn').addEventListener('click', () => searchBox.focus());
+  document.getElementById('heroCalcBtn').addEventListener('click', () => document.getElementById('featuredCalc').scrollIntoView({behavior:'smooth'}));
+  document.getElementById('exploreNavBtn').addEventListener('click', () => searchBox.focus());
 
   // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      let ans = q.nextElementSibling;
-      ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
-      q.querySelector('span').innerHTML = ans.style.display === 'block' ? '➖' : '➕';
+  document.querySelectorAll('.faq-item').forEach(item => {
+    let qDiv = item.querySelector('.faq-question');
+    let ans = item.querySelector('.faq-answer');
+    qDiv.addEventListener('click', () => {
+      let isOpen = ans.style.display === 'block';
+      ans.style.display = isOpen ? 'none' : 'block';
+      qDiv.querySelector('span').innerHTML = isOpen ? '➕' : '➖';
     });
   });
-  // JSON-LD Schema (Organization + FAQ)
-  const scriptSchema = document.createElement('script');
-  scriptSchema.type = 'application/ld+json';
-  scriptSchema.textContent = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Calcify Solutions",
-    "url": "https://calcify.solutions",
-    "potentialAction": { "@type": "SearchAction", "target": "https://calcify.solutions/?s={search_term_string}" },
-    "description": "Free online calculators for finance, health, math & conversions. Futuristic & accurate."
-  });
-  document.head.appendChild(scriptSchema);
+  // Schema
+  const schema = document.createElement('script');
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "name": "Calcify Solutions", "url": "https://calcify.solutions", "potentialAction": { "@type": "SearchAction", "target": "https://calcify.solutions/?s={search_term_string}" } });
+  document.head.appendChild(schema);
 </script>
 </body>
 </html>
