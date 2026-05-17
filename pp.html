@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Privacy Policy | calcify.solutions</title>
+  <meta name="description" content="Privacy Policy for calcify.solutions – We respect your privacy. No tracking, no data storage, no cookies (except essential). Read how we protect your information.">
+  <meta name="keywords" content="privacy policy, data protection, no cookies, GDPR compliant, calculator privacy">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/privacy.html">
+  <meta property="og:title" content="Privacy Policy – calcify.solutions">
+  <meta property="og:description" content="We don't collect or store your personal data. All calculations are client‑side.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .page-container, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Page Layout */
+    .page-container {
+      padding: 48px;
+      margin: 40px 0;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .last-updated {
+      text-align: center;
+      color: #94A3B8;
+      margin-bottom: 40px;
+      font-size: 0.9rem;
+    }
+    .policy-section {
+      margin-bottom: 32px;
+    }
+    .policy-section h2 {
+      font-size: 1.6rem;
+      color: #38BDF8;
+      margin-bottom: 16px;
+      border-left: 4px solid #06B6D4;
+      padding-left: 16px;
+    }
+    .policy-section h3 {
+      font-size: 1.2rem;
+      color: #E2E8F0;
+      margin: 20px 0 12px 0;
+    }
+    .policy-section p, .policy-section li {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .policy-section ul {
+      margin-left: 32px;
+      margin-bottom: 16px;
+    }
+    .highlight {
+      background: rgba(6, 182, 212, 0.1);
+      padding: 16px;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .page-container {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+    <div class="page-container">
+      <h1>Privacy Policy</h1>
+      <div class="last-updated">📅 Last updated: April 18, 2026</div>
+
+      <div class="policy-section">
+        <h2>1. Our Commitment to Privacy</h2>
+        <p>At calcify.solutions, your privacy isn't an afterthought — it's the foundation of how we built this platform. We believe that you shouldn't have to trade your personal data for access to useful tools. That's why we designed every calculator to run entirely in your browser. No accounts, no logins, no data harvesting, no surprises.</p>
+        <div class="highlight">
+          <strong>🔒 Core promise:</strong> We do not collect, store, or sell any personal information. All calculations happen locally on your device. You can even use most calculators offline after the first load.
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <h2>2. What Data We DO NOT Collect</h2>
+        <ul>
+          <li><strong>Personal identifiers:</strong> Name, email, phone number, address — never requested, never stored.</li>
+          <li><strong>Financial data:</strong> Loan amounts, investment figures, tax details — all stay in your browser.</li>
+          <li><strong>Health metrics:</strong> Weight, height, age, body measurements — processed locally, not transmitted.</li>
+          <li><strong>IP addresses or browsing history:</strong> We don't run analytics scripts that track you across sessions.</li>
+        </ul>
+        <p>When you use a calculator, the numbers you enter never leave your device. Not to our servers, not to third parties. We designed it that way.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>3. Cookies & Tracking Technologies</h2>
+        <p><strong>We do NOT use any tracking cookies, advertising cookies, or persistent identifiers.</strong> The only exception is technically necessary session storage (e.g., remembering which category you're viewing) — this data stays in your browser and is deleted when you close the tab. We don't use Google Analytics, Facebook Pixel, or any similar tracking service.</p>
+        <p>If we ever introduce non‑intrusive ads (to keep the site free), they will be served by ad networks that may use cookies. In that case, we will clearly update this policy and provide opt‑out options. As of now, there are no third‑party ads.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>4. External APIs & Third‑Party Services</h2>
+        <p>calcify.solutions uses the following external services only for specific features. No personal data is ever sent to these APIs — only the currency code you select (e.g., "USD") and anonymous requests.</p>
+        <ul>
+          <li><strong>Frankfurter API (currency conversion):</strong> Fetches live exchange rates from the European Central Bank. No API key is required, and no user data is transmitted beyond the requested currency pair.</li>
+          <li><strong>CurrencyAPI (backup currency converter):</strong> Uses a public API key. Only the currency codes you choose are sent.</li>
+          <li><strong>GitHub Pages hosting:</strong> The website is hosted on GitHub Pages. GitHub may collect standard server logs (IP address, request time) as per their privacy policy, but we have no access to or control over those logs.</li>
+        </ul>
+        <p>No social media logins, no embedded videos, no external fonts that track you. Everything is self‑hosted or uses privacy‑respecting CDNs.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>5. Children's Privacy</h2>
+        <p>Our calculators are designed for general audiences and are safe for children (e.g., BMI calculator, age calculator). We do not knowingly collect any information from children under 13. If you believe your child has entered personal information into any of our tools, please note that the data never leaves their device, so there is no stored record for us to delete.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>6. Data Security</h2>
+        <p>Since we don't collect any data, there is nothing to steal, leak, or hack. All code is served over HTTPS, and your browser’s local storage is never used for personal information. The only “security” risk would be if the website itself were compromised — in that case, the attacker could only modify the calculator output, not access any of your personal data (because there is none).</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>7. Your Rights (GDPR, CCPA, etc.)</h2>
+        <p>Because we collect zero personal data, there is no data to access, rectify, delete, or port. You are automatically in full control. If you are concerned about any residual logs (like GitHub Pages server logs), please review GitHub's privacy policy. We do not have access to those logs and cannot identify individual users from them.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>8. Changes to This Privacy Policy</h2>
+        <p>Any future changes will be posted on this page with an updated "Last updated" date. If we ever introduce new features that involve data collection (e.g., optional user accounts), we will ask for explicit consent and update this policy prominently. You can always find the latest version at <a href="privacy.html" style="color:#38BDF8;">calcify.solutions/privacy.html</a>.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>9. Contact Us</h2>
+        <p>If you have any questions about this privacy policy or our practices, you can reach us at:</p>
+        <p>📧 <a href="mailto:support@calcify.solutions" style="color:#38BDF8;">support@calcify.solutions</a></p>
+        <p>Or via our <a href="contact.html" style="color:#38BDF8;">contact page</a>. We aim to respond within 48 hours.</p>
+      </div>
+
+      <div class="highlight" style="margin-top: 40px;">
+        <p><strong>📢 Summary for the privacy‑conscious:</strong> This website does not track you, does not store your data, and runs all calculations locally. You can verify this by opening your browser's developer tools — no network requests are made when you use a calculator (except currency converter, which only fetches exchange rates). We built calcify.solutions the way we wish every tool website worked.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions — Zero tracking. Zero data collection. Just calculators.</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+</script>
+</body>
+</html>
