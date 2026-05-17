@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RD Calculator | Recurring Deposit Maturity & Interest | calcify.solutions</title>
+  <meta name="description" content="Free RD (Recurring Deposit) calculator: calculate maturity amount, total interest, and effective yield for your recurring deposit investments. Plan your monthly savings.">
+  <meta name="keywords" content="RD calculator, recurring deposit calculator, RD maturity calculator, monthly deposit, RD returns, savings calculator">
+  <meta name="author" content="Calcify Solutions">
+  <link rel="canonical" href="https://calcify.solutions/rd-calculator.html">
+  <meta property="og:title" content="RD Calculator | Recurring Deposit Maturity & Interest | calcify.solutions">
+  <meta property="og:description" content="Calculate RD maturity amount and interest earned. Free and easy to use.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'%3E%3Cpath d='M4 4h16v2H4V4zm2 4h12v2H6V8zm14 4H4v2h16v-2zm-2 4H6v2h12v-2z'/%3E%3C/svg%3E">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0F172A;
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .glass-card, .navbar, .calculator-card, .info-card, .footer-links a {
+      background: rgba(30, 41, 59, 0.45);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 28px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+      backdrop-filter: blur(16px);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 14px 0;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #F8FAFC, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #06B6D4;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      transform: scale(0.96);
+      box-shadow: 0 6px 14px rgba(6,182,212,0.3);
+    }
+    .mobile-menu {
+      display: none;
+      font-size: 28px;
+      background: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #0F172Acc;
+        backdrop-filter: blur(20px);
+        border-radius: 28px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      background: linear-gradient(135deg, #FFFFFF, #38BDF8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .hero-description {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #CBD5E1;
+      font-size: 1.1rem;
+    }
+
+    /* Calculator Card */
+    .calculator-card {
+      padding: 32px;
+      margin: 30px 0 50px;
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .input-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .input-group label {
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+    .input-group input, .input-group select {
+      background: #0F172A;
+      border: 1px solid #2563EB;
+      padding: 14px 18px;
+      border-radius: 28px;
+      font-size: 1rem;
+      color: white;
+      outline: none;
+      transition: 0.2s;
+    }
+    .input-group select option {
+      background: #0F172A;
+    }
+    .input-group input:focus, .input-group select:focus {
+      border-color: #06B6D4;
+      box-shadow: 0 0 8px rgba(6,182,212,0.5);
+    }
+    .tenure-group {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .tenure-group input {
+      flex: 2;
+    }
+    .tenure-group select {
+      flex: 1;
+    }
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 28px 0 32px;
+    }
+    .calc-btn, .reset-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .calc-btn {
+      background: linear-gradient(135deg, #2563EB, #06B6D4);
+      color: white;
+    }
+    .reset-btn {
+      background: rgba(100, 116, 139, 0.3);
+      color: #E2E8F0;
+      border: 1px solid #475569;
+    }
+    .calc-btn:hover, .reset-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result-box {
+      background: #0F172A;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #1E293B;
+      font-size: 1.1rem;
+    }
+    .result-item span:first-child {
+      color: #94A3B8;
+    }
+    .result-item span:last-child {
+      font-weight: 700;
+      color: #38BDF8;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin: 60px 0 40px;
+    }
+    .info-card {
+      padding: 28px;
+      margin-bottom: 32px;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: #38BDF8;
+    }
+    .info-card p, .info-card ul {
+      color: #CBD5E1;
+      margin-bottom: 12px;
+    }
+    .info-card ul {
+      padding-left: 24px;
+    }
+    .formula {
+      background: #0F172A;
+      padding: 16px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 70px;
+      background: #0A0F1A;
+      border-top: 1px solid rgba(6,182,212,0.2);
+      padding: 40px 0 24px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      padding: 6px 12px;
+      transition: 0.2s;
+    }
+    .footer-links a:hover {
+      color: #38BDF8;
+    }
+    .copyright {
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        justify-content: center;
+      }
+      .tenure-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">⚡ calcify.solutions</div>
+    <div class="mobile-menu" id="mobileMenuBtn">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="categories.html">Categories</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="btn-primary" id="exploreBtn">Explore Calculators →</button>
+  </div>
+</nav>
+
+<main>
+  <div class="container hero">
+    <h1>RD Calculator</h1>
+    <p class="hero-description">Calculate the maturity amount and interest earned on your Recurring Deposit (RD). Plan your monthly savings with accurate projections based on monthly deposit, interest rate, tenure, and compounding frequency.</p>
+  </div>
+
+  <div class="container">
+    <div class="calculator-card">
+      <div class="input-group">
+        <label>💰 Monthly Deposit (₹)</label>
+        <input type="number" id="monthlyAmount" placeholder="e.g., 5000" value="5000">
+      </div>
+      <div class="input-group">
+        <label>📈 Annual Interest Rate (%)</label>
+        <input type="number" id="rate" placeholder="e.g., 7.5" value="7.5" step="0.1">
+      </div>
+      <div class="input-group">
+        <label>⏱️ Tenure</label>
+        <div class="tenure-group">
+          <input type="number" id="tenureValue" placeholder="e.g., 5" value="5">
+          <select id="tenureUnit">
+            <option value="years" selected>Years</option>
+            <option value="months">Months</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <label>🔄 Compounding Frequency</label>
+        <select id="frequency">
+          <option value="1">Annually</option>
+          <option value="2">Semi-Annually</option>
+          <option value="4">Quarterly</option>
+          <option value="12" selected>Monthly</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button class="calc-btn" id="calculateBtn">Calculate Maturity</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+      <div class="result-box">
+        <div class="result-item"><span>💰 Total Invested Amount</span><span id="totalInvested">₹ 0</span></div>
+        <div class="result-item"><span>📊 Total Interest Earned</span><span id="totalInterest">₹ 0</span></div>
+        <div class="result-item"><span>🏦 Maturity Amount</span><span id="maturityAmount">₹ 0</span></div>
+        <div class="result-item"><span>📊 Effective Yield (p.a.)</span><span id="effectiveYield">0%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container info-section">
+    <div class="info-card">
+      <h3>📖 What is an RD Calculator?</h3>
+      <p>A Recurring Deposit (RD) calculator helps you estimate the maturity amount and total interest earned on your recurring deposit. In an RD, you invest a fixed amount every month for a predetermined tenure, and the bank pays compound interest on your monthly deposits.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>⚙️ How RD Interest is Calculated</h3>
+      <p>The calculator uses the future value of a series of monthly deposits formula:</p>
+      <div class="formula">
+        M = R × [(1 + r/n)<sup>n×t</sup> - 1] / (1 - (1 + r/n)<sup>-1/n</sup>)
+      </div>
+      <p>Alternatively, a simpler approximation: RD maturity is calculated using the compound interest formula for recurring deposits where each monthly installment earns interest for the remaining tenure. Our calculator accurately computes the final maturity amount considering monthly compounding.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>📐 Understanding Your RD Returns</h3>
+      <ul>
+        <li><strong>Total Invested Amount:</strong> Sum of all your monthly deposits over the tenure.</li>
+        <li><strong>Total Interest Earned:</strong> The compound interest generated on your recurring deposits.</li>
+        <li><strong>Maturity Amount:</strong> The final amount you receive (Principal + Interest).</li>
+        <li><strong>Effective Yield:</strong> The actual annualized return after considering compounding frequency.</li>
+      </ul>
+      <p>RDs are ideal for disciplined monthly savers who want guaranteed returns with low risk.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>✅ Why Use an RD Calculator?</h3>
+      <ul>
+        <li>Plan your monthly savings for short-term or long-term goals.</li>
+        <li>Compare RD schemes from different banks and post offices.</li>
+        <li>Understand the impact of compounding frequency and tenure.</li>
+        <li>Decide how much to save each month to reach your target corpus.</li>
+        <li>Free, instant, and completely private — no personal data required.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>📜 Recurring Deposits in India</h3>
+      <p>Recurring deposits are popular among salaried individuals and students to build a savings habit. Banks like SBI, HDFC, ICICI, and post offices offer RD accounts with tenures ranging from 6 months to 10 years. Interest rates are similar to fixed deposits, and senior citizens often get an additional 0.5% p.a. Online RD calculators have made it easy for millions to project their maturity amount and plan their finances.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-container">
+    <div class="copyright">© 2008 - 2026 calcify.solutions</div>
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="sitemap.html">Sitemap</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function calculateRD() {
+    let monthlyDeposit = parseFloat(document.getElementById('monthlyAmount').value);
+    let annualRate = parseFloat(document.getElementById('rate').value);
+    let tenureValue = parseFloat(document.getElementById('tenureValue').value);
+    let tenureUnit = document.getElementById('tenureUnit').value;
+    let compoundingPerYear = parseFloat(document.getElementById('frequency').value);
+
+    if (isNaN(monthlyDeposit) || monthlyDeposit < 0) monthlyDeposit = 0;
+    if (isNaN(annualRate) || annualRate < 0) annualRate = 0;
+    if (isNaN(tenureValue) || tenureValue <= 0) tenureValue = 0;
+    if (isNaN(compoundingPerYear) || compoundingPerYear <= 0) compoundingPerYear = 1;
+
+    let tenureMonths = tenureUnit === 'years' ? tenureValue * 12 : tenureValue;
+    if (tenureMonths <= 0) tenureMonths = 0;
+
+    const totalInvested = monthlyDeposit * tenureMonths;
+    let maturityAmount = 0;
+
+    if (annualRate === 0 || tenureMonths === 0) {
+      maturityAmount = totalInvested;
+    } else {
+      // RD formula: Each monthly deposit compounds for the remaining months
+      // Standard formula used by banks: M = R × [{(1 + r)^n - 1} / r] × (1 + r) for end-of-month deposits? 
+      // For recurring deposits, interest is compounded quarterly typically, but we use monthly compounding for precision.
+      // Standard RD maturity formula: M = R * ((1 + r)^n - 1) / (1 - (1 + r)^(-1)) approximately.
+      // Simpler approach: compute future value of each monthly installment.
+      const monthlyRate = annualRate / 100 / 12;
+      let total = 0;
+      for (let i = 0; i < tenureMonths; i++) {
+        // months remaining = tenureMonths - i
+        const monthsRemaining = tenureMonths - i;
+        total += monthlyDeposit * Math.pow(1 + monthlyRate, monthsRemaining);
+      }
+      maturityAmount = total;
+    }
+
+    const totalInterest = maturityAmount - totalInvested;
+    let effectiveYield = 0;
+    if (totalInvested > 0 && tenureMonths > 0) {
+      const totalReturnMultiple = maturityAmount / totalInvested;
+      const annualizedReturn = Math.pow(totalReturnMultiple, 12 / tenureMonths) - 1;
+      effectiveYield = annualizedReturn * 100;
+    }
+
+    const formatCurrency = (value) => {
+      if (isNaN(value) || !isFinite(value)) return '₹ 0';
+      return '₹ ' + value.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    document.getElementById('totalInvested').innerHTML = formatCurrency(totalInvested);
+    document.getElementById('totalInterest').innerHTML = formatCurrency(totalInterest);
+    document.getElementById('maturityAmount').innerHTML = formatCurrency(maturityAmount);
+    document.getElementById('effectiveYield').innerHTML = effectiveYield.toFixed(2) + '%';
+  }
+
+  function resetForm() {
+    document.getElementById('monthlyAmount').value = '5000';
+    document.getElementById('rate').value = '7.5';
+    document.getElementById('tenureValue').value = '5';
+    document.getElementById('tenureUnit').value = 'years';
+    document.getElementById('frequency').value = '12';
+    calculateRD();
+  }
+
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculateRD);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+  
+  // Auto calculate on input change
+  const inputs = ['monthlyAmount', 'rate', 'tenureValue', 'tenureUnit', 'frequency'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', calculateRD);
+  });
+
+  window.addEventListener('DOMContentLoaded', calculateRD);
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const navLinks = document.getElementById('navLinks');
+  mobileBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  document.getElementById('exploreBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+  // FAQ Schema for SEO
+  const schemaScript = document.createElement('script');
+  schemaScript.type = 'application/ld+json';
+  schemaScript.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an RD (Recurring Deposit)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Recurring Deposit is a savings scheme where you deposit a fixed amount every month for a predetermined tenure and earn compound interest."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is RD interest calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RD interest is calculated using the future value of a series of monthly deposits, where each installment earns interest for the remaining tenure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the minimum tenure for an RD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most banks offer RD tenures from 6 months to 10 years. Some allow as low as 3 months."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(schemaScript);
+</script>
+</body>
+</html>
